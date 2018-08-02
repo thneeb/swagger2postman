@@ -1,0 +1,22 @@
+{
+  "name": "test-generator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lib/index.js",
+  "dependencies": {
+    "@types/node": "^10.5.5",
+    "command-line-args": "^5.0.2",
+    "command-line-usage": "^5.0.5",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "tslint": "^5.11.0",
+    "typescript": "^3.0.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tslint -p tslint.json && tsc"
+  },
+  "author": "",
+  "license": "ISC"
+}
