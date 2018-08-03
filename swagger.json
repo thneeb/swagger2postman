@@ -1,0 +1,1181 @@
+{
+  "openapi" : "3.0.0",
+  "servers" : [ {
+    "url" : "https://virtserver.swaggerhub.com/nttdata9/ProductCatalog/17.5.0"
+  } ],
+  "info" : {
+    "description" : "This is a description of the Product Catalog API from TMForum in Version 17.5",
+    "version" : "17.5.0-oas3",
+    "title" : "Product Catalog API",
+    "contact" : {
+      "email" : "thomas.neeb@nttdata.com"
+    },
+    "license" : {
+      "name" : "Apache 2.0",
+      "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "tags" : [ {
+    "name" : "all",
+    "description" : "Access is free for all"
+  } ],
+  "paths" : {
+    "/catalog" : {
+      "get" : {
+        "summary" : "retrieves all catalogs",
+        "responses" : {
+          "200" : {
+            "description" : "returns all catalogs",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Catalog"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "add a new catalog",
+        "operationId" : "addNewCatalog",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Catalog"
+              }
+            }
+          },
+          "description" : "Catalog to add",
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "created catalog",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Catalog"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "invalid input, object invalid"
+          },
+          "409" : {
+            "description" : "an existing item already exists"
+          }
+        }
+      }
+    },
+    "/productSpecification" : {
+      "get" : {
+        "summary" : "searches product specifications",
+        "operationId" : "searchProductSpecification",
+        "description" : "By passing in the appropriate options, you can search for\navailable inventory in the system\n",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "searchString",
+          "description" : "pass an optional search string for looking up inventory",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "query",
+          "name" : "skip",
+          "description" : "number of records to skip for pagination",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "minimum" : 0
+          }
+        }, {
+          "in" : "query",
+          "name" : "limit",
+          "description" : "maximum number of records to return",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "minimum" : 0,
+            "maximum" : 50
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "search results matching criteria",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/ProductSpecification_Read"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "bad input parameter"
+          }
+        }
+      },
+      "post" : {
+        "summary" : "adds an inventory item",
+        "operationId" : "addProductSpecification",
+        "description" : "Adds an item to the system",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ProductSpecification_Create"
+              }
+            }
+          },
+          "description" : "Product Specification to add",
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "item created",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProductSpecification_Read"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "invalid input, object invalid"
+          },
+          "409" : {
+            "description" : "an existing item already exists"
+          }
+        }
+      }
+    },
+    "/productSpecification/{id}" : {
+      "get" : {
+        "summary" : "retrieves the requested product specification",
+        "operationId" : "getProductSpecificationById",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "type" : "string",
+            "format" : "uuid"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "returns the requested product specification",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProductSpecification_Read"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "requested item could not be found"
+          }
+        }
+      },
+      "put" : {
+        "summary" : "updates an existing product specification",
+        "operationId" : "updateProductSpecification",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "type" : "string",
+            "format" : "uuid"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "returns the updated resource",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProductSpecification_Read"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "requested item could not be found"
+          }
+        },
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ProductSpecification_Update"
+              }
+            }
+          },
+          "description" : "Product Specification to add",
+          "required" : true
+        }
+      }
+    },
+    "/productOffering" : {
+      "get" : {
+        "summary" : "searches productofferings",
+        "operationId" : "searchProductOffering",
+        "description" : "By passing in the appropriate options, you can search for\navailable inventory in the system\n",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "searchString",
+          "description" : "pass an optional search string for looking up inventory",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "query",
+          "name" : "skip",
+          "description" : "number of records to skip for pagination",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "minimum" : 0
+          }
+        }, {
+          "in" : "query",
+          "name" : "limit",
+          "description" : "maximum number of records to return",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "minimum" : 0,
+            "maximum" : 50
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "search results matching criteria",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/ProductOffering_Read"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "bad input parameter"
+          }
+        }
+      },
+      "post" : {
+        "summary" : "adds a product offering",
+        "operationId" : "addProductOffering",
+        "description" : "Adds an item to the system",
+        "responses" : {
+          "201" : {
+            "description" : "item created",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProductOffering_Read"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "invalid input, object invalid"
+          },
+          "409" : {
+            "description" : "an existing item already exists"
+          }
+        },
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ProductOffering_Create"
+              }
+            }
+          },
+          "description" : "Product Specification to add",
+          "required" : true
+        }
+      }
+    },
+    "/productOffering/{id}" : {
+      "get" : {
+        "summary" : "retrieves the requested product offering",
+        "operationId" : "getProductOfferingById",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "type" : "string",
+            "format" : "uuid"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "returns the requested product offering",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProductOffering_Read"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "requested item could not be found"
+          }
+        }
+      },
+      "put" : {
+        "summary" : "updates an existing product offering",
+        "operationId" : "updateProductOffering",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "type" : "string",
+            "format" : "uuid"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ProductOffering_Update"
+              }
+            }
+          },
+          "description" : "Product Specification to add",
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "returns the updated resource",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProductOffering_Read"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "requested item could not be found"
+          }
+        }
+      }
+    },
+    "/productOfferingPrice" : {
+      "get" : {
+        "summary" : "searches productoffering prices",
+        "operationId" : "searchProductOfferingPrices",
+        "description" : "By passing in the appropriate options, you can search for\navailable inventory in the system\n",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "searchString",
+          "description" : "pass an optional search string for looking up inventory",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "query",
+          "name" : "skip",
+          "description" : "number of records to skip for pagination",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "minimum" : 0
+          }
+        }, {
+          "in" : "query",
+          "name" : "limit",
+          "description" : "maximum number of records to return",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "minimum" : 0,
+            "maximum" : 50
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "search results matching criteria",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/ProductOfferingPrice"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "bad input parameter"
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "Catalog" : {
+        "required" : [ "id", "href", "name" ],
+        "properties" : {
+          "id" : {
+            "title" : "ID",
+            "type" : "string",
+            "format" : "uuid",
+            "readOnly" : true,
+            "example" : "d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "href" : {
+            "title" : "HREF",
+            "type" : "string",
+            "format" : "uri",
+            "readOnly" : true,
+            "example" : "https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "name" : {
+            "title" : "Name",
+            "type" : "string",
+            "example" : "Mustermann Master Catalog"
+          },
+          "description" : {
+            "title" : "Description",
+            "type" : "string",
+            "example" : "Description for Mustermann Master Catalog"
+          },
+          "version" : {
+            "title" : "Version",
+            "type" : "string",
+            "example" : 1
+          },
+          "lastUpdate" : {
+            "title" : "Last update",
+            "type" : "string",
+            "format" : "date-time",
+            "example" : "2016-08-29T09:12:33.000Z"
+          },
+          "type" : {
+            "title" : "Catalog type",
+            "type" : "string",
+            "example" : "Product Catalog"
+          },
+          "lifecycleStatus" : {
+            "$ref" : "#/components/schemas/LifecycleStatus"
+          },
+          "validFor" : {
+            "$ref" : "#/components/schemas/TimePeriod"
+          },
+          "@type" : {
+            "title" : "Schema type",
+            "type" : "string",
+            "example" : "TariffSpecification"
+          },
+          "@baseType" : {
+            "title" : "Schema base type",
+            "type" : "string",
+            "example" : "ProductSpecification"
+          },
+          "@schemaLocation" : {
+            "title" : "Schema location",
+            "type" : "string",
+            "format" : "uri",
+            "example" : "https://tmforum.nttdata.com/schemas/Tariff.yml"
+          },
+          "category" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/CategoryRef"
+            }
+          },
+          "relatedParty" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/RelatedPartyRef"
+            }
+          }
+        }
+      },
+      "CategoryRef" : {
+        "properties" : {
+          "id" : {
+            "title" : "ID",
+            "type" : "string",
+            "format" : "uuid",
+            "readOnly" : true,
+            "example" : "d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "href" : {
+            "title" : "HREF",
+            "type" : "string",
+            "format" : "uri",
+            "readOnly" : true,
+            "example" : "https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "name" : {
+            "title" : "Name",
+            "type" : "string",
+            "example" : "Mustermann Master Catalog"
+          },
+          "version" : {
+            "title" : "Version",
+            "type" : "string",
+            "example" : 1
+          },
+          "@referredType" : {
+            "title" : "Referred Type",
+            "type" : "string",
+            "example" : "other catalog type"
+          }
+        }
+      },
+      "ProductSpecification_Create" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/ProductSpecification"
+        } ]
+      },
+      "ProductSpecification_Update" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/ProductSpecification"
+        } ]
+      },
+      "ProductSpecification_Read" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/ProductSpecification"
+        }, {
+          "required" : [ "id", "href", "version", "lifecycleStatus", "validFor" ],
+          "properties" : {
+            "id" : {
+              "title" : "ID",
+              "type" : "string",
+              "format" : "uuid",
+              "readOnly" : true,
+              "example" : "d290f1ee-6c54-4b01-90e6-d701748f0851"
+            },
+            "href" : {
+              "title" : "HREF",
+              "type" : "string",
+              "format" : "uri",
+              "readOnly" : true,
+              "example" : "https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851"
+            }
+          },
+          "type" : "object"
+        } ]
+      },
+      "ProductSpecification" : {
+        "description" : "ProductSpecification is a detailed description of a tangible or intangible object made available externally in the form of a ProductOffering to customers or other parties playing a party role.",
+        "type" : "object",
+        "required" : [ "name" ],
+        "properties" : {
+          "name" : {
+            "title" : "Name",
+            "type" : "string",
+            "example" : "Widget Adapter"
+          },
+          "description" : {
+            "title" : "Description",
+            "type" : "string",
+            "example" : "Description for the Widget Adapter"
+          },
+          "brand" : {
+            "title" : "Brand",
+            "type" : "string",
+            "example" : "ALDItalk"
+          },
+          "isBundle" : {
+            "title" : "Bundle",
+            "type" : "boolean",
+            "example" : false
+          },
+          "lastUpdate" : {
+            "title" : "Last update",
+            "type" : "string",
+            "format" : "date-time",
+            "example" : "2016-08-29T09:12:33.000Z"
+          },
+          "lifecycleStatus" : {
+            "$ref" : "#/components/schemas/LifecycleStatus"
+          },
+          "productNumber" : {
+            "title" : "Product number",
+            "type" : "string",
+            "example" : "ABC1234"
+          },
+          "validFor" : {
+            "$ref" : "#/components/schemas/TimePeriod"
+          },
+          "version" : {
+            "title" : "Version",
+            "type" : "string",
+            "example" : 1
+          },
+          "@type" : {
+            "title" : "Schema type",
+            "type" : "string",
+            "example" : "TariffSpecification"
+          },
+          "@baseType" : {
+            "title" : "Schema base type",
+            "type" : "string",
+            "example" : "ProductSpecification"
+          },
+          "@schemaLocation" : {
+            "title" : "Schema location",
+            "type" : "string",
+            "format" : "uri",
+            "example" : "https://tmforum.nttdata.com/schemas/Tariff.yml"
+          },
+          "targetProductSchema" : {
+            "$ref" : "#/components/schemas/TargetProductSchemaRef"
+          },
+          "resourceSpecification" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/ResouceSpecificationRef"
+            }
+          },
+          "serviceSpecification" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/ServiceSpecificationRef"
+            }
+          },
+          "bundledProductSpecification" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/BundledProductSpecification"
+            }
+          },
+          "productSpecCharacteristic" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/ProductSpecCharacteristic"
+            }
+          },
+          "productSpecificationRelationship" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/ProductSpecificationRelationship"
+            }
+          },
+          "attachment" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Attachment"
+            }
+          },
+          "relatedParty" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/RelatedPartyRef"
+            }
+          }
+        }
+      },
+      "ProductOffering_Create" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/ProductOffering"
+        } ]
+      },
+      "ProductOffering_Update" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/ProductOffering"
+        } ]
+      },
+      "ProductOffering_Read" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/ProductOffering"
+        }, {
+          "required" : [ "id", "href" ],
+          "properties" : {
+            "id" : {
+              "type" : "string",
+              "format" : "uuid",
+              "example" : "d290f1ee-6c54-4b01-90e6-d701748f0851"
+            },
+            "href" : {
+              "type" : "string",
+              "format" : "uri",
+              "example" : "https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851"
+            }
+          },
+          "type" : "object"
+        } ]
+      },
+      "ProductOffering" : {
+        "description" : "The Product Offering resource represents entities that are orderable from the provider of the catalog, this resource includes pricing information.",
+        "type" : "object",
+        "required" : [ "name", "isBundle" ],
+        "properties" : {
+          "name" : {
+            "type" : "string",
+            "example" : "Widget Adapter"
+          },
+          "description" : {
+            "type" : "string",
+            "example" : "Description for the Widget Adapter"
+          },
+          "isBundle" : {
+            "type" : "boolean",
+			"example": "true"
+          }
+        },
+        "oneOf" : [ {
+          "$ref" : "#/components/schemas/ProductSpecificationRefRef"
+        }, {
+          "$ref" : "#/components/schemas/BundledProductOfferingArray"
+        } ],
+        "discriminator" : {
+          "propertyName" : "isBundle",
+          "mapping" : {
+            "true" : "BundledProductOfferingArray",
+            "false" : "ProductSpecificationRefRef"
+          }
+        }
+      },
+      "BundledProductOfferingArray" : {
+        "properties" : {
+          "bundledProductOffering" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/BundledProductOffering"
+            }
+          }
+        }
+      },
+      "ProductSpecificationRefRef" : {
+        "properties" : {
+          "productSpecification" : {
+            "$ref" : "#/components/schemas/ProductSpecificationRef"
+          }
+        }
+      },
+      "ProductOfferingPrice" : {
+        "description" : "The Product Offering resource represents entities that are orderable from the provider of the catalog, this resource includes pricing information.",
+        "type" : "object",
+        "required" : [ "id", "href", "name" ],
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "format" : "uuid",
+            "example" : "d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "href" : {
+            "type" : "string",
+            "format" : "uri",
+            "example" : "https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "name" : {
+            "type" : "string",
+            "example" : "Widget Adapter"
+          },
+          "description" : {
+            "type" : "string",
+            "example" : "Description for the Widget Adapter"
+          },
+          "version" : {
+            "type" : "string",
+            "example" : 2
+          }
+        }
+      },
+      "ProductSpecificationRef" : {
+        "required" : [ "id", "href" ],
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "format" : "uuid",
+            "example" : "d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "href" : {
+            "type" : "string",
+            "format" : "uri",
+            "example" : "https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "name" : {
+            "type" : "string",
+            "example" : "Widget Adapter"
+          }
+        },
+        "type" : "object"
+      },
+      "BundledProductOffering" : {
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "format" : "uuid",
+            "example" : "d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "href" : {
+            "type" : "string",
+            "format" : "uri",
+            "example" : "https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "name" : {
+            "type" : "string",
+            "example" : "Widget Adapter"
+          }
+        },
+        "type" : "object"
+      },
+      "TimePeriod" : {
+        "properties" : {
+          "startDateTime" : {
+            "type" : "string",
+            "format" : "date-time",
+            "example" : "2016-08-29T09:12:33.000Z"
+          },
+          "endDateTime" : {
+            "type" : "string",
+            "format" : "date-time",
+            "example" : "2016-08-29T09:12:33.000Z"
+          }
+        },
+        "type" : "object"
+      },
+      "TargetProductSchemaRef" : {
+        "description" : "Reference to the schema information which will appear in Product Inventory when the product becomes installed",
+        "required" : [ "@referredType", "@schemaLocation" ],
+        "properties" : {
+          "@referredType" : {
+            "type" : "string"
+          },
+          "@schemaLocation" : {
+            "type" : "string",
+            "format" : "uri"
+          }
+        },
+        "type" : "object"
+      },
+      "ResouceSpecificationRef" : {
+        "description" : "References to the resouce specifications which are installed in Resource Inventory, when this product is installed",
+        "required" : [ "id", "href" ],
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "format" : "uuid",
+            "example" : "d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "href" : {
+            "type" : "string",
+            "format" : "uri",
+            "example" : "https://tmforum.nttdata.com/resourceSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "name" : {
+            "type" : "string",
+            "example" : "Server 4711"
+          },
+          "version" : {
+            "type" : "string",
+            "example" : 1
+          },
+          "@referredType" : {
+            "type" : "string",
+            "example" : "ResourceSpecification"
+          }
+        },
+        "type" : "object"
+      },
+      "ServiceSpecificationRef" : {
+        "description" : "References to the service specifications which are installed in Service Inventory, when this product is installed",
+        "required" : [ "id", "href" ],
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "format" : "uuid",
+            "example" : "d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "href" : {
+            "type" : "string",
+            "format" : "uri",
+            "example" : "https://tmforum.nttdata.com/resourceSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "name" : {
+            "type" : "string",
+            "example" : "Server 4711"
+          },
+          "version" : {
+            "type" : "string",
+            "example" : 1
+          },
+          "@referredType" : {
+            "type" : "string",
+            "example" : "ResourceSpecification# Added by API Auto Mocking Plugin"
+          }
+        },
+        "type" : "object"
+      },
+      "BundledProductSpecification" : {
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "format" : "uuid",
+            "example" : "d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "href" : {
+            "type" : "string",
+            "format" : "uri",
+            "example" : "https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "lifecycleStatus" : {
+            "$ref" : "#/components/schemas/LifecycleStatus"
+          },
+          "name" : {
+            "type" : "string",
+            "example" : "Server 4711"
+          }
+        },
+        "type" : "object"
+      },
+      "ProductSpecCharacteristic" : {
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "valueType" : {
+            "type" : "string"
+          },
+          "configurable" : {
+            "type" : "boolean"
+          },
+          "validFor" : {
+            "$ref" : "#/components/schemas/TimePeriod"
+          },
+          "@type" : {
+            "type" : "string"
+          },
+          "@schemaLocation" : {
+            "type" : "string",
+            "format" : "uri"
+          },
+          "@valueSchemaLocation" : {
+            "type" : "string",
+            "format" : "uri"
+          },
+          "minCardinality" : {
+            "type" : "integer",
+            "format" : "uint",
+            "minimum" : 0
+          },
+          "maxCardinality" : {
+            "type" : "integer",
+            "format" : "unit",
+            "minimum" : 1
+          },
+          "isUnique" : {
+            "type" : "boolean"
+          },
+          "regex" : {
+            "type" : "string"
+          },
+          "extensible" : {
+            "type" : "boolean"
+          },
+          "productSpecCharacteristic" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/ProductSpecCharacteristicValue"
+            }
+          },
+          "productSpecCharRelationship" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/ProductSpecCharRelationship"
+            }
+          }
+        },
+        "type" : "object"
+      },
+      "ProductSpecCharacteristicValue" : {
+        "properties" : {
+          "isDefault" : {
+            "type" : "boolean"
+          },
+          "unitOfMeature" : {
+            "type" : "string"
+          },
+          "validFor" : {
+            "$ref" : "#/components/schemas/TimePeriod"
+          },
+          "valueFrom" : {
+            "type" : "string"
+          },
+          "valueTo" : {
+            "type" : "string"
+          },
+          "valueType" : {
+            "type" : "string"
+          },
+          "rangeInterval" : {
+            "type" : "string"
+          },
+          "regex" : {
+            "type" : "string"
+          },
+          "@type" : {
+            "type" : "string"
+          },
+          "@schemaLocation" : {
+            "type" : "string",
+            "format" : "uri"
+          }
+        },
+        "type" : "object"
+      },
+      "ProductSpecCharRelationship" : {
+        "properties" : {
+          "type" : {
+            "type" : "string"
+          },
+          "validFor" : {
+            "$ref" : "#/components/schemas/TimePeriod"
+          },
+          "charSpecSeq" : {
+            "type" : "integer",
+            "format" : "uint"
+          },
+          "id" : {
+            "type" : "string",
+            "format" : "uuid"
+          },
+          "href" : {
+            "type" : "string",
+            "format" : "uri"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "@type" : {
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "ProductSpecificationRelationship" : {
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "format" : "uuid",
+            "example" : "d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "href" : {
+            "type" : "string",
+            "format" : "uri",
+            "example" : "https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "type" : {
+            "type" : "string",
+            "example" : "contains"
+          },
+          "validFor" : {
+            "$ref" : "#/components/schemas/TimePeriod"
+          }
+        },
+        "type" : "object"
+      },
+      "Attachment" : {
+        "title" : "Attachment",
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "format" : "uuid",
+            "example" : "d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "href" : {
+            "type" : "string",
+            "format" : "uri",
+            "example" : "https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "type" : {
+            "type" : "string"
+          },
+          "url" : {
+            "type" : "string",
+            "format" : "uri"
+          },
+          "mimeType" : {
+            "type" : "string",
+            "format" : "mimeType"
+          },
+          "validFor" : {
+            "$ref" : "#/components/schemas/TimePeriod"
+          },
+          "@type" : {
+            "type" : "string"
+          },
+          "@baseType" : {
+            "type" : "string"
+          }
+        }
+      },
+      "RelatedPartyRef" : {
+        "title" : "Related party reference",
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "format" : "uuid",
+            "example" : "d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "href" : {
+            "type" : "string",
+            "format" : "uri",
+            "example" : "https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "role" : {
+            "type" : "string",
+            "example" : "Responsible"
+          },
+          "name" : {
+            "type" : "string",
+            "example" : "John Doe"
+          },
+          "validFor" : {
+            "$ref" : "#/components/schemas/TimePeriod"
+          },
+          "@referredType" : {
+            "type" : "string"
+          }
+        }
+      },
+      "LifecycleStatus" : {
+        "title" : "Lifecycle Status",
+        "type" : "string",
+        "enum" : [ "In study", "In design", "In test", "Active", "Launched", "Retired", "Obsolet", "Rejected" ],
+        "example" : "Active"
+      }
+    }
+  }
+}

@@ -11,6 +11,7 @@ import { RequestDefinition } from './RequestDefinition';
 import { RequestDefinitions } from './RequestDefinitions';
 import { Attribute } from './Attribute';
 import { Swagger } from './Swagger';
+import { WSAEMSGSIZE } from 'constants';
 
 const owner = 231421;
 
@@ -134,46 +135,73 @@ function resolveModel(swag: Swagger, obj: Attribute): Attribute{
 		}
 		return result;
 	} else {
-		if (obj.oneOf && obj.oneOf.length > 0) {
-			obj.properties = Object.assign(obj.properties, resolveModel(swag, obj.oneOf[0]).properties);
-			obj.required = (obj.required || []).concat(Object.keys(resolveModel(swag, obj.oneOf[0]).properties)).filter((item, pos, items) => {
-				return items.indexOf(item) === pos;
-			});
-		}
 		return obj;
 	}
 }
 
-function buildModelWithAllAttributes(swag: Swagger, model: Attribute): any {
+function buildModelWithAllAttributes(swag: Swagger, model: Attribute, override: object): any {
 	let result;
 	if (model.type === 'object' || !model.type) {
 		if (model.allOf) {
 			result = {};
 			for (const a of model.allOf) {
 				if (Object.keys(a).length > 0) {
-					result = Object.assign(result, buildModelWithAllAttributes(swag, a));
+					result = Object.assign(result, buildModelWithAllAttributes(swag, a, override));
 				}
 			}
 		} else if (model['$ref']) {
-			result = buildModelWithAllAttributes(swag, resolveModel(swag, model));
+			result = buildModelWithAllAttributes(swag, resolveModel(swag, model), override);
 		} else {
 			result = {};
 			if (model.properties) {
 				const subObject = {};
 				for (const prop of Object.keys(model.properties)) {
-					subObject[prop] = buildModelWithAllAttributes(swag, model.properties[prop]);
+					subObject[prop] = buildModelWithAllAttributes(swag, model.properties[prop], override ? override[prop] : undefined);
 				}
 				result = subObject;
 			}
 			if (model.oneOf && model.oneOf.length > 0) {
-				result = Object.assign(result, buildModelWithAllAttributes(swag, model.oneOf[0]));
+				let item = 0;
+				if (model.discriminator) {
+					const disValue = result[model.discriminator.propertyName];
+					if (disValue !== undefined) {
+						item = model.oneOf.findIndex((f) => disValue === f['$ref'].substring(f['$ref'].lastIndexOf('/') + 1));
+						if (item < 0 && model.discriminator.mapping) {
+							const ref = model.discriminator.mapping[disValue];
+							if (ref) {
+								item = model.oneOf.findIndex((f) => ref === f['$ref'].substring(f['$ref'].lastIndexOf('/') + 1))
+							} else {
+								item = 0;
+								console.warn('Value of the discriminator property (' + disValue + ') does not fit to a oneOf object');
+							}
+						} else {
+							item = 0;
+							console.warn('Value of the discriminator property (' + disValue + ') does not fit to a oneOf object and no mapping is defined');
+						}
+					} else {
+						item = 0;
+						console.warn('Discrimiator has no example value, choosing the first oneOf element');
+					}
+				} else {
+					item = 0;
+				}
+				result = Object.assign(result, buildModelWithAllAttributes(swag, model.oneOf[item], override));
 			}
 		}
 	} else if (model.type === 'array') {
 		result = [];
-		result.push(buildModelWithAllAttributes(swag, model.items));
+		result.push(buildModelWithAllAttributes(swag, model.items, override));
 	} else {
-		result = model.example;
+		const example = override || model.example;
+		if (example) {
+			if (model.type === 'number') {
+				result = example as number;
+			} else if (model.type === 'boolean') {
+				result = example === 'true';
+			} else {
+				result = example;
+			}
+		}
 	}
 	return result;
 }
@@ -230,16 +258,13 @@ function deleteAllOptionalAttributes(swag: Swagger, result: any, model: Attribut
 					}
 				}
 			}
+			let oneOfRequired = [];
 			if (model.oneOf) {
-				let oneOfRequired = [] as string[];
 				for (const attr of model.oneOf) {
 					oneOfRequired = oneOfRequired.concat(Object.keys(resolveModel(swag, attr).properties));
 				}
-				model.required = model.required.concat(oneOfRequired).filter((item, pos, items) => {
-					return items.indexOf(item) === pos;
-				});
 			}
-			deleteOptionalAttributes(result, model.required, readOnly);
+			deleteOptionalAttributes(result, oneOfRequired.concat(model.required || []), readOnly);
 		}
 	} else if (model.type === 'array' && Array.isArray(result) && result.length > 0) {
 		deleteAllOptionalAttributes(swag, result[0], model.items);
@@ -260,12 +285,9 @@ function addTestsForMissingMandatoryParameters(swag: Swagger, p: PostmanCollecti
 				continue;
 			}
 			const model = resolveModel(swag, bodyContent.schema);
-			const example = buildModelWithAllAttributes(swag, bodyContent.schema);
+			const example = buildModelWithAllAttributes(swag, bodyContent.schema, undefined);
 			deleteAllOptionalAttributes(swag, example, bodyContent.schema);
-			const required = model.required.filter((f) => {
-				return !model.properties[f].readOnly;
-			})
-			for (const req of required) {
+			for (const req of Object.keys(example)) {
 				const copy = JSON.parse(JSON.stringify(example));
 				delete copy[req];
 				const request = generateBasicRequest(p.id, folder.id, path.value.post);
@@ -348,6 +370,42 @@ function generateFolder(collectionId: string, name: string): Folder {
 }
 
 function addTestsForSuccessfulMinimalCreation(swag: Swagger, p: PostmanCollection) {
+	const paths = Object.keys(swag.paths).map((key) => ({key, value: swag.paths[key] as RequestDefinitions}));
+	for (const path of paths) {
+		if (path.value.post) {
+			const bodyContent = (path.value.post.requestBody && path.value.post.requestBody.content && path.value.post.requestBody.content['application/json']) || 
+				(path.value.post.parameters && path.value.post.parameters.find((f) => f.in === 'body'));
+			if (!bodyContent) {
+				console.warn('no request body for POST Request ' + path.key + ' specified, searching for the next')
+				continue;
+			}
+			testCreateGetAll(p, path.key, path.value, swag, bodyContent, undefined);		
+		}
+	}
+}
+
+function testCreateGetAll(p: PostmanCollection, path: string, definitions: RequestDefinitions, swag: Swagger, bodyContent: any, override: object) {
+	const folder = generateFolder(p.id, 'TC_' + path.substring(1) + '_POST_N1' + (override ? '_' + JSON.stringify(override) : '') + ' - Create Resource with minimum parameters');
+	const example = buildModelWithAllAttributes(swag, bodyContent.schema, override);
+	deleteAllOptionalAttributes(swag, example, bodyContent.schema);
+	testCreateResource(swag, p, folder, path, definitions.post, example);
+	const defs = swag.paths[path + "/{id}"] as RequestDefinitions;
+	if (defs && defs.get) {
+		testGetCreatedResource(swag, p, folder, path + "/{id}", defs.get);
+	}
+	else {
+		console.warn('No getter for a concrete element specified ' + path + '/{id}');
+	}
+	if (definitions.get) {
+		testGetAllResources(swag, p, folder, path, definitions.get);
+	}
+	else {
+		console.warn('No getter for a full search specified ' + path);
+	}
+	p.folders.push(folder);
+}
+
+function addTestsForDifferentDiscrimiator(swag: Swagger, p: PostmanCollection) {
 	const paths = Object.keys(swag.paths).map((key) => ({key, value: swag.paths[key]}));
 	for (const path of paths) {
 		if (path.value.post) {
@@ -357,22 +415,31 @@ function addTestsForSuccessfulMinimalCreation(swag: Swagger, p: PostmanCollectio
 				console.warn('no request body for POST Request ' + path.key + ' specified, searching for the next')
 				continue;
 			}
-			const folder = generateFolder(p.id, 'TC_' + path.key.substring(1) + '_POST_N1 - Create Resource with minimum parameters')
-			const example = buildModelWithAllAttributes(swag, bodyContent.schema);
-			deleteAllOptionalAttributes(swag, example, bodyContent.schema);
-			testCreateResource(swag, p, folder, path.key, path.value.post, example);
-			const defs = swag.paths[path.key + "/{id}"] as RequestDefinitions;
-			if (defs && defs.get) {
-				testGetCreatedResource(swag, p, folder, path.key + "/{id}", defs.get)
-			} else {
-				console.warn('No getter for a concrete element specified ' + path.key + '/{id}')
+			const schema = resolveModel(swag, bodyContent.schema);
+			if (schema.oneOf) {
+				if (schema.discriminator) {
+					const value = schema.properties[schema.discriminator.propertyName].example;
+					if (value) {
+						let values = [] as string[];
+						if (schema.discriminator.mapping) {
+							values = Object.keys(schema.discriminator.mapping);
+						} else {
+							values = schema.oneOf.map((f) => f['$ref'].substring(f['$ref'].lastIndexOf('/') + 1));
+						}
+						values = values.filter((f) => {
+							return f !== value;
+						});
+						for (const v of values) {
+							const override = {};
+							override[schema.discriminator.propertyName] = v;
+							testCreateGetAll(p, path.key, path.value, swag, bodyContent, override);
+						}
+					}
+				} else {
+					// we will see later, what we can do here
+					// We must choose another then the first element in the array
+				}
 			}
-			if (path.value.get) {
-				testGetAllResources(swag, p, folder, path.key, path.value.get);
-			} else {
-				console.warn('No getter for a full search specified ' + path.key);
-			}
-			p.folders.push(folder);		
 		}
 	}
 }
@@ -450,6 +517,7 @@ function generatePostmanCollection(swag: Swagger): PostmanCollection {
 	};
 	addTestsForSuccessfulMinimalCreation(swag, p);
 	addTestsForMissingMandatoryParameters(swag, p);
+	addTestsForDifferentDiscrimiator(swag, p);
 	return p;
 }
 

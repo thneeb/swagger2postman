@@ -8,5 +8,9 @@ export interface Attribute {
 	$ref?: string;
 	allOf?: Attribute[];
 	oneOf?: Attribute[];
+	discriminator? : {
+		propertyName: string,
+		mapping?: object
+	};
 	items?: Attribute;
 }
