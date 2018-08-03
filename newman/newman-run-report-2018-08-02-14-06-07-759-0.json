@@ -1,0 +1,104 @@
+{
+  "collection": {
+    "_": {
+      "postman_id": "6e3bdc80-965a-11e8-a915-d3106709fc99"
+    },
+    "description": {
+      "content": "This is a description of the Product Catalog API from TMForum in Version 17.5",
+      "type": "text/plain"
+    },
+    "item": [],
+    "event": [],
+    "variable": [],
+    "info": {
+      "id": "6e3bdc80-965a-11e8-a915-d3106709fc99",
+      "name": "Product Catalog API",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    }
+  },
+  "environment": {
+    "_": {
+      "postman_variable_scope": "environment",
+      "postman_exported_at": "2017-05-07T12:54:39.189Z",
+      "postman_exported_using": "Postman/4.10.7"
+    },
+    "id": "b0dec3b3-3992-de93-e500-a33b845aa794",
+    "name": "TMForum",
+    "values": [
+      {
+        "type": "any",
+        "value": "http://localhost:999",
+        "key": "Host"
+      },
+      {
+        "type": "any",
+        "value": "{{Host}}/catalogManagement/v2",
+        "key": "basicUrl"
+      }
+    ]
+  },
+  "globals": {
+    "id": "6420a927-e174-488a-8b8e-90222d213a06",
+    "values": []
+  },
+  "run": {
+    "stats": {
+      "iterations": {
+        "total": 0,
+        "pending": 0,
+        "failed": 0
+      },
+      "items": {
+        "total": 0,
+        "pending": 0,
+        "failed": 0
+      },
+      "scripts": {
+        "total": 0,
+        "pending": 0,
+        "failed": 0
+      },
+      "prerequests": {
+        "total": 0,
+        "pending": 0,
+        "failed": 0
+      },
+      "requests": {
+        "total": 0,
+        "pending": 0,
+        "failed": 0
+      },
+      "tests": {
+        "total": 0,
+        "pending": 0,
+        "failed": 0
+      },
+      "assertions": {
+        "total": 0,
+        "pending": 0,
+        "failed": 0
+      },
+      "testScripts": {
+        "total": 0,
+        "pending": 0,
+        "failed": 0
+      },
+      "prerequestScripts": {
+        "total": 0,
+        "pending": 0,
+        "failed": 0
+      }
+    },
+    "timings": {
+      "responseAverage": 0,
+      "started": 1533218767682,
+      "completed": 1533218767717
+    },
+    "executions": [],
+    "transfers": {
+      "responseTotal": 0
+    },
+    "failures": [],
+    "error": null
+  }
+}

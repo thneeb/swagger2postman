@@ -7,5 +7,6 @@ export interface Attribute {
 	required?: string[];
 	$ref?: string;
 	allOf?: Attribute[];
+	oneOf?: Attribute[];
 	items?: Attribute;
 }

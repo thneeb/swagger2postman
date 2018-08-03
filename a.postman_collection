@@ -1,0 +1,477 @@
+{
+  "id": "7fc8da50-971f-11e8-9132-8d9079dccde5",
+  "name": "Product Catalog API",
+  "description": "This is a description of the Product Catalog API from TMForum in Version 17.5",
+  "order": [],
+  "folders": [
+    {
+      "id": "7fc8da51-971f-11e8-9132-8d9079dccde5",
+      "name": "TC_catalog_POST_N1 - Create Resource with minimum parameters",
+      "description": "",
+      "collectionId": "7fc8da50-971f-11e8-9132-8d9079dccde5",
+      "order": [
+        "7fc90160-971f-11e8-9132-8d9079dccde5",
+        "7fc99da0-971f-11e8-9132-8d9079dccde5"
+      ],
+      "owner": 231421,
+      "folders_order": []
+    },
+    {
+      "id": "7fc99da1-971f-11e8-9132-8d9079dccde5",
+      "name": "TC_productSpecification_POST_N1 - Create Resource with minimum parameters",
+      "description": "",
+      "collectionId": "7fc8da50-971f-11e8-9132-8d9079dccde5",
+      "order": [
+        "7fc99da2-971f-11e8-9132-8d9079dccde5",
+        "7fc9c4b0-971f-11e8-9132-8d9079dccde5",
+        "7fc9c4b1-971f-11e8-9132-8d9079dccde5"
+      ],
+      "owner": 231421,
+      "folders_order": []
+    },
+    {
+      "id": "7fc9c4b2-971f-11e8-9132-8d9079dccde5",
+      "name": "TC_productOffering_POST_N1 - Create Resource with minimum parameters",
+      "description": "",
+      "collectionId": "7fc8da50-971f-11e8-9132-8d9079dccde5",
+      "order": [
+        "7fc9c4b3-971f-11e8-9132-8d9079dccde5",
+        "7fc9c4b4-971f-11e8-9132-8d9079dccde5",
+        "7fc9c4b5-971f-11e8-9132-8d9079dccde5"
+      ],
+      "owner": 231421,
+      "folders_order": []
+    },
+    {
+      "id": "7fc9c4b6-971f-11e8-9132-8d9079dccde5",
+      "name": "TC_catalog_POST_E1 - Create Resource with missing mandatory parameter",
+      "description": "",
+      "collectionId": "7fc8da50-971f-11e8-9132-8d9079dccde5",
+      "order": [
+        "7fc9c4b7-971f-11e8-9132-8d9079dccde5"
+      ],
+      "owner": 231421,
+      "folders_order": []
+    },
+    {
+      "id": "7fc9c4b8-971f-11e8-9132-8d9079dccde5",
+      "name": "TC_productSpecification_POST_E1 - Create Resource with missing mandatory parameter",
+      "description": "",
+      "collectionId": "7fc8da50-971f-11e8-9132-8d9079dccde5",
+      "order": [
+        "7fc9ebc0-971f-11e8-9132-8d9079dccde5"
+      ],
+      "owner": 231421,
+      "folders_order": []
+    },
+    {
+      "id": "7fc9ebc1-971f-11e8-9132-8d9079dccde5",
+      "name": "TC_productOffering_POST_E1 - Create Resource with missing mandatory parameter",
+      "description": "",
+      "collectionId": "7fc8da50-971f-11e8-9132-8d9079dccde5",
+      "order": [
+        "7fc9ebc2-971f-11e8-9132-8d9079dccde5",
+        "7fc9ebc3-971f-11e8-9132-8d9079dccde5"
+      ],
+      "owner": 231421,
+      "folders_order": []
+    }
+  ],
+  "folders_order": [],
+  "timestamp": 1533302217845,
+  "owner": 231421,
+  "public": false,
+  "requests": [
+    {
+      "id": "7fc90160-971f-11e8-9132-8d9079dccde5",
+      "name": "add a new catalog",
+      "headers": "Accept: application/json\nContent-Type: application/json\n",
+      "headerData": [
+        {
+          "key": "Accept",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        }
+      ],
+      "url": "{{host}}{{path}}/catalog",
+      "folder": "7fc8da51-971f-11e8-9132-8d9079dccde5",
+      "queryParams": [],
+      "preRequestScript": "",
+      "method": "POST",
+      "data": [],
+      "dataMode": "raw",
+      "version": 2,
+      "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is 201\"] = responseCode.code === 201;\ntests[\"Response contains location header\"] = responseHeaders.hasOwnProperty(\"Location\");\ntests[\"Location header is correct\"] = responseHeaders.hasOwnProperty(\"Location\") &&\n\t(postman.getResponseHeader(\"Location\").toString() == environment[\"path\"] + \"/catalog/\" + JSON.parse(responseBody).id || //relative\n\tpostman.getResponseHeader(\"Location\").toString() == environment[\"host\"] + environment[\"path\"] + \"/catalog/\" + JSON.parse(responseBody).id);   //absolute\ntests[\"Response contains all required fields\"] = findFieldsInBody([\"id\",\"href\",\"name\"], JSON.parse(responseBody));\n\nfunction findFieldInBody(field,body) {\n\tfor (var key in body) {\n\t\tif (key == field) return true;\n\t}\n\treturn false;\n}\n\nfunction findFieldsInBody(fields,body) {\n\tif (Object.prototype.toString.call(body) === \"[object Array]\") {\n\t\tfor (var i = 0; i < body.length; i++) {\n\t\t\tfindFieldsInBody(fields,body[i]);\n\t\t}\n\t} else {\n\t\tfor (var k = 0; k < fields.length; k++) {\n\t\t\tif (!findFieldInBody(fields[k],body)) {\n\t\t\t\ttests[\"An element is missing the field \" + fields[k]] = false;\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true\n\t}\n\treturn result;\n}\ntests[\"POST Body Response equals Request Body\"  ] = objectEquals(JSON.parse(request.data), JSON.parse(responseBody));\n\nfunction objectEquals(v1, v2) {\n\tif (typeof(v1) === \"function\") {\n\t\treturn v1.toString() === v2.toString();\n\t} else if (v1 instanceof Object && v2 instanceof Object) {\n\t\tvar r = true;\n\t\tfor (var k in v1) {\n\t\t\tr = objectEquals(v1[k], v2[k]);\n\t\t\tif (!r) {\n\t\t\t\tconsole.log(\"v1[k]:\"+v1[k]+\";v2[k]:\"+v2[k]);\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t} else {\n\t\treturn v1 === v2;\n\t}\n}\npostman.setGlobalVariable(\"lastId\", JSON.parse(responseBody).id);\npostman.setGlobalVariable(\"lastRequest\", request.data);\n",
+      "currentHelper": "normal",
+      "time": 1533302217846,
+      "collectionId": "7fc8da50-971f-11e8-9132-8d9079dccde5",
+      "rawModeData": "{\"name\":\"Mustermann Master Catalog\"}"
+    },
+    {
+      "id": "7fc99da0-971f-11e8-9132-8d9079dccde5",
+      "name": "retrieves all catalogs",
+      "headers": "Accept: application/json\nContent-Type: application/json\n",
+      "headerData": [
+        {
+          "key": "Accept",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        }
+      ],
+      "url": "{{host}}{{path}}/catalog",
+      "folder": "7fc8da51-971f-11e8-9132-8d9079dccde5",
+      "queryParams": [],
+      "preRequestScript": "",
+      "method": "GET",
+      "data": [],
+      "dataMode": "raw",
+      "version": 2,
+      "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is 200\"] = responseCode.code === 200;\n",
+      "currentHelper": "normal",
+      "time": 1533302217850,
+      "collectionId": "7fc8da50-971f-11e8-9132-8d9079dccde5",
+      "rawModeData": ""
+    },
+    {
+      "id": "7fc99da2-971f-11e8-9132-8d9079dccde5",
+      "name": "adds an inventory item",
+      "description": "Adds an item to the system",
+      "headers": "Accept: application/json\nContent-Type: application/json\n",
+      "headerData": [
+        {
+          "key": "Accept",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        }
+      ],
+      "url": "{{host}}{{path}}/productSpecification",
+      "folder": "7fc99da1-971f-11e8-9132-8d9079dccde5",
+      "queryParams": [],
+      "preRequestScript": "",
+      "method": "POST",
+      "data": [],
+      "dataMode": "raw",
+      "version": 2,
+      "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is 201\"] = responseCode.code === 201;\ntests[\"Response contains location header\"] = responseHeaders.hasOwnProperty(\"Location\");\ntests[\"Location header is correct\"] = responseHeaders.hasOwnProperty(\"Location\") &&\n\t(postman.getResponseHeader(\"Location\").toString() == environment[\"path\"] + \"/productSpecification/\" + JSON.parse(responseBody).id || //relative\n\tpostman.getResponseHeader(\"Location\").toString() == environment[\"host\"] + environment[\"path\"] + \"/productSpecification/\" + JSON.parse(responseBody).id);   //absolute\ntests[\"Response contains all required fields\"] = findFieldsInBody([\"name\",\"id\",\"href\",\"version\",\"lifecycleStatus\",\"validFor\"], JSON.parse(responseBody));\n\nfunction findFieldInBody(field,body) {\n\tfor (var key in body) {\n\t\tif (key == field) return true;\n\t}\n\treturn false;\n}\n\nfunction findFieldsInBody(fields,body) {\n\tif (Object.prototype.toString.call(body) === \"[object Array]\") {\n\t\tfor (var i = 0; i < body.length; i++) {\n\t\t\tfindFieldsInBody(fields,body[i]);\n\t\t}\n\t} else {\n\t\tfor (var k = 0; k < fields.length; k++) {\n\t\t\tif (!findFieldInBody(fields[k],body)) {\n\t\t\t\ttests[\"An element is missing the field \" + fields[k]] = false;\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true\n\t}\n\treturn result;\n}\ntests[\"POST Body Response equals Request Body\"  ] = objectEquals(JSON.parse(request.data), JSON.parse(responseBody));\n\nfunction objectEquals(v1, v2) {\n\tif (typeof(v1) === \"function\") {\n\t\treturn v1.toString() === v2.toString();\n\t} else if (v1 instanceof Object && v2 instanceof Object) {\n\t\tvar r = true;\n\t\tfor (var k in v1) {\n\t\t\tr = objectEquals(v1[k], v2[k]);\n\t\t\tif (!r) {\n\t\t\t\tconsole.log(\"v1[k]:\"+v1[k]+\";v2[k]:\"+v2[k]);\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t} else {\n\t\treturn v1 === v2;\n\t}\n}\npostman.setGlobalVariable(\"lastId\", JSON.parse(responseBody).id);\npostman.setGlobalVariable(\"lastRequest\", request.data);\n",
+      "currentHelper": "normal",
+      "time": 1533302217850,
+      "collectionId": "7fc8da50-971f-11e8-9132-8d9079dccde5",
+      "rawModeData": "{\"name\":\"Widget Adapter\"}"
+    },
+    {
+      "id": "7fc9c4b0-971f-11e8-9132-8d9079dccde5",
+      "name": "retrieves the requested product specification",
+      "headers": "Accept: application/json\nContent-Type: application/json\n",
+      "headerData": [
+        {
+          "key": "Accept",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        }
+      ],
+      "url": "{{host}}{{path}}/productSpecification/{{lastId}}",
+      "folder": "7fc99da1-971f-11e8-9132-8d9079dccde5",
+      "queryParams": [],
+      "preRequestScript": "",
+      "method": "GET",
+      "data": [],
+      "dataMode": "raw",
+      "version": 2,
+      "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is 200\"] = responseCode.code === 200;\ntests[\"POST Body Response equals Request Body\"] = objectEquals(JSON.parse(postman.getGlobalVariable(\"lastRequest\")), JSON.parse(responseBody));\n\nfunction objectEquals(v1, v2) {\n\tif (typeof(v1) === \"function\") {\n\t\treturn v1.toString() === v2.toString();\n\t} else if (v1 instanceof Object && v2 instanceof Object) {\n\t\tvar r = true;\n\t\tfor (var k in v1) {\n\t\t\tr = objectEquals(v1[k], v2[k]);\n\t\t\tif (!r) {\n\t\t\t\tconsole.log(\"v1[k]:\"+v1[k]+\";v2[k]:\"+v2[k]);\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t} else {\n\t\treturn v1 === v2;\n\t}\n}\ntests[\"Response contains all required fields\"] = findFieldsInBody([\"name\",\"id\",\"href\",\"version\",\"lifecycleStatus\",\"validFor\"], JSON.parse(responseBody));\n\nfunction findFieldInBody(field,body) {\n\tfor (var key in body) {\n\t\tif (key == field) return true;\n\t}\n\treturn false;\n}\n\nfunction findFieldsInBody(fields,body) {\n\tif (Object.prototype.toString.call(body) === \"[object Array]\") {\n\t\tfor (var i = 0; i < body.length; i++) {\n\t\t\tfindFieldsInBody(fields,body[i]);\n\t\t}\n\t} else {\n\t\tfor (var k = 0; k < fields.length; k++) {\n\t\t\tif (!findFieldInBody(fields[k],body)) {\n\t\t\t\ttests[\"An element is missing the field \" + fields[k]] = false;\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true\n\t}\n\treturn result;\n}\n",
+      "currentHelper": "normal",
+      "time": 1533302217851,
+      "collectionId": "7fc8da50-971f-11e8-9132-8d9079dccde5",
+      "rawModeData": ""
+    },
+    {
+      "id": "7fc9c4b1-971f-11e8-9132-8d9079dccde5",
+      "name": "searches product specifications",
+      "description": "By passing in the appropriate options, you can search for\navailable inventory in the system\n",
+      "headers": "Accept: application/json\nContent-Type: application/json\n",
+      "headerData": [
+        {
+          "key": "Accept",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        }
+      ],
+      "url": "{{host}}{{path}}/productSpecification",
+      "folder": "7fc99da1-971f-11e8-9132-8d9079dccde5",
+      "queryParams": [],
+      "preRequestScript": "",
+      "method": "GET",
+      "data": [],
+      "dataMode": "raw",
+      "version": 2,
+      "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is 200\"] = responseCode.code === 200;\n",
+      "currentHelper": "normal",
+      "time": 1533302217851,
+      "collectionId": "7fc8da50-971f-11e8-9132-8d9079dccde5",
+      "rawModeData": ""
+    },
+    {
+      "id": "7fc9c4b3-971f-11e8-9132-8d9079dccde5",
+      "name": "adds a product offering",
+      "description": "Adds an item to the system",
+      "headers": "Accept: application/json\nContent-Type: application/json\n",
+      "headerData": [
+        {
+          "key": "Accept",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        }
+      ],
+      "url": "{{host}}{{path}}/productOffering",
+      "folder": "7fc9c4b2-971f-11e8-9132-8d9079dccde5",
+      "queryParams": [],
+      "preRequestScript": "",
+      "method": "POST",
+      "data": [],
+      "dataMode": "raw",
+      "version": 2,
+      "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is 201\"] = responseCode.code === 201;\ntests[\"Response contains location header\"] = responseHeaders.hasOwnProperty(\"Location\");\ntests[\"Location header is correct\"] = responseHeaders.hasOwnProperty(\"Location\") &&\n\t(postman.getResponseHeader(\"Location\").toString() == environment[\"path\"] + \"/productOffering/\" + JSON.parse(responseBody).id || //relative\n\tpostman.getResponseHeader(\"Location\").toString() == environment[\"host\"] + environment[\"path\"] + \"/productOffering/\" + JSON.parse(responseBody).id);   //absolute\ntests[\"Response contains all required fields\"] = findFieldsInBody([\"name\",\"productSpecification\",\"id\",\"href\"], JSON.parse(responseBody));\n\nfunction findFieldInBody(field,body) {\n\tfor (var key in body) {\n\t\tif (key == field) return true;\n\t}\n\treturn false;\n}\n\nfunction findFieldsInBody(fields,body) {\n\tif (Object.prototype.toString.call(body) === \"[object Array]\") {\n\t\tfor (var i = 0; i < body.length; i++) {\n\t\t\tfindFieldsInBody(fields,body[i]);\n\t\t}\n\t} else {\n\t\tfor (var k = 0; k < fields.length; k++) {\n\t\t\tif (!findFieldInBody(fields[k],body)) {\n\t\t\t\ttests[\"An element is missing the field \" + fields[k]] = false;\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true\n\t}\n\treturn result;\n}\ntests[\"POST Body Response equals Request Body\"  ] = objectEquals(JSON.parse(request.data), JSON.parse(responseBody));\n\nfunction objectEquals(v1, v2) {\n\tif (typeof(v1) === \"function\") {\n\t\treturn v1.toString() === v2.toString();\n\t} else if (v1 instanceof Object && v2 instanceof Object) {\n\t\tvar r = true;\n\t\tfor (var k in v1) {\n\t\t\tr = objectEquals(v1[k], v2[k]);\n\t\t\tif (!r) {\n\t\t\t\tconsole.log(\"v1[k]:\"+v1[k]+\";v2[k]:\"+v2[k]);\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t} else {\n\t\treturn v1 === v2;\n\t}\n}\npostman.setGlobalVariable(\"lastId\", JSON.parse(responseBody).id);\npostman.setGlobalVariable(\"lastRequest\", request.data);\n",
+      "currentHelper": "normal",
+      "time": 1533302217851,
+      "collectionId": "7fc8da50-971f-11e8-9132-8d9079dccde5",
+      "rawModeData": "{\"name\":\"Widget Adapter\",\"productSpecification\":{\"id\":\"d290f1ee-6c54-4b01-90e6-d701748f0851\",\"href\":\"https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851\"}}"
+    },
+    {
+      "id": "7fc9c4b4-971f-11e8-9132-8d9079dccde5",
+      "name": "retrieves the requested product offering",
+      "headers": "Accept: application/json\nContent-Type: application/json\n",
+      "headerData": [
+        {
+          "key": "Accept",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        }
+      ],
+      "url": "{{host}}{{path}}/productOffering/{{lastId}}",
+      "folder": "7fc9c4b2-971f-11e8-9132-8d9079dccde5",
+      "queryParams": [],
+      "preRequestScript": "",
+      "method": "GET",
+      "data": [],
+      "dataMode": "raw",
+      "version": 2,
+      "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is 200\"] = responseCode.code === 200;\ntests[\"POST Body Response equals Request Body\"] = objectEquals(JSON.parse(postman.getGlobalVariable(\"lastRequest\")), JSON.parse(responseBody));\n\nfunction objectEquals(v1, v2) {\n\tif (typeof(v1) === \"function\") {\n\t\treturn v1.toString() === v2.toString();\n\t} else if (v1 instanceof Object && v2 instanceof Object) {\n\t\tvar r = true;\n\t\tfor (var k in v1) {\n\t\t\tr = objectEquals(v1[k], v2[k]);\n\t\t\tif (!r) {\n\t\t\t\tconsole.log(\"v1[k]:\"+v1[k]+\";v2[k]:\"+v2[k]);\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t} else {\n\t\treturn v1 === v2;\n\t}\n}\ntests[\"Response contains all required fields\"] = findFieldsInBody([\"name\",\"productSpecification\",\"id\",\"href\"], JSON.parse(responseBody));\n\nfunction findFieldInBody(field,body) {\n\tfor (var key in body) {\n\t\tif (key == field) return true;\n\t}\n\treturn false;\n}\n\nfunction findFieldsInBody(fields,body) {\n\tif (Object.prototype.toString.call(body) === \"[object Array]\") {\n\t\tfor (var i = 0; i < body.length; i++) {\n\t\t\tfindFieldsInBody(fields,body[i]);\n\t\t}\n\t} else {\n\t\tfor (var k = 0; k < fields.length; k++) {\n\t\t\tif (!findFieldInBody(fields[k],body)) {\n\t\t\t\ttests[\"An element is missing the field \" + fields[k]] = false;\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true\n\t}\n\treturn result;\n}\n",
+      "currentHelper": "normal",
+      "time": 1533302217851,
+      "collectionId": "7fc8da50-971f-11e8-9132-8d9079dccde5",
+      "rawModeData": ""
+    },
+    {
+      "id": "7fc9c4b5-971f-11e8-9132-8d9079dccde5",
+      "name": "searches productofferings",
+      "description": "By passing in the appropriate options, you can search for\navailable inventory in the system\n",
+      "headers": "Accept: application/json\nContent-Type: application/json\n",
+      "headerData": [
+        {
+          "key": "Accept",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        }
+      ],
+      "url": "{{host}}{{path}}/productOffering",
+      "folder": "7fc9c4b2-971f-11e8-9132-8d9079dccde5",
+      "queryParams": [],
+      "preRequestScript": "",
+      "method": "GET",
+      "data": [],
+      "dataMode": "raw",
+      "version": 2,
+      "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is 200\"] = responseCode.code === 200;\n",
+      "currentHelper": "normal",
+      "time": 1533302217851,
+      "collectionId": "7fc8da50-971f-11e8-9132-8d9079dccde5",
+      "rawModeData": ""
+    },
+    {
+      "id": "7fc9c4b7-971f-11e8-9132-8d9079dccde5",
+      "name": "add a new catalog",
+      "headers": "Accept: application/json\nContent-Type: application/json\n",
+      "headerData": [
+        {
+          "key": "Accept",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        }
+      ],
+      "url": "{{host}}{{path}}/catalog",
+      "folder": "7fc9c4b6-971f-11e8-9132-8d9079dccde5",
+      "queryParams": [],
+      "preRequestScript": "",
+      "method": "POST",
+      "data": [],
+      "dataMode": "raw",
+      "version": 2,
+      "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is an error\"] = responseCode.code >= 400;\n",
+      "currentHelper": "normal",
+      "time": 1533302217851,
+      "collectionId": "7fc8da50-971f-11e8-9132-8d9079dccde5",
+      "rawModeData": "{}"
+    },
+    {
+      "id": "7fc9ebc0-971f-11e8-9132-8d9079dccde5",
+      "name": "adds an inventory item",
+      "description": "Adds an item to the system",
+      "headers": "Accept: application/json\nContent-Type: application/json\n",
+      "headerData": [
+        {
+          "key": "Accept",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        }
+      ],
+      "url": "{{host}}{{path}}/productSpecification",
+      "folder": "7fc9c4b8-971f-11e8-9132-8d9079dccde5",
+      "queryParams": [],
+      "preRequestScript": "",
+      "method": "POST",
+      "data": [],
+      "dataMode": "raw",
+      "version": 2,
+      "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is an error\"] = responseCode.code >= 400;\n",
+      "currentHelper": "normal",
+      "time": 1533302217852,
+      "collectionId": "7fc8da50-971f-11e8-9132-8d9079dccde5",
+      "rawModeData": "{}"
+    },
+    {
+      "id": "7fc9ebc2-971f-11e8-9132-8d9079dccde5",
+      "name": "adds a product offering",
+      "description": "Adds an item to the system",
+      "headers": "Accept: application/json\nContent-Type: application/json\n",
+      "headerData": [
+        {
+          "key": "Accept",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        }
+      ],
+      "url": "{{host}}{{path}}/productOffering",
+      "folder": "7fc9ebc1-971f-11e8-9132-8d9079dccde5",
+      "queryParams": [],
+      "preRequestScript": "",
+      "method": "POST",
+      "data": [],
+      "dataMode": "raw",
+      "version": 2,
+      "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is an error\"] = responseCode.code >= 400;\n",
+      "currentHelper": "normal",
+      "time": 1533302217852,
+      "collectionId": "7fc8da50-971f-11e8-9132-8d9079dccde5",
+      "rawModeData": "{\"productSpecification\":{\"id\":\"d290f1ee-6c54-4b01-90e6-d701748f0851\",\"href\":\"https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851\"}}"
+    },
+    {
+      "id": "7fc9ebc3-971f-11e8-9132-8d9079dccde5",
+      "name": "adds a product offering",
+      "description": "Adds an item to the system",
+      "headers": "Accept: application/json\nContent-Type: application/json\n",
+      "headerData": [
+        {
+          "key": "Accept",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        }
+      ],
+      "url": "{{host}}{{path}}/productOffering",
+      "folder": "7fc9ebc1-971f-11e8-9132-8d9079dccde5",
+      "queryParams": [],
+      "preRequestScript": "",
+      "method": "POST",
+      "data": [],
+      "dataMode": "raw",
+      "version": 2,
+      "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is an error\"] = responseCode.code >= 400;\n",
+      "currentHelper": "normal",
+      "time": 1533302217852,
+      "collectionId": "7fc8da50-971f-11e8-9132-8d9079dccde5",
+      "rawModeData": "{\"name\":\"Widget Adapter\"}"
+    }
+  ]
+}

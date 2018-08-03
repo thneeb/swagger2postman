@@ -1,0 +1,22 @@
+{
+  "id": "b0dec3b3-3992-de93-e500-a33b845aa794",
+  "name": "TMForum",
+  "values": [
+    {
+      "enabled": true,
+      "key": "Host",
+      "value": "http://localhost:999",
+      "type": "text"
+    },
+    {
+      "enabled": true,
+      "key": "basicUrl",
+      "value": "{{Host}}/catalogManagement/v2",
+      "type": "text"
+    }
+  ],
+  "timestamp": 1494160980325,
+  "_postman_variable_scope": "environment",
+  "_postman_exported_at": "2017-05-07T12:54:39.189Z",
+  "_postman_exported_using": "Postman/4.10.7"
+}
