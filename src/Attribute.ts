@@ -5,6 +5,7 @@ export interface Attribute {
 	title?: string;
 	properties?: any;
 	required?: string[];
+	readOnly?: boolean;
 	$ref?: string;
 	allOf?: Attribute[];
 	oneOf?: Attribute[];

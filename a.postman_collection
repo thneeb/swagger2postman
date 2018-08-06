@@ -1,103 +1,205 @@
 {
-  "id": "ff387420-9739-11e8-9ea6-0397aa95ada9",
+  "id": "0b588b60-9991-11e8-aa0c-4137dfa3e656",
   "name": "Product Catalog API",
   "description": "This is a description of the Product Catalog API from TMForum in Version 17.5",
   "order": [],
   "folders": [
     {
-      "id": "ff387421-9739-11e8-9ea6-0397aa95ada9",
-      "name": "TC_catalog_POST_N1 - Create Resource with minimum parameters",
+      "id": "0b588b61-9991-11e8-aa0c-4137dfa3e656",
+      "name": "TC_catalog_POST_N1 - Create Resource with minimal parameters",
       "description": "",
-      "collectionId": "ff387420-9739-11e8-9ea6-0397aa95ada9",
+      "collectionId": "0b588b60-9991-11e8-aa0c-4137dfa3e656",
       "order": [
-        "ff38c240-9739-11e8-9ea6-0397aa95ada9",
-        "ff393770-9739-11e8-9ea6-0397aa95ada9"
+        "0b58d980-9991-11e8-aa0c-4137dfa3e656",
+        "0b58d981-9991-11e8-aa0c-4137dfa3e656",
+        "0b58d982-9991-11e8-aa0c-4137dfa3e656"
       ],
       "owner": 231421,
       "folders_order": []
     },
     {
-      "id": "ff393771-9739-11e8-9ea6-0397aa95ada9",
-      "name": "TC_productSpecification_POST_N1 - Create Resource with minimum parameters",
+      "id": "0b58d983-9991-11e8-aa0c-4137dfa3e656",
+      "name": "TC_category_POST_N1 - Create Resource with minimal parameters",
       "description": "",
-      "collectionId": "ff387420-9739-11e8-9ea6-0397aa95ada9",
+      "collectionId": "0b588b60-9991-11e8-aa0c-4137dfa3e656",
       "order": [
-        "ff395e80-9739-11e8-9ea6-0397aa95ada9",
-        "ff395e81-9739-11e8-9ea6-0397aa95ada9",
-        "ff395e82-9739-11e8-9ea6-0397aa95ada9"
+        "0b58d984-9991-11e8-aa0c-4137dfa3e656",
+        "0b58d985-9991-11e8-aa0c-4137dfa3e656",
+        "0b58d986-9991-11e8-aa0c-4137dfa3e656"
       ],
       "owner": 231421,
       "folders_order": []
     },
     {
-      "id": "ff395e83-9739-11e8-9ea6-0397aa95ada9",
-      "name": "TC_productOffering_POST_N1 - Create Resource with minimum parameters",
+      "id": "0b58d987-9991-11e8-aa0c-4137dfa3e656",
+      "name": "TC_productSpecification_POST_N1 - Create Resource with minimal parameters",
       "description": "",
-      "collectionId": "ff387420-9739-11e8-9ea6-0397aa95ada9",
+      "collectionId": "0b588b60-9991-11e8-aa0c-4137dfa3e656",
       "order": [
-        "ff395e84-9739-11e8-9ea6-0397aa95ada9",
-        "ff395e85-9739-11e8-9ea6-0397aa95ada9",
-        "ff395e86-9739-11e8-9ea6-0397aa95ada9"
+        "0b590090-9991-11e8-aa0c-4137dfa3e656",
+        "0b590091-9991-11e8-aa0c-4137dfa3e656",
+        "0b590092-9991-11e8-aa0c-4137dfa3e656"
       ],
       "owner": 231421,
       "folders_order": []
     },
     {
-      "id": "ff398590-9739-11e8-9ea6-0397aa95ada9",
+      "id": "0b590093-9991-11e8-aa0c-4137dfa3e656",
+      "name": "TC_productOffering_POST_N1 - Create Resource with minimal parameters",
+      "description": "",
+      "collectionId": "0b588b60-9991-11e8-aa0c-4137dfa3e656",
+      "order": [
+        "0b5927a0-9991-11e8-aa0c-4137dfa3e656",
+        "0b5927a1-9991-11e8-aa0c-4137dfa3e656",
+        "0b5927a2-9991-11e8-aa0c-4137dfa3e656"
+      ],
+      "owner": 231421,
+      "folders_order": []
+    },
+    {
+      "id": "0b5927a3-9991-11e8-aa0c-4137dfa3e656",
+      "name": "TC_productOfferingPrice_POST_N1 - Create Resource with minimal parameters",
+      "description": "",
+      "collectionId": "0b588b60-9991-11e8-aa0c-4137dfa3e656",
+      "order": [
+        "0b5927a4-9991-11e8-aa0c-4137dfa3e656",
+        "0b594eb0-9991-11e8-aa0c-4137dfa3e656",
+        "0b594eb1-9991-11e8-aa0c-4137dfa3e656"
+      ],
+      "owner": 231421,
+      "folders_order": []
+    },
+    {
+      "id": "0b594eb2-9991-11e8-aa0c-4137dfa3e656",
       "name": "TC_catalog_POST_E1 - Create Resource with missing mandatory parameter",
       "description": "",
-      "collectionId": "ff387420-9739-11e8-9ea6-0397aa95ada9",
+      "collectionId": "0b588b60-9991-11e8-aa0c-4137dfa3e656",
       "order": [
-        "ff398591-9739-11e8-9ea6-0397aa95ada9"
+        "0b594eb3-9991-11e8-aa0c-4137dfa3e656"
       ],
       "owner": 231421,
       "folders_order": []
     },
     {
-      "id": "ff398592-9739-11e8-9ea6-0397aa95ada9",
+      "id": "0b594eb4-9991-11e8-aa0c-4137dfa3e656",
+      "name": "TC_category_POST_E1 - Create Resource with missing mandatory parameter",
+      "description": "",
+      "collectionId": "0b588b60-9991-11e8-aa0c-4137dfa3e656",
+      "order": [
+        "0b594eb5-9991-11e8-aa0c-4137dfa3e656"
+      ],
+      "owner": 231421,
+      "folders_order": []
+    },
+    {
+      "id": "0b594eb6-9991-11e8-aa0c-4137dfa3e656",
       "name": "TC_productSpecification_POST_E1 - Create Resource with missing mandatory parameter",
       "description": "",
-      "collectionId": "ff387420-9739-11e8-9ea6-0397aa95ada9",
+      "collectionId": "0b588b60-9991-11e8-aa0c-4137dfa3e656",
       "order": [
-        "ff398593-9739-11e8-9ea6-0397aa95ada9"
+        "0b594eb7-9991-11e8-aa0c-4137dfa3e656"
       ],
       "owner": 231421,
       "folders_order": []
     },
     {
-      "id": "ff398594-9739-11e8-9ea6-0397aa95ada9",
+      "id": "0b594eb8-9991-11e8-aa0c-4137dfa3e656",
       "name": "TC_productOffering_POST_E1 - Create Resource with missing mandatory parameter",
       "description": "",
-      "collectionId": "ff387420-9739-11e8-9ea6-0397aa95ada9",
+      "collectionId": "0b588b60-9991-11e8-aa0c-4137dfa3e656",
       "order": [
-        "ff398595-9739-11e8-9ea6-0397aa95ada9",
-        "ff398596-9739-11e8-9ea6-0397aa95ada9",
-        "ff398597-9739-11e8-9ea6-0397aa95ada9"
+        "0b5975c0-9991-11e8-aa0c-4137dfa3e656",
+        "0b5975c1-9991-11e8-aa0c-4137dfa3e656",
+        "0b5975c2-9991-11e8-aa0c-4137dfa3e656"
       ],
       "owner": 231421,
       "folders_order": []
     },
     {
-      "id": "ff39aca0-9739-11e8-9ea6-0397aa95ada9",
-      "name": "TC_productOffering_POST_N1_{\"isBundle\":\"false\"} - Create Resource with minimum parameters",
+      "id": "0b5975c3-9991-11e8-aa0c-4137dfa3e656",
+      "name": "TC_productOfferingPrice_POST_E1 - Create Resource with missing mandatory parameter",
       "description": "",
-      "collectionId": "ff387420-9739-11e8-9ea6-0397aa95ada9",
+      "collectionId": "0b588b60-9991-11e8-aa0c-4137dfa3e656",
       "order": [
-        "ff39aca1-9739-11e8-9ea6-0397aa95ada9",
-        "ff39aca2-9739-11e8-9ea6-0397aa95ada9",
-        "ff39aca3-9739-11e8-9ea6-0397aa95ada9"
+        "0b5975c4-9991-11e8-aa0c-4137dfa3e656",
+        "0b5975c5-9991-11e8-aa0c-4137dfa3e656"
+      ],
+      "owner": 231421,
+      "folders_order": []
+    },
+    {
+      "id": "0b599cd0-9991-11e8-aa0c-4137dfa3e656",
+      "name": "TC_catalog_POST_N1 - Create Resource with maximal parameters",
+      "description": "",
+      "collectionId": "0b588b60-9991-11e8-aa0c-4137dfa3e656",
+      "order": [
+        "0b599cd1-9991-11e8-aa0c-4137dfa3e656",
+        "0b599cd2-9991-11e8-aa0c-4137dfa3e656",
+        "0b599cd3-9991-11e8-aa0c-4137dfa3e656"
+      ],
+      "owner": 231421,
+      "folders_order": []
+    },
+    {
+      "id": "0b599cd4-9991-11e8-aa0c-4137dfa3e656",
+      "name": "TC_category_POST_N1 - Create Resource with maximal parameters",
+      "description": "",
+      "collectionId": "0b588b60-9991-11e8-aa0c-4137dfa3e656",
+      "order": [
+        "0b599cd5-9991-11e8-aa0c-4137dfa3e656",
+        "0b599cd6-9991-11e8-aa0c-4137dfa3e656",
+        "0b599cd7-9991-11e8-aa0c-4137dfa3e656"
+      ],
+      "owner": 231421,
+      "folders_order": []
+    },
+    {
+      "id": "0b599cd8-9991-11e8-aa0c-4137dfa3e656",
+      "name": "TC_productSpecification_POST_N1 - Create Resource with maximal parameters",
+      "description": "",
+      "collectionId": "0b588b60-9991-11e8-aa0c-4137dfa3e656",
+      "order": [
+        "0b599cd9-9991-11e8-aa0c-4137dfa3e656",
+        "0b59c3e0-9991-11e8-aa0c-4137dfa3e656",
+        "0b59c3e1-9991-11e8-aa0c-4137dfa3e656"
+      ],
+      "owner": 231421,
+      "folders_order": []
+    },
+    {
+      "id": "0b59c3e2-9991-11e8-aa0c-4137dfa3e656",
+      "name": "TC_productOffering_POST_N1 - Create Resource with maximal parameters",
+      "description": "",
+      "collectionId": "0b588b60-9991-11e8-aa0c-4137dfa3e656",
+      "order": [
+        "0b59c3e3-9991-11e8-aa0c-4137dfa3e656",
+        "0b59c3e4-9991-11e8-aa0c-4137dfa3e656",
+        "0b59c3e5-9991-11e8-aa0c-4137dfa3e656"
+      ],
+      "owner": 231421,
+      "folders_order": []
+    },
+    {
+      "id": "0b59c3e6-9991-11e8-aa0c-4137dfa3e656",
+      "name": "TC_productOfferingPrice_POST_N1 - Create Resource with maximal parameters",
+      "description": "",
+      "collectionId": "0b588b60-9991-11e8-aa0c-4137dfa3e656",
+      "order": [
+        "0b59c3e7-9991-11e8-aa0c-4137dfa3e656",
+        "0b59c3e8-9991-11e8-aa0c-4137dfa3e656",
+        "0b59c3e9-9991-11e8-aa0c-4137dfa3e656"
       ],
       "owner": 231421,
       "folders_order": []
     }
   ],
   "folders_order": [],
-  "timestamp": 1533313598562,
+  "timestamp": 1533570887446,
   "owner": 231421,
   "public": false,
   "requests": [
     {
-      "id": "ff38c240-9739-11e8-9ea6-0397aa95ada9",
+      "id": "0b58d980-9991-11e8-aa0c-4137dfa3e656",
       "name": "add a new catalog",
       "headers": "Accept: application/json\nContent-Type: application/json\n",
       "headerData": [
@@ -115,21 +217,53 @@
         }
       ],
       "url": "{{host}}{{path}}/catalog",
-      "folder": "ff387421-9739-11e8-9ea6-0397aa95ada9",
+      "folder": "0b588b61-9991-11e8-aa0c-4137dfa3e656",
       "queryParams": [],
       "preRequestScript": "",
       "method": "POST",
       "data": [],
       "dataMode": "raw",
       "version": 2,
-      "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is 201\"] = responseCode.code === 201;\ntests[\"Response contains location header\"] = responseHeaders.hasOwnProperty(\"Location\");\ntests[\"Location header is correct\"] = responseHeaders.hasOwnProperty(\"Location\") &&\n\t(postman.getResponseHeader(\"Location\").toString() == environment[\"path\"] + \"/catalog/\" + JSON.parse(responseBody).id || //relative\n\tpostman.getResponseHeader(\"Location\").toString() == environment[\"host\"] + environment[\"path\"] + \"/catalog/\" + JSON.parse(responseBody).id);   //absolute\ntests[\"Response contains all required fields\"] = findFieldsInBody([\"id\",\"href\",\"name\"], JSON.parse(responseBody));\n\nfunction findFieldInBody(field,body) {\n\tfor (var key in body) {\n\t\tif (key == field) return true;\n\t}\n\treturn false;\n}\n\nfunction findFieldsInBody(fields,body) {\n\tif (Object.prototype.toString.call(body) === \"[object Array]\") {\n\t\tfor (var i = 0; i < body.length; i++) {\n\t\t\tfindFieldsInBody(fields,body[i]);\n\t\t}\n\t} else {\n\t\tfor (var k = 0; k < fields.length; k++) {\n\t\t\tif (!findFieldInBody(fields[k],body)) {\n\t\t\t\ttests[\"An element is missing the field \" + fields[k]] = false;\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true\n\t}\n\treturn result;\n}\ntests[\"POST Body Response equals Request Body\"  ] = objectEquals(JSON.parse(request.data), JSON.parse(responseBody));\n\nfunction objectEquals(v1, v2) {\n\tif (typeof(v1) === \"function\") {\n\t\treturn v1.toString() === v2.toString();\n\t} else if (v1 instanceof Object && v2 instanceof Object) {\n\t\tvar r = true;\n\t\tfor (var k in v1) {\n\t\t\tr = objectEquals(v1[k], v2[k]);\n\t\t\tif (!r) {\n\t\t\t\tconsole.log(\"v1[k]:\"+v1[k]+\";v2[k]:\"+v2[k]);\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t} else {\n\t\treturn v1 === v2;\n\t}\n}\npostman.setGlobalVariable(\"lastId\", JSON.parse(responseBody).id);\npostman.setGlobalVariable(\"lastRequest\", request.data);\n",
+      "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is 201\"] = responseCode.code === 201;\ntests[\"Response contains location header\"] = responseHeaders.hasOwnProperty(\"Location\");\ntests[\"Location header is correct\"] = responseHeaders.hasOwnProperty(\"Location\") &&\n\t(postman.getResponseHeader(\"Location\").toString() == environment[\"path\"] + \"/catalog/\" + JSON.parse(responseBody).id || //relative\n\tpostman.getResponseHeader(\"Location\").toString() == environment[\"host\"] + environment[\"path\"] + \"/catalog/\" + JSON.parse(responseBody).id);   //absolute\ntests[\"Response contains all required fields\"] = findFieldsInBody([\"id\",\"href\",\"name\"], JSON.parse(responseBody));\n\nfunction findFieldInBody(field,body) {\n\tfor (var key in body) {\n\t\tif (key == field) return true;\n\t}\n\treturn false;\n}\n\nfunction findFieldsInBody(fields,body) {\n\tif (Object.prototype.toString.call(body) === \"[object Array]\") {\n\t\tfor (var i = 0; i < body.length; i++) {\n\t\t\tfindFieldsInBody(fields,body[i]);\n\t\t}\n\t} else {\n\t\tfor (var k = 0; k < fields.length; k++) {\n\t\t\tif (!findFieldInBody(fields[k],body)) {\n\t\t\t\ttests[\"An element is missing the field \" + fields[k]] = false;\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true\n\t}\n\treturn result;\n}\ntests[\"POST Body Response equals Request Body\"  ] = objectEquals(JSON.parse(request.data), JSON.parse(responseBody));\n\nfunction objectEquals(v1, v2) {\n\tif (typeof(v1) === \"function\") {\n\t\treturn v1.toString() === v2.toString();\n\t} else if (v1 instanceof Object && v2 instanceof Object) {\n\t\tvar r = true;\n\t\tfor (var k in v1) {\n\t\t\tr = objectEquals(v1[k], v2[k]);\n\t\t\tif (!r) {\n\t\t\t\tconsole.log(\"v1:\"+JSON.stringify(v1));\n\t\t\t\tconsole.log(\"k:\"+k+\";v2:\"+JSON.stringify(v2));\n\t\t\t\tconsole.log(\"v1[k]:\"+v1[k]+\";v2[k]:\"+v2[k]);\n\t\t\t\tconsole.log(\"JSON.stringify(v1[k]):\"+JSON.stringify(v1[k])+\";JSON.stringify(v2[k]):\"+JSON.stringify(v2[k]));\n\t\t\t\tconsole.log(\"typeof(v1[k]):\"+typeof(v1[k])+\";typeof(v2[k]):\"+typeof(v2[k]));\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t} else {\n\t\treturn v1 === v2;\n\t}\n}\npostman.setGlobalVariable(\"lastId\", JSON.parse(responseBody).id);\npostman.setGlobalVariable(\"lastRequest\", request.data);\n",
       "currentHelper": "normal",
-      "time": 1533313598564,
-      "collectionId": "ff387420-9739-11e8-9ea6-0397aa95ada9",
+      "time": 1533570887448,
+      "collectionId": "0b588b60-9991-11e8-aa0c-4137dfa3e656",
       "rawModeData": "{\"name\":\"Mustermann Master Catalog\"}"
     },
     {
-      "id": "ff393770-9739-11e8-9ea6-0397aa95ada9",
+      "id": "0b58d981-9991-11e8-aa0c-4137dfa3e656",
+      "name": "retrieves all catalogs",
+      "headers": "Accept: application/json\nContent-Type: application/json\n",
+      "headerData": [
+        {
+          "key": "Accept",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        }
+      ],
+      "url": "{{host}}{{path}}/catalog/{{lastId}}",
+      "folder": "0b588b61-9991-11e8-aa0c-4137dfa3e656",
+      "queryParams": [],
+      "preRequestScript": "",
+      "method": "GET",
+      "data": [],
+      "dataMode": "raw",
+      "version": 2,
+      "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is 200\"] = responseCode.code === 200;\ntests[\"POST Body Response equals Request Body\"] = objectEquals(JSON.parse(postman.getGlobalVariable(\"lastRequest\")), JSON.parse(responseBody));\n\nfunction objectEquals(v1, v2) {\n\tif (typeof(v1) === \"function\") {\n\t\treturn v1.toString() === v2.toString();\n\t} else if (v1 instanceof Object && v2 instanceof Object) {\n\t\tvar r = true;\n\t\tfor (var k in v1) {\n\t\t\tr = objectEquals(v1[k], v2[k]);\n\t\t\tif (!r) {\n\t\t\t\tconsole.log(\"v1:\"+JSON.stringify(v1));\n\t\t\t\tconsole.log(\"k:\"+k+\";v2:\"+JSON.stringify(v2));\n\t\t\t\tconsole.log(\"v1[k]:\"+v1[k]+\";v2[k]:\"+v2[k]);\n\t\t\t\tconsole.log(\"JSON.stringify(v1[k]):\"+JSON.stringify(v1[k])+\";JSON.stringify(v2[k]):\"+JSON.stringify(v2[k]));\n\t\t\t\tconsole.log(\"typeof(v1[k]):\"+typeof(v1[k])+\";typeof(v2[k]):\"+typeof(v2[k]));\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t} else {\n\t\treturn v1 === v2;\n\t}\n}\n",
+      "currentHelper": "normal",
+      "time": 1533570887448,
+      "collectionId": "0b588b60-9991-11e8-aa0c-4137dfa3e656",
+      "rawModeData": ""
+    },
+    {
+      "id": "0b58d982-9991-11e8-aa0c-4137dfa3e656",
       "name": "retrieves all catalogs",
       "headers": "Accept: application/json\nContent-Type: application/json\n",
       "headerData": [
@@ -147,7 +281,7 @@
         }
       ],
       "url": "{{host}}{{path}}/catalog",
-      "folder": "ff387421-9739-11e8-9ea6-0397aa95ada9",
+      "folder": "0b588b61-9991-11e8-aa0c-4137dfa3e656",
       "queryParams": [],
       "preRequestScript": "",
       "method": "GET",
@@ -156,12 +290,108 @@
       "version": 2,
       "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is 200\"] = responseCode.code === 200;\n",
       "currentHelper": "normal",
-      "time": 1533313598567,
-      "collectionId": "ff387420-9739-11e8-9ea6-0397aa95ada9",
+      "time": 1533570887448,
+      "collectionId": "0b588b60-9991-11e8-aa0c-4137dfa3e656",
       "rawModeData": ""
     },
     {
-      "id": "ff395e80-9739-11e8-9ea6-0397aa95ada9",
+      "id": "0b58d984-9991-11e8-aa0c-4137dfa3e656",
+      "name": "add a new category",
+      "headers": "Accept: application/json\nContent-Type: application/json\n",
+      "headerData": [
+        {
+          "key": "Accept",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        }
+      ],
+      "url": "{{host}}{{path}}/category",
+      "folder": "0b58d983-9991-11e8-aa0c-4137dfa3e656",
+      "queryParams": [],
+      "preRequestScript": "",
+      "method": "POST",
+      "data": [],
+      "dataMode": "raw",
+      "version": 2,
+      "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is 201\"] = responseCode.code === 201;\ntests[\"Response contains location header\"] = responseHeaders.hasOwnProperty(\"Location\");\ntests[\"Location header is correct\"] = responseHeaders.hasOwnProperty(\"Location\") &&\n\t(postman.getResponseHeader(\"Location\").toString() == environment[\"path\"] + \"/category/\" + JSON.parse(responseBody).id || //relative\n\tpostman.getResponseHeader(\"Location\").toString() == environment[\"host\"] + environment[\"path\"] + \"/category/\" + JSON.parse(responseBody).id);   //absolute\ntests[\"Response contains all required fields\"] = findFieldsInBody([\"id\",\"href\",\"name\"], JSON.parse(responseBody));\n\nfunction findFieldInBody(field,body) {\n\tfor (var key in body) {\n\t\tif (key == field) return true;\n\t}\n\treturn false;\n}\n\nfunction findFieldsInBody(fields,body) {\n\tif (Object.prototype.toString.call(body) === \"[object Array]\") {\n\t\tfor (var i = 0; i < body.length; i++) {\n\t\t\tfindFieldsInBody(fields,body[i]);\n\t\t}\n\t} else {\n\t\tfor (var k = 0; k < fields.length; k++) {\n\t\t\tif (!findFieldInBody(fields[k],body)) {\n\t\t\t\ttests[\"An element is missing the field \" + fields[k]] = false;\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true\n\t}\n\treturn result;\n}\ntests[\"POST Body Response equals Request Body\"  ] = objectEquals(JSON.parse(request.data), JSON.parse(responseBody));\n\nfunction objectEquals(v1, v2) {\n\tif (typeof(v1) === \"function\") {\n\t\treturn v1.toString() === v2.toString();\n\t} else if (v1 instanceof Object && v2 instanceof Object) {\n\t\tvar r = true;\n\t\tfor (var k in v1) {\n\t\t\tr = objectEquals(v1[k], v2[k]);\n\t\t\tif (!r) {\n\t\t\t\tconsole.log(\"v1:\"+JSON.stringify(v1));\n\t\t\t\tconsole.log(\"k:\"+k+\";v2:\"+JSON.stringify(v2));\n\t\t\t\tconsole.log(\"v1[k]:\"+v1[k]+\";v2[k]:\"+v2[k]);\n\t\t\t\tconsole.log(\"JSON.stringify(v1[k]):\"+JSON.stringify(v1[k])+\";JSON.stringify(v2[k]):\"+JSON.stringify(v2[k]));\n\t\t\t\tconsole.log(\"typeof(v1[k]):\"+typeof(v1[k])+\";typeof(v2[k]):\"+typeof(v2[k]));\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t} else {\n\t\treturn v1 === v2;\n\t}\n}\npostman.setGlobalVariable(\"lastId\", JSON.parse(responseBody).id);\npostman.setGlobalVariable(\"lastRequest\", request.data);\n",
+      "currentHelper": "normal",
+      "time": 1533570887448,
+      "collectionId": "0b588b60-9991-11e8-aa0c-4137dfa3e656",
+      "rawModeData": "{\"name\":\"Mustermann Master Catalog\"}"
+    },
+    {
+      "id": "0b58d985-9991-11e8-aa0c-4137dfa3e656",
+      "name": "retrieves all catalogs",
+      "headers": "Accept: application/json\nContent-Type: application/json\n",
+      "headerData": [
+        {
+          "key": "Accept",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        }
+      ],
+      "url": "{{host}}{{path}}/category/{{lastId}}",
+      "folder": "0b58d983-9991-11e8-aa0c-4137dfa3e656",
+      "queryParams": [],
+      "preRequestScript": "",
+      "method": "GET",
+      "data": [],
+      "dataMode": "raw",
+      "version": 2,
+      "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is 200\"] = responseCode.code === 200;\ntests[\"POST Body Response equals Request Body\"] = objectEquals(JSON.parse(postman.getGlobalVariable(\"lastRequest\")), JSON.parse(responseBody));\n\nfunction objectEquals(v1, v2) {\n\tif (typeof(v1) === \"function\") {\n\t\treturn v1.toString() === v2.toString();\n\t} else if (v1 instanceof Object && v2 instanceof Object) {\n\t\tvar r = true;\n\t\tfor (var k in v1) {\n\t\t\tr = objectEquals(v1[k], v2[k]);\n\t\t\tif (!r) {\n\t\t\t\tconsole.log(\"v1:\"+JSON.stringify(v1));\n\t\t\t\tconsole.log(\"k:\"+k+\";v2:\"+JSON.stringify(v2));\n\t\t\t\tconsole.log(\"v1[k]:\"+v1[k]+\";v2[k]:\"+v2[k]);\n\t\t\t\tconsole.log(\"JSON.stringify(v1[k]):\"+JSON.stringify(v1[k])+\";JSON.stringify(v2[k]):\"+JSON.stringify(v2[k]));\n\t\t\t\tconsole.log(\"typeof(v1[k]):\"+typeof(v1[k])+\";typeof(v2[k]):\"+typeof(v2[k]));\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t} else {\n\t\treturn v1 === v2;\n\t}\n}\n",
+      "currentHelper": "normal",
+      "time": 1533570887448,
+      "collectionId": "0b588b60-9991-11e8-aa0c-4137dfa3e656",
+      "rawModeData": ""
+    },
+    {
+      "id": "0b58d986-9991-11e8-aa0c-4137dfa3e656",
+      "name": "retrieves all categories",
+      "headers": "Accept: application/json\nContent-Type: application/json\n",
+      "headerData": [
+        {
+          "key": "Accept",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        }
+      ],
+      "url": "{{host}}{{path}}/category",
+      "folder": "0b58d983-9991-11e8-aa0c-4137dfa3e656",
+      "queryParams": [],
+      "preRequestScript": "",
+      "method": "GET",
+      "data": [],
+      "dataMode": "raw",
+      "version": 2,
+      "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is 200\"] = responseCode.code === 200;\n",
+      "currentHelper": "normal",
+      "time": 1533570887448,
+      "collectionId": "0b588b60-9991-11e8-aa0c-4137dfa3e656",
+      "rawModeData": ""
+    },
+    {
+      "id": "0b590090-9991-11e8-aa0c-4137dfa3e656",
       "name": "adds an inventory item",
       "description": "Adds an item to the system",
       "headers": "Accept: application/json\nContent-Type: application/json\n",
@@ -180,21 +410,21 @@
         }
       ],
       "url": "{{host}}{{path}}/productSpecification",
-      "folder": "ff393771-9739-11e8-9ea6-0397aa95ada9",
+      "folder": "0b58d987-9991-11e8-aa0c-4137dfa3e656",
       "queryParams": [],
       "preRequestScript": "",
       "method": "POST",
       "data": [],
       "dataMode": "raw",
       "version": 2,
-      "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is 201\"] = responseCode.code === 201;\ntests[\"Response contains location header\"] = responseHeaders.hasOwnProperty(\"Location\");\ntests[\"Location header is correct\"] = responseHeaders.hasOwnProperty(\"Location\") &&\n\t(postman.getResponseHeader(\"Location\").toString() == environment[\"path\"] + \"/productSpecification/\" + JSON.parse(responseBody).id || //relative\n\tpostman.getResponseHeader(\"Location\").toString() == environment[\"host\"] + environment[\"path\"] + \"/productSpecification/\" + JSON.parse(responseBody).id);   //absolute\ntests[\"Response contains all required fields\"] = findFieldsInBody([\"name\",\"id\",\"href\",\"version\",\"lifecycleStatus\",\"validFor\"], JSON.parse(responseBody));\n\nfunction findFieldInBody(field,body) {\n\tfor (var key in body) {\n\t\tif (key == field) return true;\n\t}\n\treturn false;\n}\n\nfunction findFieldsInBody(fields,body) {\n\tif (Object.prototype.toString.call(body) === \"[object Array]\") {\n\t\tfor (var i = 0; i < body.length; i++) {\n\t\t\tfindFieldsInBody(fields,body[i]);\n\t\t}\n\t} else {\n\t\tfor (var k = 0; k < fields.length; k++) {\n\t\t\tif (!findFieldInBody(fields[k],body)) {\n\t\t\t\ttests[\"An element is missing the field \" + fields[k]] = false;\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true\n\t}\n\treturn result;\n}\ntests[\"POST Body Response equals Request Body\"  ] = objectEquals(JSON.parse(request.data), JSON.parse(responseBody));\n\nfunction objectEquals(v1, v2) {\n\tif (typeof(v1) === \"function\") {\n\t\treturn v1.toString() === v2.toString();\n\t} else if (v1 instanceof Object && v2 instanceof Object) {\n\t\tvar r = true;\n\t\tfor (var k in v1) {\n\t\t\tr = objectEquals(v1[k], v2[k]);\n\t\t\tif (!r) {\n\t\t\t\tconsole.log(\"v1[k]:\"+v1[k]+\";v2[k]:\"+v2[k]);\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t} else {\n\t\treturn v1 === v2;\n\t}\n}\npostman.setGlobalVariable(\"lastId\", JSON.parse(responseBody).id);\npostman.setGlobalVariable(\"lastRequest\", request.data);\n",
+      "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is 201\"] = responseCode.code === 201;\ntests[\"Response contains location header\"] = responseHeaders.hasOwnProperty(\"Location\");\ntests[\"Location header is correct\"] = responseHeaders.hasOwnProperty(\"Location\") &&\n\t(postman.getResponseHeader(\"Location\").toString() == environment[\"path\"] + \"/productSpecification/\" + JSON.parse(responseBody).id || //relative\n\tpostman.getResponseHeader(\"Location\").toString() == environment[\"host\"] + environment[\"path\"] + \"/productSpecification/\" + JSON.parse(responseBody).id);   //absolute\ntests[\"Response contains all required fields\"] = findFieldsInBody([\"name\",\"id\",\"href\",\"version\",\"lifecycleStatus\",\"validFor\"], JSON.parse(responseBody));\n\nfunction findFieldInBody(field,body) {\n\tfor (var key in body) {\n\t\tif (key == field) return true;\n\t}\n\treturn false;\n}\n\nfunction findFieldsInBody(fields,body) {\n\tif (Object.prototype.toString.call(body) === \"[object Array]\") {\n\t\tfor (var i = 0; i < body.length; i++) {\n\t\t\tfindFieldsInBody(fields,body[i]);\n\t\t}\n\t} else {\n\t\tfor (var k = 0; k < fields.length; k++) {\n\t\t\tif (!findFieldInBody(fields[k],body)) {\n\t\t\t\ttests[\"An element is missing the field \" + fields[k]] = false;\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true\n\t}\n\treturn result;\n}\ntests[\"POST Body Response equals Request Body\"  ] = objectEquals(JSON.parse(request.data), JSON.parse(responseBody));\n\nfunction objectEquals(v1, v2) {\n\tif (typeof(v1) === \"function\") {\n\t\treturn v1.toString() === v2.toString();\n\t} else if (v1 instanceof Object && v2 instanceof Object) {\n\t\tvar r = true;\n\t\tfor (var k in v1) {\n\t\t\tr = objectEquals(v1[k], v2[k]);\n\t\t\tif (!r) {\n\t\t\t\tconsole.log(\"v1:\"+JSON.stringify(v1));\n\t\t\t\tconsole.log(\"k:\"+k+\";v2:\"+JSON.stringify(v2));\n\t\t\t\tconsole.log(\"v1[k]:\"+v1[k]+\";v2[k]:\"+v2[k]);\n\t\t\t\tconsole.log(\"JSON.stringify(v1[k]):\"+JSON.stringify(v1[k])+\";JSON.stringify(v2[k]):\"+JSON.stringify(v2[k]));\n\t\t\t\tconsole.log(\"typeof(v1[k]):\"+typeof(v1[k])+\";typeof(v2[k]):\"+typeof(v2[k]));\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t} else {\n\t\treturn v1 === v2;\n\t}\n}\npostman.setGlobalVariable(\"lastId\", JSON.parse(responseBody).id);\npostman.setGlobalVariable(\"lastRequest\", request.data);\n",
       "currentHelper": "normal",
-      "time": 1533313598568,
-      "collectionId": "ff387420-9739-11e8-9ea6-0397aa95ada9",
+      "time": 1533570887449,
+      "collectionId": "0b588b60-9991-11e8-aa0c-4137dfa3e656",
       "rawModeData": "{\"name\":\"Widget Adapter\"}"
     },
     {
-      "id": "ff395e81-9739-11e8-9ea6-0397aa95ada9",
+      "id": "0b590091-9991-11e8-aa0c-4137dfa3e656",
       "name": "retrieves the requested product specification",
       "headers": "Accept: application/json\nContent-Type: application/json\n",
       "headerData": [
@@ -212,21 +442,21 @@
         }
       ],
       "url": "{{host}}{{path}}/productSpecification/{{lastId}}",
-      "folder": "ff393771-9739-11e8-9ea6-0397aa95ada9",
+      "folder": "0b58d987-9991-11e8-aa0c-4137dfa3e656",
       "queryParams": [],
       "preRequestScript": "",
       "method": "GET",
       "data": [],
       "dataMode": "raw",
       "version": 2,
-      "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is 200\"] = responseCode.code === 200;\ntests[\"POST Body Response equals Request Body\"] = objectEquals(JSON.parse(postman.getGlobalVariable(\"lastRequest\")), JSON.parse(responseBody));\n\nfunction objectEquals(v1, v2) {\n\tif (typeof(v1) === \"function\") {\n\t\treturn v1.toString() === v2.toString();\n\t} else if (v1 instanceof Object && v2 instanceof Object) {\n\t\tvar r = true;\n\t\tfor (var k in v1) {\n\t\t\tr = objectEquals(v1[k], v2[k]);\n\t\t\tif (!r) {\n\t\t\t\tconsole.log(\"v1[k]:\"+v1[k]+\";v2[k]:\"+v2[k]);\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t} else {\n\t\treturn v1 === v2;\n\t}\n}\ntests[\"Response contains all required fields\"] = findFieldsInBody([\"name\",\"id\",\"href\",\"version\",\"lifecycleStatus\",\"validFor\"], JSON.parse(responseBody));\n\nfunction findFieldInBody(field,body) {\n\tfor (var key in body) {\n\t\tif (key == field) return true;\n\t}\n\treturn false;\n}\n\nfunction findFieldsInBody(fields,body) {\n\tif (Object.prototype.toString.call(body) === \"[object Array]\") {\n\t\tfor (var i = 0; i < body.length; i++) {\n\t\t\tfindFieldsInBody(fields,body[i]);\n\t\t}\n\t} else {\n\t\tfor (var k = 0; k < fields.length; k++) {\n\t\t\tif (!findFieldInBody(fields[k],body)) {\n\t\t\t\ttests[\"An element is missing the field \" + fields[k]] = false;\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true\n\t}\n\treturn result;\n}\n",
+      "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is 200\"] = responseCode.code === 200;\ntests[\"POST Body Response equals Request Body\"] = objectEquals(JSON.parse(postman.getGlobalVariable(\"lastRequest\")), JSON.parse(responseBody));\n\nfunction objectEquals(v1, v2) {\n\tif (typeof(v1) === \"function\") {\n\t\treturn v1.toString() === v2.toString();\n\t} else if (v1 instanceof Object && v2 instanceof Object) {\n\t\tvar r = true;\n\t\tfor (var k in v1) {\n\t\t\tr = objectEquals(v1[k], v2[k]);\n\t\t\tif (!r) {\n\t\t\t\tconsole.log(\"v1:\"+JSON.stringify(v1));\n\t\t\t\tconsole.log(\"k:\"+k+\";v2:\"+JSON.stringify(v2));\n\t\t\t\tconsole.log(\"v1[k]:\"+v1[k]+\";v2[k]:\"+v2[k]);\n\t\t\t\tconsole.log(\"JSON.stringify(v1[k]):\"+JSON.stringify(v1[k])+\";JSON.stringify(v2[k]):\"+JSON.stringify(v2[k]));\n\t\t\t\tconsole.log(\"typeof(v1[k]):\"+typeof(v1[k])+\";typeof(v2[k]):\"+typeof(v2[k]));\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t} else {\n\t\treturn v1 === v2;\n\t}\n}\ntests[\"Response contains all required fields\"] = findFieldsInBody([\"name\",\"id\",\"href\",\"version\",\"lifecycleStatus\",\"validFor\"], JSON.parse(responseBody));\n\nfunction findFieldInBody(field,body) {\n\tfor (var key in body) {\n\t\tif (key == field) return true;\n\t}\n\treturn false;\n}\n\nfunction findFieldsInBody(fields,body) {\n\tif (Object.prototype.toString.call(body) === \"[object Array]\") {\n\t\tfor (var i = 0; i < body.length; i++) {\n\t\t\tfindFieldsInBody(fields,body[i]);\n\t\t}\n\t} else {\n\t\tfor (var k = 0; k < fields.length; k++) {\n\t\t\tif (!findFieldInBody(fields[k],body)) {\n\t\t\t\ttests[\"An element is missing the field \" + fields[k]] = false;\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true\n\t}\n\treturn result;\n}\n",
       "currentHelper": "normal",
-      "time": 1533313598568,
-      "collectionId": "ff387420-9739-11e8-9ea6-0397aa95ada9",
+      "time": 1533570887449,
+      "collectionId": "0b588b60-9991-11e8-aa0c-4137dfa3e656",
       "rawModeData": ""
     },
     {
-      "id": "ff395e82-9739-11e8-9ea6-0397aa95ada9",
+      "id": "0b590092-9991-11e8-aa0c-4137dfa3e656",
       "name": "searches product specifications",
       "description": "By passing in the appropriate options, you can search for\navailable inventory in the system\n",
       "headers": "Accept: application/json\nContent-Type: application/json\n",
@@ -245,7 +475,7 @@
         }
       ],
       "url": "{{host}}{{path}}/productSpecification",
-      "folder": "ff393771-9739-11e8-9ea6-0397aa95ada9",
+      "folder": "0b58d987-9991-11e8-aa0c-4137dfa3e656",
       "queryParams": [],
       "preRequestScript": "",
       "method": "GET",
@@ -254,12 +484,12 @@
       "version": 2,
       "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is 200\"] = responseCode.code === 200;\n",
       "currentHelper": "normal",
-      "time": 1533313598568,
-      "collectionId": "ff387420-9739-11e8-9ea6-0397aa95ada9",
+      "time": 1533570887449,
+      "collectionId": "0b588b60-9991-11e8-aa0c-4137dfa3e656",
       "rawModeData": ""
     },
     {
-      "id": "ff395e84-9739-11e8-9ea6-0397aa95ada9",
+      "id": "0b5927a0-9991-11e8-aa0c-4137dfa3e656",
       "name": "adds a product offering",
       "description": "Adds an item to the system",
       "headers": "Accept: application/json\nContent-Type: application/json\n",
@@ -278,21 +508,21 @@
         }
       ],
       "url": "{{host}}{{path}}/productOffering",
-      "folder": "ff395e83-9739-11e8-9ea6-0397aa95ada9",
+      "folder": "0b590093-9991-11e8-aa0c-4137dfa3e656",
       "queryParams": [],
       "preRequestScript": "",
       "method": "POST",
       "data": [],
       "dataMode": "raw",
       "version": 2,
-      "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is 201\"] = responseCode.code === 201;\ntests[\"Response contains location header\"] = responseHeaders.hasOwnProperty(\"Location\");\ntests[\"Location header is correct\"] = responseHeaders.hasOwnProperty(\"Location\") &&\n\t(postman.getResponseHeader(\"Location\").toString() == environment[\"path\"] + \"/productOffering/\" + JSON.parse(responseBody).id || //relative\n\tpostman.getResponseHeader(\"Location\").toString() == environment[\"host\"] + environment[\"path\"] + \"/productOffering/\" + JSON.parse(responseBody).id);   //absolute\ntests[\"Response contains all required fields\"] = findFieldsInBody([\"name\",\"isBundle\",\"id\",\"href\"], JSON.parse(responseBody));\n\nfunction findFieldInBody(field,body) {\n\tfor (var key in body) {\n\t\tif (key == field) return true;\n\t}\n\treturn false;\n}\n\nfunction findFieldsInBody(fields,body) {\n\tif (Object.prototype.toString.call(body) === \"[object Array]\") {\n\t\tfor (var i = 0; i < body.length; i++) {\n\t\t\tfindFieldsInBody(fields,body[i]);\n\t\t}\n\t} else {\n\t\tfor (var k = 0; k < fields.length; k++) {\n\t\t\tif (!findFieldInBody(fields[k],body)) {\n\t\t\t\ttests[\"An element is missing the field \" + fields[k]] = false;\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true\n\t}\n\treturn result;\n}\ntests[\"POST Body Response equals Request Body\"  ] = objectEquals(JSON.parse(request.data), JSON.parse(responseBody));\n\nfunction objectEquals(v1, v2) {\n\tif (typeof(v1) === \"function\") {\n\t\treturn v1.toString() === v2.toString();\n\t} else if (v1 instanceof Object && v2 instanceof Object) {\n\t\tvar r = true;\n\t\tfor (var k in v1) {\n\t\t\tr = objectEquals(v1[k], v2[k]);\n\t\t\tif (!r) {\n\t\t\t\tconsole.log(\"v1[k]:\"+v1[k]+\";v2[k]:\"+v2[k]);\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t} else {\n\t\treturn v1 === v2;\n\t}\n}\npostman.setGlobalVariable(\"lastId\", JSON.parse(responseBody).id);\npostman.setGlobalVariable(\"lastRequest\", request.data);\n",
+      "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is 201\"] = responseCode.code === 201;\ntests[\"Response contains location header\"] = responseHeaders.hasOwnProperty(\"Location\");\ntests[\"Location header is correct\"] = responseHeaders.hasOwnProperty(\"Location\") &&\n\t(postman.getResponseHeader(\"Location\").toString() == environment[\"path\"] + \"/productOffering/\" + JSON.parse(responseBody).id || //relative\n\tpostman.getResponseHeader(\"Location\").toString() == environment[\"host\"] + environment[\"path\"] + \"/productOffering/\" + JSON.parse(responseBody).id);   //absolute\ntests[\"Response contains all required fields\"] = findFieldsInBody([\"name\",\"isBundle\",\"id\",\"href\",\"lifecycleStatus\",\"validFor\"], JSON.parse(responseBody));\n\nfunction findFieldInBody(field,body) {\n\tfor (var key in body) {\n\t\tif (key == field) return true;\n\t}\n\treturn false;\n}\n\nfunction findFieldsInBody(fields,body) {\n\tif (Object.prototype.toString.call(body) === \"[object Array]\") {\n\t\tfor (var i = 0; i < body.length; i++) {\n\t\t\tfindFieldsInBody(fields,body[i]);\n\t\t}\n\t} else {\n\t\tfor (var k = 0; k < fields.length; k++) {\n\t\t\tif (!findFieldInBody(fields[k],body)) {\n\t\t\t\ttests[\"An element is missing the field \" + fields[k]] = false;\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true\n\t}\n\treturn result;\n}\ntests[\"POST Body Response equals Request Body\"  ] = objectEquals(JSON.parse(request.data), JSON.parse(responseBody));\n\nfunction objectEquals(v1, v2) {\n\tif (typeof(v1) === \"function\") {\n\t\treturn v1.toString() === v2.toString();\n\t} else if (v1 instanceof Object && v2 instanceof Object) {\n\t\tvar r = true;\n\t\tfor (var k in v1) {\n\t\t\tr = objectEquals(v1[k], v2[k]);\n\t\t\tif (!r) {\n\t\t\t\tconsole.log(\"v1:\"+JSON.stringify(v1));\n\t\t\t\tconsole.log(\"k:\"+k+\";v2:\"+JSON.stringify(v2));\n\t\t\t\tconsole.log(\"v1[k]:\"+v1[k]+\";v2[k]:\"+v2[k]);\n\t\t\t\tconsole.log(\"JSON.stringify(v1[k]):\"+JSON.stringify(v1[k])+\";JSON.stringify(v2[k]):\"+JSON.stringify(v2[k]));\n\t\t\t\tconsole.log(\"typeof(v1[k]):\"+typeof(v1[k])+\";typeof(v2[k]):\"+typeof(v2[k]));\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t} else {\n\t\treturn v1 === v2;\n\t}\n}\npostman.setGlobalVariable(\"lastId\", JSON.parse(responseBody).id);\npostman.setGlobalVariable(\"lastRequest\", request.data);\n",
       "currentHelper": "normal",
-      "time": 1533313598568,
-      "collectionId": "ff387420-9739-11e8-9ea6-0397aa95ada9",
-      "rawModeData": "{\"name\":\"Widget Adapter\",\"isBundle\":true,\"bundledProductOffering\":[{\"id\":\"d290f1ee-6c54-4b01-90e6-d701748f0851\",\"href\":\"https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851\",\"name\":\"Widget Adapter\"}]}"
+      "time": 1533570887450,
+      "collectionId": "0b588b60-9991-11e8-aa0c-4137dfa3e656",
+      "rawModeData": "{\"name\":\"Widget Adapter\",\"isBundle\":false,\"productSpecification\":{\"id\":\"d290f1ee-6c54-4b01-90e6-d701748f0851\",\"href\":\"https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851\",\"name\":\"Widget Adapter\"}}"
     },
     {
-      "id": "ff395e85-9739-11e8-9ea6-0397aa95ada9",
+      "id": "0b5927a1-9991-11e8-aa0c-4137dfa3e656",
       "name": "retrieves the requested product offering",
       "headers": "Accept: application/json\nContent-Type: application/json\n",
       "headerData": [
@@ -310,21 +540,21 @@
         }
       ],
       "url": "{{host}}{{path}}/productOffering/{{lastId}}",
-      "folder": "ff395e83-9739-11e8-9ea6-0397aa95ada9",
+      "folder": "0b590093-9991-11e8-aa0c-4137dfa3e656",
       "queryParams": [],
       "preRequestScript": "",
       "method": "GET",
       "data": [],
       "dataMode": "raw",
       "version": 2,
-      "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is 200\"] = responseCode.code === 200;\ntests[\"POST Body Response equals Request Body\"] = objectEquals(JSON.parse(postman.getGlobalVariable(\"lastRequest\")), JSON.parse(responseBody));\n\nfunction objectEquals(v1, v2) {\n\tif (typeof(v1) === \"function\") {\n\t\treturn v1.toString() === v2.toString();\n\t} else if (v1 instanceof Object && v2 instanceof Object) {\n\t\tvar r = true;\n\t\tfor (var k in v1) {\n\t\t\tr = objectEquals(v1[k], v2[k]);\n\t\t\tif (!r) {\n\t\t\t\tconsole.log(\"v1[k]:\"+v1[k]+\";v2[k]:\"+v2[k]);\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t} else {\n\t\treturn v1 === v2;\n\t}\n}\ntests[\"Response contains all required fields\"] = findFieldsInBody([\"name\",\"isBundle\",\"id\",\"href\"], JSON.parse(responseBody));\n\nfunction findFieldInBody(field,body) {\n\tfor (var key in body) {\n\t\tif (key == field) return true;\n\t}\n\treturn false;\n}\n\nfunction findFieldsInBody(fields,body) {\n\tif (Object.prototype.toString.call(body) === \"[object Array]\") {\n\t\tfor (var i = 0; i < body.length; i++) {\n\t\t\tfindFieldsInBody(fields,body[i]);\n\t\t}\n\t} else {\n\t\tfor (var k = 0; k < fields.length; k++) {\n\t\t\tif (!findFieldInBody(fields[k],body)) {\n\t\t\t\ttests[\"An element is missing the field \" + fields[k]] = false;\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true\n\t}\n\treturn result;\n}\n",
+      "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is 200\"] = responseCode.code === 200;\ntests[\"POST Body Response equals Request Body\"] = objectEquals(JSON.parse(postman.getGlobalVariable(\"lastRequest\")), JSON.parse(responseBody));\n\nfunction objectEquals(v1, v2) {\n\tif (typeof(v1) === \"function\") {\n\t\treturn v1.toString() === v2.toString();\n\t} else if (v1 instanceof Object && v2 instanceof Object) {\n\t\tvar r = true;\n\t\tfor (var k in v1) {\n\t\t\tr = objectEquals(v1[k], v2[k]);\n\t\t\tif (!r) {\n\t\t\t\tconsole.log(\"v1:\"+JSON.stringify(v1));\n\t\t\t\tconsole.log(\"k:\"+k+\";v2:\"+JSON.stringify(v2));\n\t\t\t\tconsole.log(\"v1[k]:\"+v1[k]+\";v2[k]:\"+v2[k]);\n\t\t\t\tconsole.log(\"JSON.stringify(v1[k]):\"+JSON.stringify(v1[k])+\";JSON.stringify(v2[k]):\"+JSON.stringify(v2[k]));\n\t\t\t\tconsole.log(\"typeof(v1[k]):\"+typeof(v1[k])+\";typeof(v2[k]):\"+typeof(v2[k]));\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t} else {\n\t\treturn v1 === v2;\n\t}\n}\ntests[\"Response contains all required fields\"] = findFieldsInBody([\"name\",\"isBundle\",\"id\",\"href\",\"lifecycleStatus\",\"validFor\"], JSON.parse(responseBody));\n\nfunction findFieldInBody(field,body) {\n\tfor (var key in body) {\n\t\tif (key == field) return true;\n\t}\n\treturn false;\n}\n\nfunction findFieldsInBody(fields,body) {\n\tif (Object.prototype.toString.call(body) === \"[object Array]\") {\n\t\tfor (var i = 0; i < body.length; i++) {\n\t\t\tfindFieldsInBody(fields,body[i]);\n\t\t}\n\t} else {\n\t\tfor (var k = 0; k < fields.length; k++) {\n\t\t\tif (!findFieldInBody(fields[k],body)) {\n\t\t\t\ttests[\"An element is missing the field \" + fields[k]] = false;\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true\n\t}\n\treturn result;\n}\n",
       "currentHelper": "normal",
-      "time": 1533313598568,
-      "collectionId": "ff387420-9739-11e8-9ea6-0397aa95ada9",
+      "time": 1533570887450,
+      "collectionId": "0b588b60-9991-11e8-aa0c-4137dfa3e656",
       "rawModeData": ""
     },
     {
-      "id": "ff395e86-9739-11e8-9ea6-0397aa95ada9",
+      "id": "0b5927a2-9991-11e8-aa0c-4137dfa3e656",
       "name": "searches productofferings",
       "description": "By passing in the appropriate options, you can search for\navailable inventory in the system\n",
       "headers": "Accept: application/json\nContent-Type: application/json\n",
@@ -343,7 +573,7 @@
         }
       ],
       "url": "{{host}}{{path}}/productOffering",
-      "folder": "ff395e83-9739-11e8-9ea6-0397aa95ada9",
+      "folder": "0b590093-9991-11e8-aa0c-4137dfa3e656",
       "queryParams": [],
       "preRequestScript": "",
       "method": "GET",
@@ -352,12 +582,110 @@
       "version": 2,
       "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is 200\"] = responseCode.code === 200;\n",
       "currentHelper": "normal",
-      "time": 1533313598568,
-      "collectionId": "ff387420-9739-11e8-9ea6-0397aa95ada9",
+      "time": 1533570887450,
+      "collectionId": "0b588b60-9991-11e8-aa0c-4137dfa3e656",
       "rawModeData": ""
     },
     {
-      "id": "ff398591-9739-11e8-9ea6-0397aa95ada9",
+      "id": "0b5927a4-9991-11e8-aa0c-4137dfa3e656",
+      "name": "adds a product offering price",
+      "description": "Adds an item to the system",
+      "headers": "Accept: application/json\nContent-Type: application/json\n",
+      "headerData": [
+        {
+          "key": "Accept",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        }
+      ],
+      "url": "{{host}}{{path}}/productOfferingPrice",
+      "folder": "0b5927a3-9991-11e8-aa0c-4137dfa3e656",
+      "queryParams": [],
+      "preRequestScript": "",
+      "method": "POST",
+      "data": [],
+      "dataMode": "raw",
+      "version": 2,
+      "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is 201\"] = responseCode.code === 201;\ntests[\"Response contains location header\"] = responseHeaders.hasOwnProperty(\"Location\");\ntests[\"Location header is correct\"] = responseHeaders.hasOwnProperty(\"Location\") &&\n\t(postman.getResponseHeader(\"Location\").toString() == environment[\"path\"] + \"/productOfferingPrice/\" + JSON.parse(responseBody).id || //relative\n\tpostman.getResponseHeader(\"Location\").toString() == environment[\"host\"] + environment[\"path\"] + \"/productOfferingPrice/\" + JSON.parse(responseBody).id);   //absolute\ntests[\"Response contains all required fields\"] = findFieldsInBody([\"name\",\"isBundle\",\"id\",\"href\"], JSON.parse(responseBody));\n\nfunction findFieldInBody(field,body) {\n\tfor (var key in body) {\n\t\tif (key == field) return true;\n\t}\n\treturn false;\n}\n\nfunction findFieldsInBody(fields,body) {\n\tif (Object.prototype.toString.call(body) === \"[object Array]\") {\n\t\tfor (var i = 0; i < body.length; i++) {\n\t\t\tfindFieldsInBody(fields,body[i]);\n\t\t}\n\t} else {\n\t\tfor (var k = 0; k < fields.length; k++) {\n\t\t\tif (!findFieldInBody(fields[k],body)) {\n\t\t\t\ttests[\"An element is missing the field \" + fields[k]] = false;\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true\n\t}\n\treturn result;\n}\ntests[\"POST Body Response equals Request Body\"  ] = objectEquals(JSON.parse(request.data), JSON.parse(responseBody));\n\nfunction objectEquals(v1, v2) {\n\tif (typeof(v1) === \"function\") {\n\t\treturn v1.toString() === v2.toString();\n\t} else if (v1 instanceof Object && v2 instanceof Object) {\n\t\tvar r = true;\n\t\tfor (var k in v1) {\n\t\t\tr = objectEquals(v1[k], v2[k]);\n\t\t\tif (!r) {\n\t\t\t\tconsole.log(\"v1:\"+JSON.stringify(v1));\n\t\t\t\tconsole.log(\"k:\"+k+\";v2:\"+JSON.stringify(v2));\n\t\t\t\tconsole.log(\"v1[k]:\"+v1[k]+\";v2[k]:\"+v2[k]);\n\t\t\t\tconsole.log(\"JSON.stringify(v1[k]):\"+JSON.stringify(v1[k])+\";JSON.stringify(v2[k]):\"+JSON.stringify(v2[k]));\n\t\t\t\tconsole.log(\"typeof(v1[k]):\"+typeof(v1[k])+\";typeof(v2[k]):\"+typeof(v2[k]));\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t} else {\n\t\treturn v1 === v2;\n\t}\n}\npostman.setGlobalVariable(\"lastId\", JSON.parse(responseBody).id);\npostman.setGlobalVariable(\"lastRequest\", request.data);\n",
+      "currentHelper": "normal",
+      "time": 1533570887450,
+      "collectionId": "0b588b60-9991-11e8-aa0c-4137dfa3e656",
+      "rawModeData": "{\"name\":\"Widget Adapter Price\",\"isBundle\":false}"
+    },
+    {
+      "id": "0b594eb0-9991-11e8-aa0c-4137dfa3e656",
+      "name": "retrieves the requested product offering price",
+      "headers": "Accept: application/json\nContent-Type: application/json\n",
+      "headerData": [
+        {
+          "key": "Accept",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        }
+      ],
+      "url": "{{host}}{{path}}/productOfferingPrice/{{lastId}}",
+      "folder": "0b5927a3-9991-11e8-aa0c-4137dfa3e656",
+      "queryParams": [],
+      "preRequestScript": "",
+      "method": "GET",
+      "data": [],
+      "dataMode": "raw",
+      "version": 2,
+      "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is 200\"] = responseCode.code === 200;\ntests[\"POST Body Response equals Request Body\"] = objectEquals(JSON.parse(postman.getGlobalVariable(\"lastRequest\")), JSON.parse(responseBody));\n\nfunction objectEquals(v1, v2) {\n\tif (typeof(v1) === \"function\") {\n\t\treturn v1.toString() === v2.toString();\n\t} else if (v1 instanceof Object && v2 instanceof Object) {\n\t\tvar r = true;\n\t\tfor (var k in v1) {\n\t\t\tr = objectEquals(v1[k], v2[k]);\n\t\t\tif (!r) {\n\t\t\t\tconsole.log(\"v1:\"+JSON.stringify(v1));\n\t\t\t\tconsole.log(\"k:\"+k+\";v2:\"+JSON.stringify(v2));\n\t\t\t\tconsole.log(\"v1[k]:\"+v1[k]+\";v2[k]:\"+v2[k]);\n\t\t\t\tconsole.log(\"JSON.stringify(v1[k]):\"+JSON.stringify(v1[k])+\";JSON.stringify(v2[k]):\"+JSON.stringify(v2[k]));\n\t\t\t\tconsole.log(\"typeof(v1[k]):\"+typeof(v1[k])+\";typeof(v2[k]):\"+typeof(v2[k]));\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t} else {\n\t\treturn v1 === v2;\n\t}\n}\ntests[\"Response contains all required fields\"] = findFieldsInBody([\"name\",\"isBundle\",\"id\",\"href\"], JSON.parse(responseBody));\n\nfunction findFieldInBody(field,body) {\n\tfor (var key in body) {\n\t\tif (key == field) return true;\n\t}\n\treturn false;\n}\n\nfunction findFieldsInBody(fields,body) {\n\tif (Object.prototype.toString.call(body) === \"[object Array]\") {\n\t\tfor (var i = 0; i < body.length; i++) {\n\t\t\tfindFieldsInBody(fields,body[i]);\n\t\t}\n\t} else {\n\t\tfor (var k = 0; k < fields.length; k++) {\n\t\t\tif (!findFieldInBody(fields[k],body)) {\n\t\t\t\ttests[\"An element is missing the field \" + fields[k]] = false;\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true\n\t}\n\treturn result;\n}\n",
+      "currentHelper": "normal",
+      "time": 1533570887451,
+      "collectionId": "0b588b60-9991-11e8-aa0c-4137dfa3e656",
+      "rawModeData": ""
+    },
+    {
+      "id": "0b594eb1-9991-11e8-aa0c-4137dfa3e656",
+      "name": "searches productoffering prices",
+      "description": "By passing in the appropriate options, you can search for\navailable inventory in the system\n",
+      "headers": "Accept: application/json\nContent-Type: application/json\n",
+      "headerData": [
+        {
+          "key": "Accept",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        }
+      ],
+      "url": "{{host}}{{path}}/productOfferingPrice",
+      "folder": "0b5927a3-9991-11e8-aa0c-4137dfa3e656",
+      "queryParams": [],
+      "preRequestScript": "",
+      "method": "GET",
+      "data": [],
+      "dataMode": "raw",
+      "version": 2,
+      "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is 200\"] = responseCode.code === 200;\n",
+      "currentHelper": "normal",
+      "time": 1533570887451,
+      "collectionId": "0b588b60-9991-11e8-aa0c-4137dfa3e656",
+      "rawModeData": ""
+    },
+    {
+      "id": "0b594eb3-9991-11e8-aa0c-4137dfa3e656",
       "name": "add a new catalog",
       "headers": "Accept: application/json\nContent-Type: application/json\n",
       "headerData": [
@@ -375,7 +703,7 @@
         }
       ],
       "url": "{{host}}{{path}}/catalog",
-      "folder": "ff398590-9739-11e8-9ea6-0397aa95ada9",
+      "folder": "0b594eb2-9991-11e8-aa0c-4137dfa3e656",
       "queryParams": [],
       "preRequestScript": "",
       "method": "POST",
@@ -384,12 +712,44 @@
       "version": 2,
       "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is an error\"] = responseCode.code >= 400;\n",
       "currentHelper": "normal",
-      "time": 1533313598569,
-      "collectionId": "ff387420-9739-11e8-9ea6-0397aa95ada9",
+      "time": 1533570887451,
+      "collectionId": "0b588b60-9991-11e8-aa0c-4137dfa3e656",
       "rawModeData": "{}"
     },
     {
-      "id": "ff398593-9739-11e8-9ea6-0397aa95ada9",
+      "id": "0b594eb5-9991-11e8-aa0c-4137dfa3e656",
+      "name": "add a new category",
+      "headers": "Accept: application/json\nContent-Type: application/json\n",
+      "headerData": [
+        {
+          "key": "Accept",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        }
+      ],
+      "url": "{{host}}{{path}}/category",
+      "folder": "0b594eb4-9991-11e8-aa0c-4137dfa3e656",
+      "queryParams": [],
+      "preRequestScript": "",
+      "method": "POST",
+      "data": [],
+      "dataMode": "raw",
+      "version": 2,
+      "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is an error\"] = responseCode.code >= 400;\n",
+      "currentHelper": "normal",
+      "time": 1533570887451,
+      "collectionId": "0b588b60-9991-11e8-aa0c-4137dfa3e656",
+      "rawModeData": "{}"
+    },
+    {
+      "id": "0b594eb7-9991-11e8-aa0c-4137dfa3e656",
       "name": "adds an inventory item",
       "description": "Adds an item to the system",
       "headers": "Accept: application/json\nContent-Type: application/json\n",
@@ -408,7 +768,7 @@
         }
       ],
       "url": "{{host}}{{path}}/productSpecification",
-      "folder": "ff398592-9739-11e8-9ea6-0397aa95ada9",
+      "folder": "0b594eb6-9991-11e8-aa0c-4137dfa3e656",
       "queryParams": [],
       "preRequestScript": "",
       "method": "POST",
@@ -417,12 +777,12 @@
       "version": 2,
       "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is an error\"] = responseCode.code >= 400;\n",
       "currentHelper": "normal",
-      "time": 1533313598569,
-      "collectionId": "ff387420-9739-11e8-9ea6-0397aa95ada9",
+      "time": 1533570887451,
+      "collectionId": "0b588b60-9991-11e8-aa0c-4137dfa3e656",
       "rawModeData": "{}"
     },
     {
-      "id": "ff398595-9739-11e8-9ea6-0397aa95ada9",
+      "id": "0b5975c0-9991-11e8-aa0c-4137dfa3e656",
       "name": "adds a product offering",
       "description": "Adds an item to the system",
       "headers": "Accept: application/json\nContent-Type: application/json\n",
@@ -441,7 +801,7 @@
         }
       ],
       "url": "{{host}}{{path}}/productOffering",
-      "folder": "ff398594-9739-11e8-9ea6-0397aa95ada9",
+      "folder": "0b594eb8-9991-11e8-aa0c-4137dfa3e656",
       "queryParams": [],
       "preRequestScript": "",
       "method": "POST",
@@ -450,12 +810,12 @@
       "version": 2,
       "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is an error\"] = responseCode.code >= 400;\n",
       "currentHelper": "normal",
-      "time": 1533313598569,
-      "collectionId": "ff387420-9739-11e8-9ea6-0397aa95ada9",
-      "rawModeData": "{\"isBundle\":true,\"bundledProductOffering\":[{\"id\":\"d290f1ee-6c54-4b01-90e6-d701748f0851\",\"href\":\"https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851\",\"name\":\"Widget Adapter\"}]}"
+      "time": 1533570887452,
+      "collectionId": "0b588b60-9991-11e8-aa0c-4137dfa3e656",
+      "rawModeData": "{\"isBundle\":false,\"productSpecification\":{\"id\":\"d290f1ee-6c54-4b01-90e6-d701748f0851\",\"href\":\"https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851\",\"name\":\"Widget Adapter\"}}"
     },
     {
-      "id": "ff398596-9739-11e8-9ea6-0397aa95ada9",
+      "id": "0b5975c1-9991-11e8-aa0c-4137dfa3e656",
       "name": "adds a product offering",
       "description": "Adds an item to the system",
       "headers": "Accept: application/json\nContent-Type: application/json\n",
@@ -474,7 +834,7 @@
         }
       ],
       "url": "{{host}}{{path}}/productOffering",
-      "folder": "ff398594-9739-11e8-9ea6-0397aa95ada9",
+      "folder": "0b594eb8-9991-11e8-aa0c-4137dfa3e656",
       "queryParams": [],
       "preRequestScript": "",
       "method": "POST",
@@ -483,12 +843,12 @@
       "version": 2,
       "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is an error\"] = responseCode.code >= 400;\n",
       "currentHelper": "normal",
-      "time": 1533313598569,
-      "collectionId": "ff387420-9739-11e8-9ea6-0397aa95ada9",
-      "rawModeData": "{\"name\":\"Widget Adapter\",\"bundledProductOffering\":[{\"id\":\"d290f1ee-6c54-4b01-90e6-d701748f0851\",\"href\":\"https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851\",\"name\":\"Widget Adapter\"}]}"
+      "time": 1533570887452,
+      "collectionId": "0b588b60-9991-11e8-aa0c-4137dfa3e656",
+      "rawModeData": "{\"name\":\"Widget Adapter\",\"productSpecification\":{\"id\":\"d290f1ee-6c54-4b01-90e6-d701748f0851\",\"href\":\"https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851\",\"name\":\"Widget Adapter\"}}"
     },
     {
-      "id": "ff398597-9739-11e8-9ea6-0397aa95ada9",
+      "id": "0b5975c2-9991-11e8-aa0c-4137dfa3e656",
       "name": "adds a product offering",
       "description": "Adds an item to the system",
       "headers": "Accept: application/json\nContent-Type: application/json\n",
@@ -507,7 +867,7 @@
         }
       ],
       "url": "{{host}}{{path}}/productOffering",
-      "folder": "ff398594-9739-11e8-9ea6-0397aa95ada9",
+      "folder": "0b594eb8-9991-11e8-aa0c-4137dfa3e656",
       "queryParams": [],
       "preRequestScript": "",
       "method": "POST",
@@ -516,12 +876,368 @@
       "version": 2,
       "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is an error\"] = responseCode.code >= 400;\n",
       "currentHelper": "normal",
-      "time": 1533313598569,
-      "collectionId": "ff387420-9739-11e8-9ea6-0397aa95ada9",
-      "rawModeData": "{\"name\":\"Widget Adapter\",\"isBundle\":true}"
+      "time": 1533570887452,
+      "collectionId": "0b588b60-9991-11e8-aa0c-4137dfa3e656",
+      "rawModeData": "{\"name\":\"Widget Adapter\",\"isBundle\":false}"
     },
     {
-      "id": "ff39aca1-9739-11e8-9ea6-0397aa95ada9",
+      "id": "0b5975c4-9991-11e8-aa0c-4137dfa3e656",
+      "name": "adds a product offering price",
+      "description": "Adds an item to the system",
+      "headers": "Accept: application/json\nContent-Type: application/json\n",
+      "headerData": [
+        {
+          "key": "Accept",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        }
+      ],
+      "url": "{{host}}{{path}}/productOfferingPrice",
+      "folder": "0b5975c3-9991-11e8-aa0c-4137dfa3e656",
+      "queryParams": [],
+      "preRequestScript": "",
+      "method": "POST",
+      "data": [],
+      "dataMode": "raw",
+      "version": 2,
+      "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is an error\"] = responseCode.code >= 400;\n",
+      "currentHelper": "normal",
+      "time": 1533570887452,
+      "collectionId": "0b588b60-9991-11e8-aa0c-4137dfa3e656",
+      "rawModeData": "{\"isBundle\":false}"
+    },
+    {
+      "id": "0b5975c5-9991-11e8-aa0c-4137dfa3e656",
+      "name": "adds a product offering price",
+      "description": "Adds an item to the system",
+      "headers": "Accept: application/json\nContent-Type: application/json\n",
+      "headerData": [
+        {
+          "key": "Accept",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        }
+      ],
+      "url": "{{host}}{{path}}/productOfferingPrice",
+      "folder": "0b5975c3-9991-11e8-aa0c-4137dfa3e656",
+      "queryParams": [],
+      "preRequestScript": "",
+      "method": "POST",
+      "data": [],
+      "dataMode": "raw",
+      "version": 2,
+      "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is an error\"] = responseCode.code >= 400;\n",
+      "currentHelper": "normal",
+      "time": 1533570887452,
+      "collectionId": "0b588b60-9991-11e8-aa0c-4137dfa3e656",
+      "rawModeData": "{\"name\":\"Widget Adapter Price\"}"
+    },
+    {
+      "id": "0b599cd1-9991-11e8-aa0c-4137dfa3e656",
+      "name": "add a new catalog",
+      "headers": "Accept: application/json\nContent-Type: application/json\n",
+      "headerData": [
+        {
+          "key": "Accept",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        }
+      ],
+      "url": "{{host}}{{path}}/catalog",
+      "folder": "0b599cd0-9991-11e8-aa0c-4137dfa3e656",
+      "queryParams": [],
+      "preRequestScript": "",
+      "method": "POST",
+      "data": [],
+      "dataMode": "raw",
+      "version": 2,
+      "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is 201\"] = responseCode.code === 201;\ntests[\"Response contains location header\"] = responseHeaders.hasOwnProperty(\"Location\");\ntests[\"Location header is correct\"] = responseHeaders.hasOwnProperty(\"Location\") &&\n\t(postman.getResponseHeader(\"Location\").toString() == environment[\"path\"] + \"/catalog/\" + JSON.parse(responseBody).id || //relative\n\tpostman.getResponseHeader(\"Location\").toString() == environment[\"host\"] + environment[\"path\"] + \"/catalog/\" + JSON.parse(responseBody).id);   //absolute\ntests[\"Response contains all required fields\"] = findFieldsInBody([\"id\",\"href\",\"name\"], JSON.parse(responseBody));\n\nfunction findFieldInBody(field,body) {\n\tfor (var key in body) {\n\t\tif (key == field) return true;\n\t}\n\treturn false;\n}\n\nfunction findFieldsInBody(fields,body) {\n\tif (Object.prototype.toString.call(body) === \"[object Array]\") {\n\t\tfor (var i = 0; i < body.length; i++) {\n\t\t\tfindFieldsInBody(fields,body[i]);\n\t\t}\n\t} else {\n\t\tfor (var k = 0; k < fields.length; k++) {\n\t\t\tif (!findFieldInBody(fields[k],body)) {\n\t\t\t\ttests[\"An element is missing the field \" + fields[k]] = false;\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true\n\t}\n\treturn result;\n}\ntests[\"POST Body Response equals Request Body\"  ] = objectEquals(JSON.parse(request.data), JSON.parse(responseBody));\n\nfunction objectEquals(v1, v2) {\n\tif (typeof(v1) === \"function\") {\n\t\treturn v1.toString() === v2.toString();\n\t} else if (v1 instanceof Object && v2 instanceof Object) {\n\t\tvar r = true;\n\t\tfor (var k in v1) {\n\t\t\tr = objectEquals(v1[k], v2[k]);\n\t\t\tif (!r) {\n\t\t\t\tconsole.log(\"v1:\"+JSON.stringify(v1));\n\t\t\t\tconsole.log(\"k:\"+k+\";v2:\"+JSON.stringify(v2));\n\t\t\t\tconsole.log(\"v1[k]:\"+v1[k]+\";v2[k]:\"+v2[k]);\n\t\t\t\tconsole.log(\"JSON.stringify(v1[k]):\"+JSON.stringify(v1[k])+\";JSON.stringify(v2[k]):\"+JSON.stringify(v2[k]));\n\t\t\t\tconsole.log(\"typeof(v1[k]):\"+typeof(v1[k])+\";typeof(v2[k]):\"+typeof(v2[k]));\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t} else {\n\t\treturn v1 === v2;\n\t}\n}\npostman.setGlobalVariable(\"lastId\", JSON.parse(responseBody).id);\npostman.setGlobalVariable(\"lastRequest\", request.data);\n",
+      "currentHelper": "normal",
+      "time": 1533570887453,
+      "collectionId": "0b588b60-9991-11e8-aa0c-4137dfa3e656",
+      "rawModeData": "{\"name\":\"Mustermann Master Catalog\",\"version\":\"1\",\"lastUpdate\":\"2016-08-29T09:12:33Z\",\"type\":\"PRODUCT_CATALOG\",\"lifecycleStatus\":\"Active\",\"validFor\":{\"startDateTime\":\"2016-08-29T09:12:33Z\",\"endDateTime\":\"2016-08-29T09:12:33Z\"},\"@type\":\"TariffSpecification\",\"@baseType\":\"ProductSpecification\",\"@schemaLocation\":\"https://tmforum.nttdata.com/schemas/Tariff.yml\",\"category\":[{\"id\":\"d290f1ee-6c54-4b01-90e6-d701748f0851\",\"href\":\"https://tmforum.nttdata.com/category/d290f1ee-6c54-4b01-90e6-d701748f0851\",\"name\":\"Mustermann Master Catalog\",\"version\":\"1\",\"@referredType\":\"other catalog type\"}],\"relatedParty\":[{\"id\":\"d290f1ee-6c54-4b01-90e6-d701748f0851\",\"href\":\"https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851\",\"role\":\"Responsible\",\"name\":\"John Doe\",\"validFor\":{\"startDateTime\":\"2016-08-29T09:12:33Z\",\"endDateTime\":\"2016-08-29T09:12:33Z\"}}]}"
+    },
+    {
+      "id": "0b599cd2-9991-11e8-aa0c-4137dfa3e656",
+      "name": "retrieves all catalogs",
+      "headers": "Accept: application/json\nContent-Type: application/json\n",
+      "headerData": [
+        {
+          "key": "Accept",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        }
+      ],
+      "url": "{{host}}{{path}}/catalog/{{lastId}}",
+      "folder": "0b599cd0-9991-11e8-aa0c-4137dfa3e656",
+      "queryParams": [],
+      "preRequestScript": "",
+      "method": "GET",
+      "data": [],
+      "dataMode": "raw",
+      "version": 2,
+      "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is 200\"] = responseCode.code === 200;\ntests[\"POST Body Response equals Request Body\"] = objectEquals(JSON.parse(postman.getGlobalVariable(\"lastRequest\")), JSON.parse(responseBody));\n\nfunction objectEquals(v1, v2) {\n\tif (typeof(v1) === \"function\") {\n\t\treturn v1.toString() === v2.toString();\n\t} else if (v1 instanceof Object && v2 instanceof Object) {\n\t\tvar r = true;\n\t\tfor (var k in v1) {\n\t\t\tr = objectEquals(v1[k], v2[k]);\n\t\t\tif (!r) {\n\t\t\t\tconsole.log(\"v1:\"+JSON.stringify(v1));\n\t\t\t\tconsole.log(\"k:\"+k+\";v2:\"+JSON.stringify(v2));\n\t\t\t\tconsole.log(\"v1[k]:\"+v1[k]+\";v2[k]:\"+v2[k]);\n\t\t\t\tconsole.log(\"JSON.stringify(v1[k]):\"+JSON.stringify(v1[k])+\";JSON.stringify(v2[k]):\"+JSON.stringify(v2[k]));\n\t\t\t\tconsole.log(\"typeof(v1[k]):\"+typeof(v1[k])+\";typeof(v2[k]):\"+typeof(v2[k]));\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t} else {\n\t\treturn v1 === v2;\n\t}\n}\n",
+      "currentHelper": "normal",
+      "time": 1533570887453,
+      "collectionId": "0b588b60-9991-11e8-aa0c-4137dfa3e656",
+      "rawModeData": ""
+    },
+    {
+      "id": "0b599cd3-9991-11e8-aa0c-4137dfa3e656",
+      "name": "retrieves all catalogs",
+      "headers": "Accept: application/json\nContent-Type: application/json\n",
+      "headerData": [
+        {
+          "key": "Accept",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        }
+      ],
+      "url": "{{host}}{{path}}/catalog",
+      "folder": "0b599cd0-9991-11e8-aa0c-4137dfa3e656",
+      "queryParams": [],
+      "preRequestScript": "",
+      "method": "GET",
+      "data": [],
+      "dataMode": "raw",
+      "version": 2,
+      "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is 200\"] = responseCode.code === 200;\n",
+      "currentHelper": "normal",
+      "time": 1533570887453,
+      "collectionId": "0b588b60-9991-11e8-aa0c-4137dfa3e656",
+      "rawModeData": ""
+    },
+    {
+      "id": "0b599cd5-9991-11e8-aa0c-4137dfa3e656",
+      "name": "add a new category",
+      "headers": "Accept: application/json\nContent-Type: application/json\n",
+      "headerData": [
+        {
+          "key": "Accept",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        }
+      ],
+      "url": "{{host}}{{path}}/category",
+      "folder": "0b599cd4-9991-11e8-aa0c-4137dfa3e656",
+      "queryParams": [],
+      "preRequestScript": "",
+      "method": "POST",
+      "data": [],
+      "dataMode": "raw",
+      "version": 2,
+      "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is 201\"] = responseCode.code === 201;\ntests[\"Response contains location header\"] = responseHeaders.hasOwnProperty(\"Location\");\ntests[\"Location header is correct\"] = responseHeaders.hasOwnProperty(\"Location\") &&\n\t(postman.getResponseHeader(\"Location\").toString() == environment[\"path\"] + \"/category/\" + JSON.parse(responseBody).id || //relative\n\tpostman.getResponseHeader(\"Location\").toString() == environment[\"host\"] + environment[\"path\"] + \"/category/\" + JSON.parse(responseBody).id);   //absolute\ntests[\"Response contains all required fields\"] = findFieldsInBody([\"id\",\"href\",\"name\"], JSON.parse(responseBody));\n\nfunction findFieldInBody(field,body) {\n\tfor (var key in body) {\n\t\tif (key == field) return true;\n\t}\n\treturn false;\n}\n\nfunction findFieldsInBody(fields,body) {\n\tif (Object.prototype.toString.call(body) === \"[object Array]\") {\n\t\tfor (var i = 0; i < body.length; i++) {\n\t\t\tfindFieldsInBody(fields,body[i]);\n\t\t}\n\t} else {\n\t\tfor (var k = 0; k < fields.length; k++) {\n\t\t\tif (!findFieldInBody(fields[k],body)) {\n\t\t\t\ttests[\"An element is missing the field \" + fields[k]] = false;\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true\n\t}\n\treturn result;\n}\ntests[\"POST Body Response equals Request Body\"  ] = objectEquals(JSON.parse(request.data), JSON.parse(responseBody));\n\nfunction objectEquals(v1, v2) {\n\tif (typeof(v1) === \"function\") {\n\t\treturn v1.toString() === v2.toString();\n\t} else if (v1 instanceof Object && v2 instanceof Object) {\n\t\tvar r = true;\n\t\tfor (var k in v1) {\n\t\t\tr = objectEquals(v1[k], v2[k]);\n\t\t\tif (!r) {\n\t\t\t\tconsole.log(\"v1:\"+JSON.stringify(v1));\n\t\t\t\tconsole.log(\"k:\"+k+\";v2:\"+JSON.stringify(v2));\n\t\t\t\tconsole.log(\"v1[k]:\"+v1[k]+\";v2[k]:\"+v2[k]);\n\t\t\t\tconsole.log(\"JSON.stringify(v1[k]):\"+JSON.stringify(v1[k])+\";JSON.stringify(v2[k]):\"+JSON.stringify(v2[k]));\n\t\t\t\tconsole.log(\"typeof(v1[k]):\"+typeof(v1[k])+\";typeof(v2[k]):\"+typeof(v2[k]));\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t} else {\n\t\treturn v1 === v2;\n\t}\n}\npostman.setGlobalVariable(\"lastId\", JSON.parse(responseBody).id);\npostman.setGlobalVariable(\"lastRequest\", request.data);\n",
+      "currentHelper": "normal",
+      "time": 1533570887453,
+      "collectionId": "0b588b60-9991-11e8-aa0c-4137dfa3e656",
+      "rawModeData": "{\"name\":\"Mustermann Master Catalog\",\"description\":\"Description for Mustermann Master Catalog\",\"version\":\"1\",\"lastUpdate\":\"2016-08-29T09:12:33Z\",\"lifecycleStatus\":\"Active\",\"validFor\":{\"startDateTime\":\"2016-08-29T09:12:33Z\",\"endDateTime\":\"2016-08-29T09:12:33Z\"},\"parentId\":\"d290f1ee-6c54-4b01-90e6-d701748f0851\",\"isRoot\":false,\"@type\":\"TariffSpecification\",\"@baseType\":\"ProductSpecification\",\"@schemaLocation\":\"https://tmforum.nttdata.com/schemas/Tariff.yml\",\"subCategory\":[{\"id\":\"d290f1ee-6c54-4b01-90e6-d701748f0851\",\"href\":\"https://tmforum.nttdata.com/category/d290f1ee-6c54-4b01-90e6-d701748f0851\",\"name\":\"Mustermann Master Catalog\",\"version\":\"1\",\"@referredType\":\"other catalog type\"}],\"productOffering\":[{\"id\":\"d290f1ee-6c54-4b01-90e6-d701748f0851\",\"href\":\"https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851\",\"name\":\"Widget Adapter2\",\"@referredType\":\"ProductOffering\"}]}"
+    },
+    {
+      "id": "0b599cd6-9991-11e8-aa0c-4137dfa3e656",
+      "name": "retrieves all catalogs",
+      "headers": "Accept: application/json\nContent-Type: application/json\n",
+      "headerData": [
+        {
+          "key": "Accept",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        }
+      ],
+      "url": "{{host}}{{path}}/category/{{lastId}}",
+      "folder": "0b599cd4-9991-11e8-aa0c-4137dfa3e656",
+      "queryParams": [],
+      "preRequestScript": "",
+      "method": "GET",
+      "data": [],
+      "dataMode": "raw",
+      "version": 2,
+      "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is 200\"] = responseCode.code === 200;\ntests[\"POST Body Response equals Request Body\"] = objectEquals(JSON.parse(postman.getGlobalVariable(\"lastRequest\")), JSON.parse(responseBody));\n\nfunction objectEquals(v1, v2) {\n\tif (typeof(v1) === \"function\") {\n\t\treturn v1.toString() === v2.toString();\n\t} else if (v1 instanceof Object && v2 instanceof Object) {\n\t\tvar r = true;\n\t\tfor (var k in v1) {\n\t\t\tr = objectEquals(v1[k], v2[k]);\n\t\t\tif (!r) {\n\t\t\t\tconsole.log(\"v1:\"+JSON.stringify(v1));\n\t\t\t\tconsole.log(\"k:\"+k+\";v2:\"+JSON.stringify(v2));\n\t\t\t\tconsole.log(\"v1[k]:\"+v1[k]+\";v2[k]:\"+v2[k]);\n\t\t\t\tconsole.log(\"JSON.stringify(v1[k]):\"+JSON.stringify(v1[k])+\";JSON.stringify(v2[k]):\"+JSON.stringify(v2[k]));\n\t\t\t\tconsole.log(\"typeof(v1[k]):\"+typeof(v1[k])+\";typeof(v2[k]):\"+typeof(v2[k]));\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t} else {\n\t\treturn v1 === v2;\n\t}\n}\n",
+      "currentHelper": "normal",
+      "time": 1533570887453,
+      "collectionId": "0b588b60-9991-11e8-aa0c-4137dfa3e656",
+      "rawModeData": ""
+    },
+    {
+      "id": "0b599cd7-9991-11e8-aa0c-4137dfa3e656",
+      "name": "retrieves all categories",
+      "headers": "Accept: application/json\nContent-Type: application/json\n",
+      "headerData": [
+        {
+          "key": "Accept",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        }
+      ],
+      "url": "{{host}}{{path}}/category",
+      "folder": "0b599cd4-9991-11e8-aa0c-4137dfa3e656",
+      "queryParams": [],
+      "preRequestScript": "",
+      "method": "GET",
+      "data": [],
+      "dataMode": "raw",
+      "version": 2,
+      "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is 200\"] = responseCode.code === 200;\n",
+      "currentHelper": "normal",
+      "time": 1533570887453,
+      "collectionId": "0b588b60-9991-11e8-aa0c-4137dfa3e656",
+      "rawModeData": ""
+    },
+    {
+      "id": "0b599cd9-9991-11e8-aa0c-4137dfa3e656",
+      "name": "adds an inventory item",
+      "description": "Adds an item to the system",
+      "headers": "Accept: application/json\nContent-Type: application/json\n",
+      "headerData": [
+        {
+          "key": "Accept",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        }
+      ],
+      "url": "{{host}}{{path}}/productSpecification",
+      "folder": "0b599cd8-9991-11e8-aa0c-4137dfa3e656",
+      "queryParams": [],
+      "preRequestScript": "",
+      "method": "POST",
+      "data": [],
+      "dataMode": "raw",
+      "version": 2,
+      "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is 201\"] = responseCode.code === 201;\ntests[\"Response contains location header\"] = responseHeaders.hasOwnProperty(\"Location\");\ntests[\"Location header is correct\"] = responseHeaders.hasOwnProperty(\"Location\") &&\n\t(postman.getResponseHeader(\"Location\").toString() == environment[\"path\"] + \"/productSpecification/\" + JSON.parse(responseBody).id || //relative\n\tpostman.getResponseHeader(\"Location\").toString() == environment[\"host\"] + environment[\"path\"] + \"/productSpecification/\" + JSON.parse(responseBody).id);   //absolute\ntests[\"Response contains all required fields\"] = findFieldsInBody([\"name\",\"id\",\"href\",\"version\",\"lifecycleStatus\",\"validFor\"], JSON.parse(responseBody));\n\nfunction findFieldInBody(field,body) {\n\tfor (var key in body) {\n\t\tif (key == field) return true;\n\t}\n\treturn false;\n}\n\nfunction findFieldsInBody(fields,body) {\n\tif (Object.prototype.toString.call(body) === \"[object Array]\") {\n\t\tfor (var i = 0; i < body.length; i++) {\n\t\t\tfindFieldsInBody(fields,body[i]);\n\t\t}\n\t} else {\n\t\tfor (var k = 0; k < fields.length; k++) {\n\t\t\tif (!findFieldInBody(fields[k],body)) {\n\t\t\t\ttests[\"An element is missing the field \" + fields[k]] = false;\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true\n\t}\n\treturn result;\n}\ntests[\"POST Body Response equals Request Body\"  ] = objectEquals(JSON.parse(request.data), JSON.parse(responseBody));\n\nfunction objectEquals(v1, v2) {\n\tif (typeof(v1) === \"function\") {\n\t\treturn v1.toString() === v2.toString();\n\t} else if (v1 instanceof Object && v2 instanceof Object) {\n\t\tvar r = true;\n\t\tfor (var k in v1) {\n\t\t\tr = objectEquals(v1[k], v2[k]);\n\t\t\tif (!r) {\n\t\t\t\tconsole.log(\"v1:\"+JSON.stringify(v1));\n\t\t\t\tconsole.log(\"k:\"+k+\";v2:\"+JSON.stringify(v2));\n\t\t\t\tconsole.log(\"v1[k]:\"+v1[k]+\";v2[k]:\"+v2[k]);\n\t\t\t\tconsole.log(\"JSON.stringify(v1[k]):\"+JSON.stringify(v1[k])+\";JSON.stringify(v2[k]):\"+JSON.stringify(v2[k]));\n\t\t\t\tconsole.log(\"typeof(v1[k]):\"+typeof(v1[k])+\";typeof(v2[k]):\"+typeof(v2[k]));\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t} else {\n\t\treturn v1 === v2;\n\t}\n}\npostman.setGlobalVariable(\"lastId\", JSON.parse(responseBody).id);\npostman.setGlobalVariable(\"lastRequest\", request.data);\n",
+      "currentHelper": "normal",
+      "time": 1533570887453,
+      "collectionId": "0b588b60-9991-11e8-aa0c-4137dfa3e656",
+      "rawModeData": "{\"name\":\"Widget Adapter\",\"description\":\"Description for the Widget Adapter specification\",\"brand\":\"ALDItalk\",\"isBundle\":false,\"lastUpdate\":\"2016-08-29T09:12:33Z\",\"lifecycleStatus\":\"Active\",\"productNumber\":\"ABC1234\",\"validFor\":{\"startDateTime\":\"2016-08-29T09:12:33Z\",\"endDateTime\":\"2016-08-29T09:12:33Z\"},\"version\":\"1\",\"@type\":\"TariffSpecification\",\"@baseType\":\"ProductSpecification\",\"@schemaLocation\":\"https://tmforum.nttdata.com/schemas/Tariff.yml\",\"targetProductSchema\":{},\"resourceSpecification\":[{\"id\":\"d290f1ee-6c54-4b01-90e6-d701748f0851\",\"href\":\"https://tmforum.nttdata.com/resourceSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851\",\"name\":\"Server 4711\",\"version\":\"1\",\"@referredType\":\"ResourceSpecification\"}],\"serviceSpecification\":[{\"id\":\"d290f1ee-6c54-4b01-90e6-d701748f0851\",\"href\":\"https://tmforum.nttdata.com/resourceSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851\",\"name\":\"Server 4711\",\"version\":\"1\",\"@referredType\":\"ServiceSpecificationRef\"}],\"productSpecCharacteristic\":[{\"validFor\":{\"startDateTime\":\"2016-08-29T09:12:33Z\",\"endDateTime\":\"2016-08-29T09:12:33Z\"},\"productSpecCharacteristicValue\":[{\"validFor\":{\"startDateTime\":\"2016-08-29T09:12:33Z\",\"endDateTime\":\"2016-08-29T09:12:33Z\"}}],\"productSpecCharRelationship\":[{\"validFor\":{\"startDateTime\":\"2016-08-29T09:12:33Z\",\"endDateTime\":\"2016-08-29T09:12:33Z\"},\"id\":\"d290f1ee-6c54-4b01-90e6-d701748f0851\",\"href\":\"https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851\"}]}],\"productSpecificationRelationship\":[{\"id\":\"d290f1ee-6c54-4b01-90e6-d701748f0851\",\"href\":\"https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851\",\"type\":\"contains\",\"validFor\":{\"startDateTime\":\"2016-08-29T09:12:33Z\",\"endDateTime\":\"2016-08-29T09:12:33Z\"}}],\"attachment\":[{\"id\":\"d290f1ee-6c54-4b01-90e6-d701748f0851\",\"href\":\"https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851\",\"validFor\":{\"startDateTime\":\"2016-08-29T09:12:33Z\",\"endDateTime\":\"2016-08-29T09:12:33Z\"}}],\"relatedParty\":[{\"id\":\"d290f1ee-6c54-4b01-90e6-d701748f0851\",\"href\":\"https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851\",\"role\":\"Responsible\",\"name\":\"John Doe\",\"validFor\":{\"startDateTime\":\"2016-08-29T09:12:33Z\",\"endDateTime\":\"2016-08-29T09:12:33Z\"}}]}"
+    },
+    {
+      "id": "0b59c3e0-9991-11e8-aa0c-4137dfa3e656",
+      "name": "retrieves the requested product specification",
+      "headers": "Accept: application/json\nContent-Type: application/json\n",
+      "headerData": [
+        {
+          "key": "Accept",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        }
+      ],
+      "url": "{{host}}{{path}}/productSpecification/{{lastId}}",
+      "folder": "0b599cd8-9991-11e8-aa0c-4137dfa3e656",
+      "queryParams": [],
+      "preRequestScript": "",
+      "method": "GET",
+      "data": [],
+      "dataMode": "raw",
+      "version": 2,
+      "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is 200\"] = responseCode.code === 200;\ntests[\"POST Body Response equals Request Body\"] = objectEquals(JSON.parse(postman.getGlobalVariable(\"lastRequest\")), JSON.parse(responseBody));\n\nfunction objectEquals(v1, v2) {\n\tif (typeof(v1) === \"function\") {\n\t\treturn v1.toString() === v2.toString();\n\t} else if (v1 instanceof Object && v2 instanceof Object) {\n\t\tvar r = true;\n\t\tfor (var k in v1) {\n\t\t\tr = objectEquals(v1[k], v2[k]);\n\t\t\tif (!r) {\n\t\t\t\tconsole.log(\"v1:\"+JSON.stringify(v1));\n\t\t\t\tconsole.log(\"k:\"+k+\";v2:\"+JSON.stringify(v2));\n\t\t\t\tconsole.log(\"v1[k]:\"+v1[k]+\";v2[k]:\"+v2[k]);\n\t\t\t\tconsole.log(\"JSON.stringify(v1[k]):\"+JSON.stringify(v1[k])+\";JSON.stringify(v2[k]):\"+JSON.stringify(v2[k]));\n\t\t\t\tconsole.log(\"typeof(v1[k]):\"+typeof(v1[k])+\";typeof(v2[k]):\"+typeof(v2[k]));\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t} else {\n\t\treturn v1 === v2;\n\t}\n}\ntests[\"Response contains all required fields\"] = findFieldsInBody([\"name\",\"id\",\"href\",\"version\",\"lifecycleStatus\",\"validFor\"], JSON.parse(responseBody));\n\nfunction findFieldInBody(field,body) {\n\tfor (var key in body) {\n\t\tif (key == field) return true;\n\t}\n\treturn false;\n}\n\nfunction findFieldsInBody(fields,body) {\n\tif (Object.prototype.toString.call(body) === \"[object Array]\") {\n\t\tfor (var i = 0; i < body.length; i++) {\n\t\t\tfindFieldsInBody(fields,body[i]);\n\t\t}\n\t} else {\n\t\tfor (var k = 0; k < fields.length; k++) {\n\t\t\tif (!findFieldInBody(fields[k],body)) {\n\t\t\t\ttests[\"An element is missing the field \" + fields[k]] = false;\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true\n\t}\n\treturn result;\n}\n",
+      "currentHelper": "normal",
+      "time": 1533570887454,
+      "collectionId": "0b588b60-9991-11e8-aa0c-4137dfa3e656",
+      "rawModeData": ""
+    },
+    {
+      "id": "0b59c3e1-9991-11e8-aa0c-4137dfa3e656",
+      "name": "searches product specifications",
+      "description": "By passing in the appropriate options, you can search for\navailable inventory in the system\n",
+      "headers": "Accept: application/json\nContent-Type: application/json\n",
+      "headerData": [
+        {
+          "key": "Accept",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        }
+      ],
+      "url": "{{host}}{{path}}/productSpecification",
+      "folder": "0b599cd8-9991-11e8-aa0c-4137dfa3e656",
+      "queryParams": [],
+      "preRequestScript": "",
+      "method": "GET",
+      "data": [],
+      "dataMode": "raw",
+      "version": 2,
+      "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is 200\"] = responseCode.code === 200;\n",
+      "currentHelper": "normal",
+      "time": 1533570887454,
+      "collectionId": "0b588b60-9991-11e8-aa0c-4137dfa3e656",
+      "rawModeData": ""
+    },
+    {
+      "id": "0b59c3e3-9991-11e8-aa0c-4137dfa3e656",
       "name": "adds a product offering",
       "description": "Adds an item to the system",
       "headers": "Accept: application/json\nContent-Type: application/json\n",
@@ -540,21 +1256,21 @@
         }
       ],
       "url": "{{host}}{{path}}/productOffering",
-      "folder": "ff39aca0-9739-11e8-9ea6-0397aa95ada9",
+      "folder": "0b59c3e2-9991-11e8-aa0c-4137dfa3e656",
       "queryParams": [],
       "preRequestScript": "",
       "method": "POST",
       "data": [],
       "dataMode": "raw",
       "version": 2,
-      "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is 201\"] = responseCode.code === 201;\ntests[\"Response contains location header\"] = responseHeaders.hasOwnProperty(\"Location\");\ntests[\"Location header is correct\"] = responseHeaders.hasOwnProperty(\"Location\") &&\n\t(postman.getResponseHeader(\"Location\").toString() == environment[\"path\"] + \"/productOffering/\" + JSON.parse(responseBody).id || //relative\n\tpostman.getResponseHeader(\"Location\").toString() == environment[\"host\"] + environment[\"path\"] + \"/productOffering/\" + JSON.parse(responseBody).id);   //absolute\ntests[\"Response contains all required fields\"] = findFieldsInBody([\"name\",\"isBundle\",\"id\",\"href\"], JSON.parse(responseBody));\n\nfunction findFieldInBody(field,body) {\n\tfor (var key in body) {\n\t\tif (key == field) return true;\n\t}\n\treturn false;\n}\n\nfunction findFieldsInBody(fields,body) {\n\tif (Object.prototype.toString.call(body) === \"[object Array]\") {\n\t\tfor (var i = 0; i < body.length; i++) {\n\t\t\tfindFieldsInBody(fields,body[i]);\n\t\t}\n\t} else {\n\t\tfor (var k = 0; k < fields.length; k++) {\n\t\t\tif (!findFieldInBody(fields[k],body)) {\n\t\t\t\ttests[\"An element is missing the field \" + fields[k]] = false;\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true\n\t}\n\treturn result;\n}\ntests[\"POST Body Response equals Request Body\"  ] = objectEquals(JSON.parse(request.data), JSON.parse(responseBody));\n\nfunction objectEquals(v1, v2) {\n\tif (typeof(v1) === \"function\") {\n\t\treturn v1.toString() === v2.toString();\n\t} else if (v1 instanceof Object && v2 instanceof Object) {\n\t\tvar r = true;\n\t\tfor (var k in v1) {\n\t\t\tr = objectEquals(v1[k], v2[k]);\n\t\t\tif (!r) {\n\t\t\t\tconsole.log(\"v1[k]:\"+v1[k]+\";v2[k]:\"+v2[k]);\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t} else {\n\t\treturn v1 === v2;\n\t}\n}\npostman.setGlobalVariable(\"lastId\", JSON.parse(responseBody).id);\npostman.setGlobalVariable(\"lastRequest\", request.data);\n",
+      "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is 201\"] = responseCode.code === 201;\ntests[\"Response contains location header\"] = responseHeaders.hasOwnProperty(\"Location\");\ntests[\"Location header is correct\"] = responseHeaders.hasOwnProperty(\"Location\") &&\n\t(postman.getResponseHeader(\"Location\").toString() == environment[\"path\"] + \"/productOffering/\" + JSON.parse(responseBody).id || //relative\n\tpostman.getResponseHeader(\"Location\").toString() == environment[\"host\"] + environment[\"path\"] + \"/productOffering/\" + JSON.parse(responseBody).id);   //absolute\ntests[\"Response contains all required fields\"] = findFieldsInBody([\"name\",\"isBundle\",\"id\",\"href\",\"lifecycleStatus\",\"validFor\"], JSON.parse(responseBody));\n\nfunction findFieldInBody(field,body) {\n\tfor (var key in body) {\n\t\tif (key == field) return true;\n\t}\n\treturn false;\n}\n\nfunction findFieldsInBody(fields,body) {\n\tif (Object.prototype.toString.call(body) === \"[object Array]\") {\n\t\tfor (var i = 0; i < body.length; i++) {\n\t\t\tfindFieldsInBody(fields,body[i]);\n\t\t}\n\t} else {\n\t\tfor (var k = 0; k < fields.length; k++) {\n\t\t\tif (!findFieldInBody(fields[k],body)) {\n\t\t\t\ttests[\"An element is missing the field \" + fields[k]] = false;\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true\n\t}\n\treturn result;\n}\ntests[\"POST Body Response equals Request Body\"  ] = objectEquals(JSON.parse(request.data), JSON.parse(responseBody));\n\nfunction objectEquals(v1, v2) {\n\tif (typeof(v1) === \"function\") {\n\t\treturn v1.toString() === v2.toString();\n\t} else if (v1 instanceof Object && v2 instanceof Object) {\n\t\tvar r = true;\n\t\tfor (var k in v1) {\n\t\t\tr = objectEquals(v1[k], v2[k]);\n\t\t\tif (!r) {\n\t\t\t\tconsole.log(\"v1:\"+JSON.stringify(v1));\n\t\t\t\tconsole.log(\"k:\"+k+\";v2:\"+JSON.stringify(v2));\n\t\t\t\tconsole.log(\"v1[k]:\"+v1[k]+\";v2[k]:\"+v2[k]);\n\t\t\t\tconsole.log(\"JSON.stringify(v1[k]):\"+JSON.stringify(v1[k])+\";JSON.stringify(v2[k]):\"+JSON.stringify(v2[k]));\n\t\t\t\tconsole.log(\"typeof(v1[k]):\"+typeof(v1[k])+\";typeof(v2[k]):\"+typeof(v2[k]));\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t} else {\n\t\treturn v1 === v2;\n\t}\n}\npostman.setGlobalVariable(\"lastId\", JSON.parse(responseBody).id);\npostman.setGlobalVariable(\"lastRequest\", request.data);\n",
       "currentHelper": "normal",
-      "time": 1533313598570,
-      "collectionId": "ff387420-9739-11e8-9ea6-0397aa95ada9",
-      "rawModeData": "{\"name\":\"Widget Adapter\",\"isBundle\":false,\"productSpecification\":{\"id\":\"d290f1ee-6c54-4b01-90e6-d701748f0851\",\"href\":\"https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851\",\"name\":\"Widget Adapter\"}}"
+      "time": 1533570887454,
+      "collectionId": "0b588b60-9991-11e8-aa0c-4137dfa3e656",
+      "rawModeData": "{\"name\":\"Widget Adapter\",\"description\":\"Description for the Widget Adapter Offering\",\"isBundle\":false,\"lastUpdate\":\"2016-08-29T09:12:33Z\",\"lifecycleStatus\":\"Active\",\"validFor\":{\"startDateTime\":\"2016-08-29T09:12:33Z\",\"endDateTime\":\"2016-08-29T09:12:33Z\"},\"version\":\"1\",\"@type\":\"TariffOffering\",\"@baseType\":\"ProductOffering\",\"@schemaLocation\":\"https://tmforum.nttdata.com/schemas/TariffOffering.yml\",\"isSellable\":false,\"category\":[{\"id\":\"d290f1ee-6c54-4b01-90e6-d701748f0851\",\"href\":\"https://tmforum.nttdata.com/category/d290f1ee-6c54-4b01-90e6-d701748f0851\",\"name\":\"Mustermann Master Catalog\",\"version\":\"1\",\"@referredType\":\"other catalog type\"}],\"agreement\":[{\"id\":\"d290f1ee-6c54-4b01-90e6-d701748f0851\",\"href\":\"https://tmforum.nttdata.com/resourceSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851\",\"name\":\"Server 4711\",\"@referredType\":\"AgreementRef\"}],\"marketSegment\":[{\"id\":\"d290f1ee-6c54-4b01-90e6-d701748f0851\",\"href\":\"https://tmforum.nttdata.com/marketSegment/d290f1ee-6c54-4b01-90e6-d701748f0851\",\"name\":\"Server 4711\",\"@referredType\":\"MarketSegment\"}],\"productOfferingPrice\":[{\"id\":\"d290f1ee-6c54-4b01-90e6-d701748f0851\",\"href\":\"https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851\",\"name\":\"Widget Adapter Price\",\"description\":\"Description for the Widget Adapter Price\",\"version\":\"2\",\"validFor\":{\"startDateTime\":\"2016-08-29T09:12:33Z\",\"endDateTime\":\"2016-08-29T09:12:33Z\"},\"unitOfMeasure\":{\"amount\":100,\"units\":\"kg\"},\"isBundle\":false,\"lastUpdate\":\"2016-08-29T09:12:33Z\",\"lifecycleStatus\":\"Active\",\"price\":{\"value\":100,\"units\":\"Euro\"},\"percentage\":0.2,\"@type\":\"TariffSpecification\",\"@baseType\":\"ProductSpecification\",\"@schemaLocation\":\"https://tmforum.nttdata.com/schemas/Tariff.yml\",\"pricingLogicAlgorithm\":[{\"id\":\"d290f1ee-6c54-4b01-90e6-d701748f0851\",\"href\":\"https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851\",\"name\":\"Widget Adapter\",\"description\":\"Widget Adapter\",\"validFor\":{\"startDateTime\":\"2016-08-29T09:12:33Z\",\"endDateTime\":\"2016-08-29T09:12:33Z\"},\"plaSpecId\":\"Widget Adapter\",\"@type\":\"Widget Adapter\"}],\"prodSpecCharValueUse\":[{\"validFor\":{\"startDateTime\":\"2016-08-29T09:12:33Z\",\"endDateTime\":\"2016-08-29T09:12:33Z\"},\"productSpecification\":{\"id\":\"d290f1ee-6c54-4b01-90e6-d701748f0851\",\"href\":\"https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851\",\"name\":\"Widget Adapter\"},\"productSpecCharacteristicValue\":[{\"validFor\":{\"startDateTime\":\"2016-08-29T09:12:33Z\",\"endDateTime\":\"2016-08-29T09:12:33Z\"}}]}],\"productOfferingTerm\":[{\"duration\":{\"amount\":100,\"units\":\"kg\"},\"validFor\":{\"startDateTime\":\"2016-08-29T09:12:33Z\",\"endDateTime\":\"2016-08-29T09:12:33Z\"}}],\"tax\":[{\"taxAmount\":{\"value\":100,\"units\":\"Euro\"},\"taxCategory\":\"Umsatzsteuer\",\"taxRate\":0.19}],\"constraint\":[{\"id\":\"d290f1ee-6c54-4b01-90e6-d701748f0851\",\"href\":\"https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851\",\"name\":\"Widget Adapter\",\"version\":\"2.0.1\",\"@referredType\":\"Widget Adapter\"}],\"place\":[{\"id\":\"d290f1ee-6c54-4b01-90e6-d701748f0851\",\"href\":\"https://tmforum.nttdata.com/resourceSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851\",\"name\":\"Server 4711\",\"geoLocationUrl\":\"Hello World\",\"address\":\"Lugwigstr. 20, 35415 Pohlheim\",\"role\":\"Lagerort\",\"@referredType\":\"PlaceRef\"}],\"bundledPopRelationship\":[{\"id\":\"d290f1ee-6c54-4b01-90e6-d701748f0851\",\"href\":\"https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851\",\"name\":\"Widget Adapter\",\"@type\":\"Widget Adapter\"}],\"popRelationship\":[{\"id\":\"d290f1ee-6c54-4b01-90e6-d701748f0851\",\"href\":\"https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851\",\"name\":\"Widget Adapter\",\"@type\":\"Widget Adapter\"}]}],\"productOfferingTerm\":[{\"duration\":{\"amount\":100,\"units\":\"kg\"},\"validFor\":{\"startDateTime\":\"2016-08-29T09:12:33Z\",\"endDateTime\":\"2016-08-29T09:12:33Z\"}}],\"resourceCandidate\":{\"id\":\"d290f1ee-6c54-4b01-90e6-d701748f0851\",\"href\":\"https://tmforum.nttdata.com/resourceSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851\",\"name\":\"Server 4711\",\"version\":\"3.0\",\"@referredType\":\"ResourceCandidateSpecification\"},\"serviceCandidate\":{\"id\":\"d290f1ee-6c54-4b01-90e6-d701748f0851\",\"href\":\"https://tmforum.nttdata.com/resourceSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851\",\"name\":\"Server 4711\",\"version\":\"3.0\",\"@referredType\":\"ServiceCandidateSpecification\"},\"serviceLevelAgreement\":{\"id\":\"d290f1ee-6c54-4b01-90e6-d701748f0851\",\"href\":\"https://tmforum.nttdata.com/resourceSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851\",\"name\":\"Server 4711\",\"@referredType\":\"SLARef\"},\"prodSpecCharValueUse\":[{\"validFor\":{\"startDateTime\":\"2016-08-29T09:12:33Z\",\"endDateTime\":\"2016-08-29T09:12:33Z\"},\"productSpecification\":{\"id\":\"d290f1ee-6c54-4b01-90e6-d701748f0851\",\"href\":\"https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851\",\"name\":\"Widget Adapter\"},\"productSpecCharacteristicValue\":[{\"validFor\":{\"startDateTime\":\"2016-08-29T09:12:33Z\",\"endDateTime\":\"2016-08-29T09:12:33Z\"}}]}],\"channel\":[{\"id\":\"d290f1ee-6c54-4b01-90e6-d701748f0851\",\"href\":\"https://tmforum.nttdata.com/resourceSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851\",\"name\":\"WebChannel\",\"@referredType\":\"ChannelRef\"}],\"place\":[{\"id\":\"d290f1ee-6c54-4b01-90e6-d701748f0851\",\"href\":\"https://tmforum.nttdata.com/resourceSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851\",\"name\":\"Server 4711\",\"geoLocationUrl\":\"Hello World\",\"address\":\"Lugwigstr. 20, 35415 Pohlheim\",\"role\":\"Lagerort\",\"@referredType\":\"PlaceRef\"}],\"productSpecification\":{\"id\":\"d290f1ee-6c54-4b01-90e6-d701748f0851\",\"href\":\"https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851\",\"name\":\"Widget Adapter\"}}"
     },
     {
-      "id": "ff39aca2-9739-11e8-9ea6-0397aa95ada9",
+      "id": "0b59c3e4-9991-11e8-aa0c-4137dfa3e656",
       "name": "retrieves the requested product offering",
       "headers": "Accept: application/json\nContent-Type: application/json\n",
       "headerData": [
@@ -572,21 +1288,21 @@
         }
       ],
       "url": "{{host}}{{path}}/productOffering/{{lastId}}",
-      "folder": "ff39aca0-9739-11e8-9ea6-0397aa95ada9",
+      "folder": "0b59c3e2-9991-11e8-aa0c-4137dfa3e656",
       "queryParams": [],
       "preRequestScript": "",
       "method": "GET",
       "data": [],
       "dataMode": "raw",
       "version": 2,
-      "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is 200\"] = responseCode.code === 200;\ntests[\"POST Body Response equals Request Body\"] = objectEquals(JSON.parse(postman.getGlobalVariable(\"lastRequest\")), JSON.parse(responseBody));\n\nfunction objectEquals(v1, v2) {\n\tif (typeof(v1) === \"function\") {\n\t\treturn v1.toString() === v2.toString();\n\t} else if (v1 instanceof Object && v2 instanceof Object) {\n\t\tvar r = true;\n\t\tfor (var k in v1) {\n\t\t\tr = objectEquals(v1[k], v2[k]);\n\t\t\tif (!r) {\n\t\t\t\tconsole.log(\"v1[k]:\"+v1[k]+\";v2[k]:\"+v2[k]);\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t} else {\n\t\treturn v1 === v2;\n\t}\n}\ntests[\"Response contains all required fields\"] = findFieldsInBody([\"name\",\"isBundle\",\"id\",\"href\"], JSON.parse(responseBody));\n\nfunction findFieldInBody(field,body) {\n\tfor (var key in body) {\n\t\tif (key == field) return true;\n\t}\n\treturn false;\n}\n\nfunction findFieldsInBody(fields,body) {\n\tif (Object.prototype.toString.call(body) === \"[object Array]\") {\n\t\tfor (var i = 0; i < body.length; i++) {\n\t\t\tfindFieldsInBody(fields,body[i]);\n\t\t}\n\t} else {\n\t\tfor (var k = 0; k < fields.length; k++) {\n\t\t\tif (!findFieldInBody(fields[k],body)) {\n\t\t\t\ttests[\"An element is missing the field \" + fields[k]] = false;\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true\n\t}\n\treturn result;\n}\n",
+      "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is 200\"] = responseCode.code === 200;\ntests[\"POST Body Response equals Request Body\"] = objectEquals(JSON.parse(postman.getGlobalVariable(\"lastRequest\")), JSON.parse(responseBody));\n\nfunction objectEquals(v1, v2) {\n\tif (typeof(v1) === \"function\") {\n\t\treturn v1.toString() === v2.toString();\n\t} else if (v1 instanceof Object && v2 instanceof Object) {\n\t\tvar r = true;\n\t\tfor (var k in v1) {\n\t\t\tr = objectEquals(v1[k], v2[k]);\n\t\t\tif (!r) {\n\t\t\t\tconsole.log(\"v1:\"+JSON.stringify(v1));\n\t\t\t\tconsole.log(\"k:\"+k+\";v2:\"+JSON.stringify(v2));\n\t\t\t\tconsole.log(\"v1[k]:\"+v1[k]+\";v2[k]:\"+v2[k]);\n\t\t\t\tconsole.log(\"JSON.stringify(v1[k]):\"+JSON.stringify(v1[k])+\";JSON.stringify(v2[k]):\"+JSON.stringify(v2[k]));\n\t\t\t\tconsole.log(\"typeof(v1[k]):\"+typeof(v1[k])+\";typeof(v2[k]):\"+typeof(v2[k]));\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t} else {\n\t\treturn v1 === v2;\n\t}\n}\ntests[\"Response contains all required fields\"] = findFieldsInBody([\"name\",\"isBundle\",\"id\",\"href\",\"lifecycleStatus\",\"validFor\"], JSON.parse(responseBody));\n\nfunction findFieldInBody(field,body) {\n\tfor (var key in body) {\n\t\tif (key == field) return true;\n\t}\n\treturn false;\n}\n\nfunction findFieldsInBody(fields,body) {\n\tif (Object.prototype.toString.call(body) === \"[object Array]\") {\n\t\tfor (var i = 0; i < body.length; i++) {\n\t\t\tfindFieldsInBody(fields,body[i]);\n\t\t}\n\t} else {\n\t\tfor (var k = 0; k < fields.length; k++) {\n\t\t\tif (!findFieldInBody(fields[k],body)) {\n\t\t\t\ttests[\"An element is missing the field \" + fields[k]] = false;\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true\n\t}\n\treturn result;\n}\n",
       "currentHelper": "normal",
-      "time": 1533313598570,
-      "collectionId": "ff387420-9739-11e8-9ea6-0397aa95ada9",
+      "time": 1533570887454,
+      "collectionId": "0b588b60-9991-11e8-aa0c-4137dfa3e656",
       "rawModeData": ""
     },
     {
-      "id": "ff39aca3-9739-11e8-9ea6-0397aa95ada9",
+      "id": "0b59c3e5-9991-11e8-aa0c-4137dfa3e656",
       "name": "searches productofferings",
       "description": "By passing in the appropriate options, you can search for\navailable inventory in the system\n",
       "headers": "Accept: application/json\nContent-Type: application/json\n",
@@ -605,7 +1321,7 @@
         }
       ],
       "url": "{{host}}{{path}}/productOffering",
-      "folder": "ff39aca0-9739-11e8-9ea6-0397aa95ada9",
+      "folder": "0b59c3e2-9991-11e8-aa0c-4137dfa3e656",
       "queryParams": [],
       "preRequestScript": "",
       "method": "GET",
@@ -614,8 +1330,106 @@
       "version": 2,
       "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is 200\"] = responseCode.code === 200;\n",
       "currentHelper": "normal",
-      "time": 1533313598570,
-      "collectionId": "ff387420-9739-11e8-9ea6-0397aa95ada9",
+      "time": 1533570887454,
+      "collectionId": "0b588b60-9991-11e8-aa0c-4137dfa3e656",
+      "rawModeData": ""
+    },
+    {
+      "id": "0b59c3e7-9991-11e8-aa0c-4137dfa3e656",
+      "name": "adds a product offering price",
+      "description": "Adds an item to the system",
+      "headers": "Accept: application/json\nContent-Type: application/json\n",
+      "headerData": [
+        {
+          "key": "Accept",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        }
+      ],
+      "url": "{{host}}{{path}}/productOfferingPrice",
+      "folder": "0b59c3e6-9991-11e8-aa0c-4137dfa3e656",
+      "queryParams": [],
+      "preRequestScript": "",
+      "method": "POST",
+      "data": [],
+      "dataMode": "raw",
+      "version": 2,
+      "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is 201\"] = responseCode.code === 201;\ntests[\"Response contains location header\"] = responseHeaders.hasOwnProperty(\"Location\");\ntests[\"Location header is correct\"] = responseHeaders.hasOwnProperty(\"Location\") &&\n\t(postman.getResponseHeader(\"Location\").toString() == environment[\"path\"] + \"/productOfferingPrice/\" + JSON.parse(responseBody).id || //relative\n\tpostman.getResponseHeader(\"Location\").toString() == environment[\"host\"] + environment[\"path\"] + \"/productOfferingPrice/\" + JSON.parse(responseBody).id);   //absolute\ntests[\"Response contains all required fields\"] = findFieldsInBody([\"name\",\"isBundle\",\"id\",\"href\"], JSON.parse(responseBody));\n\nfunction findFieldInBody(field,body) {\n\tfor (var key in body) {\n\t\tif (key == field) return true;\n\t}\n\treturn false;\n}\n\nfunction findFieldsInBody(fields,body) {\n\tif (Object.prototype.toString.call(body) === \"[object Array]\") {\n\t\tfor (var i = 0; i < body.length; i++) {\n\t\t\tfindFieldsInBody(fields,body[i]);\n\t\t}\n\t} else {\n\t\tfor (var k = 0; k < fields.length; k++) {\n\t\t\tif (!findFieldInBody(fields[k],body)) {\n\t\t\t\ttests[\"An element is missing the field \" + fields[k]] = false;\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true\n\t}\n\treturn result;\n}\ntests[\"POST Body Response equals Request Body\"  ] = objectEquals(JSON.parse(request.data), JSON.parse(responseBody));\n\nfunction objectEquals(v1, v2) {\n\tif (typeof(v1) === \"function\") {\n\t\treturn v1.toString() === v2.toString();\n\t} else if (v1 instanceof Object && v2 instanceof Object) {\n\t\tvar r = true;\n\t\tfor (var k in v1) {\n\t\t\tr = objectEquals(v1[k], v2[k]);\n\t\t\tif (!r) {\n\t\t\t\tconsole.log(\"v1:\"+JSON.stringify(v1));\n\t\t\t\tconsole.log(\"k:\"+k+\";v2:\"+JSON.stringify(v2));\n\t\t\t\tconsole.log(\"v1[k]:\"+v1[k]+\";v2[k]:\"+v2[k]);\n\t\t\t\tconsole.log(\"JSON.stringify(v1[k]):\"+JSON.stringify(v1[k])+\";JSON.stringify(v2[k]):\"+JSON.stringify(v2[k]));\n\t\t\t\tconsole.log(\"typeof(v1[k]):\"+typeof(v1[k])+\";typeof(v2[k]):\"+typeof(v2[k]));\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t} else {\n\t\treturn v1 === v2;\n\t}\n}\npostman.setGlobalVariable(\"lastId\", JSON.parse(responseBody).id);\npostman.setGlobalVariable(\"lastRequest\", request.data);\n",
+      "currentHelper": "normal",
+      "time": 1533570887454,
+      "collectionId": "0b588b60-9991-11e8-aa0c-4137dfa3e656",
+      "rawModeData": "{\"name\":\"Widget Adapter Price\",\"description\":\"Description for the Widget Adapter Price\",\"version\":\"2\",\"validFor\":{\"startDateTime\":\"2016-08-29T09:12:33Z\",\"endDateTime\":\"2016-08-29T09:12:33Z\"},\"unitOfMeasure\":{\"amount\":100,\"units\":\"kg\"},\"isBundle\":false,\"lastUpdate\":\"2016-08-29T09:12:33Z\",\"lifecycleStatus\":\"Active\",\"price\":{\"value\":100,\"units\":\"Euro\"},\"percentage\":0.2,\"@type\":\"TariffSpecification\",\"@baseType\":\"ProductSpecification\",\"@schemaLocation\":\"https://tmforum.nttdata.com/schemas/Tariff.yml\",\"pricingLogicAlgorithm\":[{\"id\":\"d290f1ee-6c54-4b01-90e6-d701748f0851\",\"href\":\"https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851\",\"name\":\"Widget Adapter\",\"description\":\"Widget Adapter\",\"validFor\":{\"startDateTime\":\"2016-08-29T09:12:33Z\",\"endDateTime\":\"2016-08-29T09:12:33Z\"},\"plaSpecId\":\"Widget Adapter\",\"@type\":\"Widget Adapter\"}],\"prodSpecCharValueUse\":[{\"validFor\":{\"startDateTime\":\"2016-08-29T09:12:33Z\",\"endDateTime\":\"2016-08-29T09:12:33Z\"},\"productSpecification\":{\"id\":\"d290f1ee-6c54-4b01-90e6-d701748f0851\",\"href\":\"https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851\",\"name\":\"Widget Adapter\"},\"productSpecCharacteristicValue\":[{\"validFor\":{\"startDateTime\":\"2016-08-29T09:12:33Z\",\"endDateTime\":\"2016-08-29T09:12:33Z\"}}]}],\"productOfferingTerm\":[{\"duration\":{\"amount\":100,\"units\":\"kg\"},\"validFor\":{\"startDateTime\":\"2016-08-29T09:12:33Z\",\"endDateTime\":\"2016-08-29T09:12:33Z\"}}],\"tax\":[{\"taxAmount\":{\"value\":100,\"units\":\"Euro\"},\"taxCategory\":\"Umsatzsteuer\",\"taxRate\":0.19}],\"constraint\":[{\"id\":\"d290f1ee-6c54-4b01-90e6-d701748f0851\",\"href\":\"https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851\",\"name\":\"Widget Adapter\",\"version\":\"2.0.1\",\"@referredType\":\"Widget Adapter\"}],\"place\":[{\"id\":\"d290f1ee-6c54-4b01-90e6-d701748f0851\",\"href\":\"https://tmforum.nttdata.com/resourceSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851\",\"name\":\"Server 4711\",\"geoLocationUrl\":\"Hello World\",\"address\":\"Lugwigstr. 20, 35415 Pohlheim\",\"role\":\"Lagerort\",\"@referredType\":\"PlaceRef\"}],\"bundledPopRelationship\":[{\"id\":\"d290f1ee-6c54-4b01-90e6-d701748f0851\",\"href\":\"https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851\",\"name\":\"Widget Adapter\",\"@type\":\"Widget Adapter\"}],\"popRelationship\":[{\"id\":\"d290f1ee-6c54-4b01-90e6-d701748f0851\",\"href\":\"https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851\",\"name\":\"Widget Adapter\",\"@type\":\"Widget Adapter\"}]}"
+    },
+    {
+      "id": "0b59c3e8-9991-11e8-aa0c-4137dfa3e656",
+      "name": "retrieves the requested product offering price",
+      "headers": "Accept: application/json\nContent-Type: application/json\n",
+      "headerData": [
+        {
+          "key": "Accept",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        }
+      ],
+      "url": "{{host}}{{path}}/productOfferingPrice/{{lastId}}",
+      "folder": "0b59c3e6-9991-11e8-aa0c-4137dfa3e656",
+      "queryParams": [],
+      "preRequestScript": "",
+      "method": "GET",
+      "data": [],
+      "dataMode": "raw",
+      "version": 2,
+      "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is 200\"] = responseCode.code === 200;\ntests[\"POST Body Response equals Request Body\"] = objectEquals(JSON.parse(postman.getGlobalVariable(\"lastRequest\")), JSON.parse(responseBody));\n\nfunction objectEquals(v1, v2) {\n\tif (typeof(v1) === \"function\") {\n\t\treturn v1.toString() === v2.toString();\n\t} else if (v1 instanceof Object && v2 instanceof Object) {\n\t\tvar r = true;\n\t\tfor (var k in v1) {\n\t\t\tr = objectEquals(v1[k], v2[k]);\n\t\t\tif (!r) {\n\t\t\t\tconsole.log(\"v1:\"+JSON.stringify(v1));\n\t\t\t\tconsole.log(\"k:\"+k+\";v2:\"+JSON.stringify(v2));\n\t\t\t\tconsole.log(\"v1[k]:\"+v1[k]+\";v2[k]:\"+v2[k]);\n\t\t\t\tconsole.log(\"JSON.stringify(v1[k]):\"+JSON.stringify(v1[k])+\";JSON.stringify(v2[k]):\"+JSON.stringify(v2[k]));\n\t\t\t\tconsole.log(\"typeof(v1[k]):\"+typeof(v1[k])+\";typeof(v2[k]):\"+typeof(v2[k]));\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true;\n\t} else {\n\t\treturn v1 === v2;\n\t}\n}\ntests[\"Response contains all required fields\"] = findFieldsInBody([\"name\",\"isBundle\",\"id\",\"href\"], JSON.parse(responseBody));\n\nfunction findFieldInBody(field,body) {\n\tfor (var key in body) {\n\t\tif (key == field) return true;\n\t}\n\treturn false;\n}\n\nfunction findFieldsInBody(fields,body) {\n\tif (Object.prototype.toString.call(body) === \"[object Array]\") {\n\t\tfor (var i = 0; i < body.length; i++) {\n\t\t\tfindFieldsInBody(fields,body[i]);\n\t\t}\n\t} else {\n\t\tfor (var k = 0; k < fields.length; k++) {\n\t\t\tif (!findFieldInBody(fields[k],body)) {\n\t\t\t\ttests[\"An element is missing the field \" + fields[k]] = false;\n\t\t\t\treturn false;\n\t\t\t}\n\t\t}\n\t\treturn true\n\t}\n\treturn result;\n}\n",
+      "currentHelper": "normal",
+      "time": 1533570887454,
+      "collectionId": "0b588b60-9991-11e8-aa0c-4137dfa3e656",
+      "rawModeData": ""
+    },
+    {
+      "id": "0b59c3e9-9991-11e8-aa0c-4137dfa3e656",
+      "name": "searches productoffering prices",
+      "description": "By passing in the appropriate options, you can search for\navailable inventory in the system\n",
+      "headers": "Accept: application/json\nContent-Type: application/json\n",
+      "headerData": [
+        {
+          "key": "Accept",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json",
+          "description": "",
+          "enabled": true
+        }
+      ],
+      "url": "{{host}}{{path}}/productOfferingPrice",
+      "folder": "0b59c3e6-9991-11e8-aa0c-4137dfa3e656",
+      "queryParams": [],
+      "preRequestScript": "",
+      "method": "GET",
+      "data": [],
+      "dataMode": "raw",
+      "version": 2,
+      "tests": "tests[\"Content-Type is present \" + postman.getResponseHeader(\"Content-type\")] = postman.getResponseHeader(\"Content-type\");\ntests[\"Status code is 200\"] = responseCode.code === 200;\n",
+      "currentHelper": "normal",
+      "time": 1533570887454,
+      "collectionId": "0b588b60-9991-11e8-aa0c-4137dfa3e656",
       "rawModeData": ""
     }
   ]

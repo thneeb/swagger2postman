@@ -107,9 +107,9 @@ function generateBasicRequest(collectionId: string, folder: string, req: Request
 }
 
 /**
- * Shallow resolve of an attribute. References in objects are not resolved.
+ * Shallow resolve of an attribute. References in properties are not resolved.
  * TODO: The Attributes are only basically merged. Special handling for the 
- * attributes besind of properties and required are needed here.
+ * attributes beside of properties and required are needed here.
  * @param swag the swagger definition
  * @param obj attribute to be resolved
  */
@@ -117,11 +117,16 @@ function resolveModel(swag: Swagger, obj: Attribute): Attribute{
 	if (obj['$ref']) {
 		const definitions = swag.definitions || swag.components.schemas;
 		const referencedModel = definitions[obj['$ref'].substring(obj['$ref'].lastIndexOf('/') + 1)]
+		if (!referencedModel) {
+			console.error('Referenced model does not exist: ' + obj['$ref']);
+		}
 		return resolveModel(swag, referencedModel);
 	} else if (obj.allOf) {
 		let result = {} as Attribute;
+		// console.warn('#' + JSON.stringify(obj));
 		for (const a of obj.allOf) {
 			const resolvedModel = resolveModel(swag, a);
+			// console.warn('##' + JSON.stringify(resolvedModel));
 			if (result.properties && resolvedModel.properties) {
 				resolvedModel.properties = Object.assign(resolvedModel.properties, result.properties);
 			}
@@ -139,6 +144,12 @@ function resolveModel(swag: Swagger, obj: Attribute): Attribute{
 	}
 }
 
+/**
+ * Build an object from a model definition in the swagger file. Optional 
+ * @param swag swagger definition
+ * @param model model pointer within swagger definition
+ * @param override optional data object which can override example values from the swagger definition
+ */
 function buildModelWithAllAttributes(swag: Swagger, model: Attribute, override: object): any {
 	let result;
 	if (model.type === 'object' || !model.type) {
@@ -193,11 +204,13 @@ function buildModelWithAllAttributes(swag: Swagger, model: Attribute, override: 
 		result.push(buildModelWithAllAttributes(swag, model.items, override));
 	} else {
 		const example = override || model.example;
-		if (example) {
+		if (example !== undefined && !model.readOnly) {
 			if (model.type === 'number') {
 				result = example as number;
 			} else if (model.type === 'boolean') {
-				result = example === 'true';
+				result = (example === 'true') ? true : false;
+			} else if (model.type === 'string') {
+				result = example as string;
 			} else {
 				result = example;
 			}
@@ -261,7 +274,7 @@ function deleteAllOptionalAttributes(swag: Swagger, result: any, model: Attribut
 			let oneOfRequired = [];
 			if (model.oneOf) {
 				for (const attr of model.oneOf) {
-					oneOfRequired = oneOfRequired.concat(Object.keys(resolveModel(swag, attr).properties));
+					oneOfRequired = oneOfRequired.concat(Object.keys(resolveModel(swag, attr).properties || []));
 				}
 			}
 			deleteOptionalAttributes(result, oneOfRequired.concat(model.required || []), readOnly);
@@ -344,7 +357,11 @@ function addObjectEquals(): string {
 	result += '\t\tfor (var k in v1) {\n';
 	result += '\t\t\tr = objectEquals(v1[k], v2[k]);\n';
 	result += '\t\t\tif (!r) {\n';
+	result += '\t\t\t\tconsole.log("v1:"+JSON.stringify(v1));\n';
+	result += '\t\t\t\tconsole.log("k:"+k+";v2:"+JSON.stringify(v2));\n';
 	result += '\t\t\t\tconsole.log("v1[k]:"+v1[k]+";v2[k]:"+v2[k]);\n';
+	result += '\t\t\t\tconsole.log("JSON.stringify(v1[k]):"+JSON.stringify(v1[k])+";JSON.stringify(v2[k]):"+JSON.stringify(v2[k]));\n';
+	result += '\t\t\t\tconsole.log("typeof(v1[k]):"+typeof(v1[k])+";typeof(v2[k]):"+typeof(v2[k]));\n';
 	result += '\t\t\t\treturn false;\n';
 	result += '\t\t\t}\n';
 	result += '\t\t}\n';
@@ -379,15 +396,32 @@ function addTestsForSuccessfulMinimalCreation(swag: Swagger, p: PostmanCollectio
 				console.warn('no request body for POST Request ' + path.key + ' specified, searching for the next')
 				continue;
 			}
-			testCreateGetAll(p, path.key, path.value, swag, bodyContent, undefined);		
+			testCreateGetAll(p, path.key, path.value, swag, bodyContent, true, undefined);		
 		}
 	}
 }
 
-function testCreateGetAll(p: PostmanCollection, path: string, definitions: RequestDefinitions, swag: Swagger, bodyContent: any, override: object) {
-	const folder = generateFolder(p.id, 'TC_' + path.substring(1) + '_POST_N1' + (override ? '_' + JSON.stringify(override) : '') + ' - Create Resource with minimum parameters');
+function addTestsForSuccessfulMaximalCreation(swag: Swagger, p: PostmanCollection) {
+	const paths = Object.keys(swag.paths).map((key) => ({key, value: swag.paths[key] as RequestDefinitions}));
+	for (const path of paths) {
+		if (path.value.post) {
+			const bodyContent = (path.value.post.requestBody && path.value.post.requestBody.content && path.value.post.requestBody.content['application/json']) || 
+				(path.value.post.parameters && path.value.post.parameters.find((f) => f.in === 'body'));
+			if (!bodyContent) {
+				console.warn('no request body for POST Request ' + path.key + ' specified, searching for the next')
+				continue;
+			}
+			testCreateGetAll(p, path.key, path.value, swag, bodyContent, false, undefined);		
+		}
+	}
+}
+
+function testCreateGetAll(p: PostmanCollection, path: string, definitions: RequestDefinitions, swag: Swagger, bodyContent: any, deleteOptional: boolean, override: object) {
+	const folder = generateFolder(p.id, 'TC_' + path.substring(1) + '_POST_N1' + (override ? '_' + JSON.stringify(override) : '') + ' - Create Resource with ' + (deleteOptional ? 'minimal' : 'maximal') + ' parameters');
 	const example = buildModelWithAllAttributes(swag, bodyContent.schema, override);
-	deleteAllOptionalAttributes(swag, example, bodyContent.schema);
+	if (deleteOptional) {
+		deleteAllOptionalAttributes(swag, example, bodyContent.schema);
+	}
 	testCreateResource(swag, p, folder, path, definitions.post, example);
 	const defs = swag.paths[path + "/{id}"] as RequestDefinitions;
 	if (defs && defs.get) {
@@ -432,7 +466,7 @@ function addTestsForDifferentDiscrimiator(swag: Swagger, p: PostmanCollection) {
 						for (const v of values) {
 							const override = {};
 							override[schema.discriminator.propertyName] = v;
-							testCreateGetAll(p, path.key, path.value, swag, bodyContent, override);
+							testCreateGetAll(p, path.key, path.value, swag, bodyContent, false, override);
 						}
 					}
 				} else {
@@ -518,12 +552,13 @@ function generatePostmanCollection(swag: Swagger): PostmanCollection {
 	addTestsForSuccessfulMinimalCreation(swag, p);
 	addTestsForMissingMandatoryParameters(swag, p);
 	addTestsForDifferentDiscrimiator(swag, p);
+	addTestsForSuccessfulMaximalCreation(swag, p);
 	return p;
 }
 
 const {swagger, output} = processArgs();
-const postmanCollection = generatePostmanCollection(swagger);
 if (swagger) {
+	const postmanCollection = generatePostmanCollection(swagger);
 	if (output) {
 		console.log('Writing to a file the following content');
 		console.log(JSON.stringify(postmanCollection, null, 2));
