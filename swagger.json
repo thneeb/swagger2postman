@@ -23,6 +23,121 @@
     "/catalog" : {
       "get" : {
         "summary" : "retrieves all catalogs",
+        "description" : "searchs for catalogs and filters the results",
+        "operationId" : "searchInCatalogs",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "fields",
+          "description" : "pass a filter for the requested attributes",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "query",
+          "name" : "skip",
+          "description" : "number of records to skip for pagination",
+          "required" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "minimum" : 0
+          }
+        }, {
+          "in" : "query",
+          "name" : "limit",
+          "description" : "maximum number of records to return",
+          "required" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "minimum" : 0,
+            "maximum" : 50
+          }
+        }, {
+          "in" : "query",
+          "name" : "name",
+          "description" : "For filtering: Name of the catalog",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "@type",
+          "description" : "For filtering: Indicates the (class) type of catalog. For entity catalogs, this will be \"EntityCatalog\".",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other type"
+          }
+        }, {
+          "in" : "query",
+          "name" : "@schemaLocation",
+          "description" : "For filtering: This field provides a link to the schema describing this REST resource",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other schema location"
+          }
+        }, {
+          "in" : "query",
+          "name" : "@baseType",
+          "description" : "For filtering: Indicates<b> </b>the base (class) type of this REST resource",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "Other base type"
+          }
+        }, {
+          "in" : "query",
+          "name" : "version",
+          "description" : "For filtering: Catalog version",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "3.0.7"
+          }
+        }, {
+          "in" : "query",
+          "name" : "lifecycleStatus",
+          "description" : "For filtering: Used to indicate the current lifecycle status",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/components/schemas/LifecycleStatus"
+          }
+        }, {
+          "in" : "query",
+          "name" : "lastUpdate",
+          "description" : "For filtering: Date and time of the last update",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "date-time",
+            "example" : "2010-01-17T06:00:00Z"
+          }
+        }, {
+          "in" : "query",
+          "name" : "validFor.startDateTime",
+          "description" : "For filtering: An instant of time, starting at the TimePeriod",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "date-time",
+            "example" : "2010-01-17T06:00:00Z"
+          }
+        }, {
+          "in" : "query",
+          "name" : "validFor.endDateTime",
+          "description" : "For filtering: An instant of time, ending at the TimePeriod.",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "date-time",
+            "example" : "2010-01-17T06:00:00Z"
+          }
+        } ],
         "responses" : {
           "200" : {
             "description" : "returns all catalogs",
@@ -75,7 +190,7 @@
     },
     "/catalog/{id}" : {
       "get" : {
-        "summary" : "retrieves all catalogs",
+        "summary" : "retrieves requested catalog",
         "parameters" : [ {
           "in" : "path",
           "name" : "id",
@@ -147,6 +262,185 @@
     "/category" : {
       "get" : {
         "summary" : "retrieves all categories",
+        "description" : "searchs for categories and filters the results",
+        "operationId" : "searchInCategories",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "fields",
+          "description" : "pass a filter for the requested attributes",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "query",
+          "name" : "skip",
+          "description" : "number of records to skip for pagination",
+          "required" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "minimum" : 0
+          }
+        }, {
+          "in" : "query",
+          "name" : "limit",
+          "description" : "maximum number of records to return",
+          "required" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "minimum" : 0,
+            "maximum" : 50
+          }
+        }, {
+          "in" : "query",
+          "name" : "lastUpdate",
+          "description" : "For filtering: Date and time of the last update",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "date-time",
+            "example" : "2010-01-17T06:00:00Z"
+          }
+        }, {
+          "in" : "query",
+          "name" : "version",
+          "description" : "For filtering: Category version",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "3.0"
+          }
+        }, {
+          "in" : "query",
+          "name" : "lifecycleStatus",
+          "description" : "For filtering: Used to indicate the current lifecycle status",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/components/schemas/LifecycleStatus"
+          }
+        }, {
+          "in" : "query",
+          "name" : "validFor.startDateTime",
+          "description" : "For filtering: An instant of time, starting at the TimePeriod",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "date-time",
+            "example" : "2010-01-17T06:00:00Z"
+          }
+        }, {
+          "in" : "query",
+          "name" : "validFor.endDateTime",
+          "description" : "For filtering: An instant of time, ending at the TimePeriod.",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "date-time",
+            "example" : "2010-01-17T06:00:00Z"
+          }
+        }, {
+          "in" : "query",
+          "name" : "parentId",
+          "description" : "For filtering: Unique identifier of the parent category",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "uuid",
+            "example" : "4711"
+          }
+        }, {
+          "in" : "query",
+          "name" : "isRoot",
+          "description" : "For filtering: If true, this Boolean indicates that the category is a root of categories",
+          "required" : false,
+          "schema" : {
+            "type" : "boolean",
+            "example" : true
+          }
+        }, {
+          "in" : "query",
+          "name" : "name",
+          "description" : "For filtering: Name of the catalog",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "@type",
+          "description" : "For filtering: Indicates the (class) type of catalog. For entity catalogs, this will be \"EntityCatalog\".",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other type"
+          }
+        }, {
+          "in" : "query",
+          "name" : "@schemaLocation",
+          "description" : "For filtering: This field provides a link to the schema describing this REST resource",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other schema location"
+          }
+        }, {
+          "in" : "query",
+          "name" : "@baseType",
+          "description" : "For filtering: Indicates<b> </b>the base (class) type of this REST resource",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "Other base type"
+          }
+        }, {
+          "in" : "query",
+          "name" : "subCategory.version",
+          "description" : "For filtering: Category version",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "4.0"
+          }
+        }, {
+          "in" : "query",
+          "name" : "subCategory.name",
+          "description" : "For filtering: Name of the category",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "Peng you are dead"
+          }
+        }, {
+          "in" : "query",
+          "name" : "subCategory.@referredType",
+          "description" : "For filtering: the class type of the referred Category",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "Peng"
+          }
+        }, {
+          "in" : "query",
+          "name" : "productOffering.name",
+          "description" : "For filtering: Name of the product offering",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "Peng you are dead"
+          }
+        }, {
+          "in" : "query",
+          "name" : "productOffering.@referredType",
+          "description" : "For filtering: the class type of the referred product offering",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "Peng"
+          }
+        } ],
         "responses" : {
           "200" : {
             "description" : "returns all categories",
@@ -199,7 +493,8 @@
     },
     "/category/{id}" : {
       "get" : {
-        "summary" : "retrieves all catalogs",
+        "summary" : "retrieve requested category",
+        "operationId" : "getCategoryById",
         "parameters" : [ {
           "in" : "path",
           "name" : "id",
@@ -271,12 +566,12 @@
     "/productSpecification" : {
       "get" : {
         "summary" : "searches product specifications",
-        "operationId" : "searchProductSpecification",
-        "description" : "By passing in the appropriate options, you can search for\navailable inventory in the system\n",
+        "operationId" : "searchInProductSpecifications",
+        "description" : "By passing in the appropriate options, you can search for\navailable product specifications in the system\n",
         "parameters" : [ {
           "in" : "query",
-          "name" : "searchString",
-          "description" : "pass an optional search string for looking up inventory",
+          "name" : "fields",
+          "description" : "pass a filter for the requested attributes",
           "required" : false,
           "schema" : {
             "type" : "string"
@@ -427,12 +722,12 @@
     "/productOffering" : {
       "get" : {
         "summary" : "searches productofferings",
-        "operationId" : "searchProductOffering",
+        "operationId" : "searchInProductOfferings",
         "description" : "By passing in the appropriate options, you can search for\navailable inventory in the system\n",
         "parameters" : [ {
           "in" : "query",
-          "name" : "searchString",
-          "description" : "pass an optional search string for looking up inventory",
+          "name" : "fields",
+          "description" : "pass a filter to optimize the result for the requested attributes",
           "required" : false,
           "schema" : {
             "type" : "string"
@@ -455,6 +750,529 @@
             "format" : "int32",
             "minimum" : 0,
             "maximum" : 50
+          }
+        }, {
+          "in" : "query",
+          "name" : "lastUpdate",
+          "description" : "For filtering: Date and time of the last update",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "date-time",
+            "example" : "2010-01-17T06:00:00Z"
+          }
+        }, {
+          "in" : "query",
+          "name" : "version",
+          "description" : "For filtering: Category version",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "3.0"
+          }
+        }, {
+          "in" : "query",
+          "name" : "lifecycleStatus",
+          "description" : "For filtering: Used to indicate the current lifecycle status",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/components/schemas/LifecycleStatus"
+          }
+        }, {
+          "in" : "query",
+          "name" : "validFor.startDateTime",
+          "description" : "For filtering: An instant of time, starting at the TimePeriod",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "date-time",
+            "example" : "2010-01-17T06:00:00Z"
+          }
+        }, {
+          "in" : "query",
+          "name" : "validFor.endDateTime",
+          "description" : "For filtering: An instant of time, ending at the TimePeriod.",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "date-time",
+            "example" : "2010-01-17T06:00:00Z"
+          }
+        }, {
+          "in" : "query",
+          "name" : "isBundle",
+          "description" : "For filtering: If true, this Boolean indicates that the product offering is a bundle",
+          "required" : false,
+          "schema" : {
+            "type" : "boolean",
+            "example" : false
+          }
+        }, {
+          "in" : "query",
+          "name" : "name",
+          "description" : "For filtering: Name of the product offering",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "@type",
+          "description" : "For filtering: Indicates the (class) type of catalog. For entity catalogs, this will be \"EntityCatalog\".",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other type"
+          }
+        }, {
+          "in" : "query",
+          "name" : "@schemaLocation",
+          "description" : "For filtering: This field provides a link to the schema describing this REST resource",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other schema location"
+          }
+        }, {
+          "in" : "query",
+          "name" : "@baseType",
+          "description" : "For filtering: Indicates<b> </b>the base (class) type of this REST resource",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "Other base type"
+          }
+        }, {
+          "in" : "query",
+          "name" : "place.name",
+          "description" : "For filtering: A user-friendly name for the place, such as \"Paris Store\", \"Londo Store, \"Main Store\"",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "Paris Store"
+          }
+        }, {
+          "in" : "query",
+          "name" : "place.address",
+          "description" : "For filtering: A string characterizing an address (for instance a formatted address or an identifier taken from an address database or an address API).",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "Main Street"
+          }
+        }, {
+          "in" : "query",
+          "name" : "place.role",
+          "description" : "For filtering: Role of the place (for instance: 'home delivery', 'shop retrieval')",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other role"
+          }
+        }, {
+          "in" : "query",
+          "name" : "place.@referredType",
+          "description" : "For filtering: class type of the referred Place object",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "Peng"
+          }
+        }, {
+          "in" : "query",
+          "name" : "serviceLevelAgreement.name",
+          "description" : "For filtering: Name of the service level agreement",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other agreement name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "serviceLevelAgreement.@referredType",
+          "description" : "For filtering: class type of referred Service Level Agreement\"",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "Peng"
+          }
+        }, {
+          "in" : "query",
+          "name" : "productSpecification.version",
+          "description" : "For filtering: Version of the product specification",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec version"
+          }
+        }, {
+          "in" : "query",
+          "name" : "productSpecification.name",
+          "description" : "For filtering: Name of the product specification",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "productSpecification.@referredType",
+          "description" : "For filtering: class type of referred Product Specification",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "Peng"
+          }
+        }, {
+          "in" : "query",
+          "name" : "serviceCandidate.version",
+          "description" : "For filtering: Version of the service candidate",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "serviceCandidate.name",
+          "description" : "For filtering: Name of the service candidate",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "serviceCandidate.@referredType",
+          "description" : "For filtering: The Class type of  referred Service Candidate",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "Peng"
+          }
+        }, {
+          "in" : "query",
+          "name" : "attachment.type",
+          "description" : "For filtering: Attachment type such as video, picture",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "attachment.url",
+          "description" : "For filtering: Uniform Resource Locator, is a web page address (a subset of URI)",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "attachment.mimeType",
+          "description" : "For filtering: Attachment mime type such as extension file for video, picture and document",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "attachment.@type",
+          "description" : "For filtering: the class type of the Attachment",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "attachment.@baseType",
+          "description" : "For filtering: The immediate base class type of the attachment",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "attachment.@schemaLocation",
+          "description" : "For filtering: A link to the schema describing this attachment entity",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "category.version",
+          "description" : "For filtering: Category version",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "category.name",
+          "description" : "For filtering: Name of the category",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "category.@referredType",
+          "description" : "For filtering: the class type of the referred Category",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "Peng"
+          }
+        }, {
+          "in" : "query",
+          "name" : "resourceCandidate.version",
+          "description" : "For filtering: resource candidate version",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "resourceCandidate.name",
+          "description" : "For filtering: Name of the resource candidate",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "resourceCandidate.@referredType",
+          "description" : "For filtering: the class type of the referred resource candidate",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "Peng"
+          }
+        }, {
+          "in" : "query",
+          "name" : "productOfferingTerm.name",
+          "description" : "For filtering: Name of the productOfferingTerm",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "productOfferingTerm.@type",
+          "description" : "For filtering: The class type of ProductOfferingTerm",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "productOfferingTerm.@schemaLocation",
+          "description" : "For filtering: A link to the schema describing this product offering term",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "marketSegment.name",
+          "description" : "For filtering: Name of the market segment",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "marketSegment.@referredType",
+          "description" : "For filtering: (Class) type of the referred market segment",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "productOfferingPrice.name",
+          "description" : "For filtering: Name of the product Offering Price",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "productOfferingPrice.priceType",
+          "description" : "For filtering: Indicates the price type: recurring, one time, usage",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "priceType"
+          }
+        }, {
+          "in" : "query",
+          "name" : "productOfferingPrice.unitOfMeasure.amount",
+          "description" : "For filtering: Could be minutes, GB...",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "100"
+          }
+        }, {
+          "in" : "query",
+          "name" : "productOfferingPrice.unitOfMeasure.units",
+          "description" : "For filtering: Could be minutes, GB...",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "GB"
+          }
+        }, {
+          "in" : "query",
+          "name" : "productOfferingPrice.recurringChargePeriodType",
+          "description" : "For filtering: Could be month, week...",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "week"
+          }
+        }, {
+          "in" : "query",
+          "name" : "productOfferingPrice.recurringChargePeriodLength",
+          "description" : "For filtering: Could be month, 2 (weeks) ...",
+          "required" : false,
+          "schema" : {
+            "type" : "number",
+            "example" : 2
+          }
+        }, {
+          "in" : "query",
+          "name" : "productOfferingPrice.version",
+          "description" : "For filtering: ProductOffering version",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "week"
+          }
+        }, {
+          "in" : "query",
+          "name" : "productOfferingPrice.@type",
+          "description" : "For filtering: the class type of the productOfferingPrice",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "productOfferingPrice.@baseType",
+          "description" : "For filtering: The immediate base class type of the productOfferingPrice",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "productOfferingPrice.@schemaLocation",
+          "description" : "For filtering: A link to the schema describing this productOfferingPrice entity",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "productOfferingPrice.isBundle",
+          "description" : "For filtering: a flag indicating if this product offering price is bundle (composite) or not",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : true
+          }
+        }, {
+          "in" : "query",
+          "name" : "agreement.name",
+          "description" : "For filtering: Name of the agreement",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "agreement.@referredType",
+          "description" : "For filtering: (Class) type of the referred agreement",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "bundledProductOffering.lifecycleStatus",
+          "description" : "For filtering: Used to indicate the current lifecycle status",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/components/schemas/LifecycleStatus"
+          }
+        }, {
+          "in" : "query",
+          "name" : "bundledProductOffering.name",
+          "description" : "For filtering: Name of the BundledProductOffering",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "prodSpecCharValueUse.name",
+          "description" : "For filtering: Name of the associated productSpecCharacteristic",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "prodSpecCharValueUse.valueType",
+          "description" : "For filtering: A kind of value that the characteristic can take on, such as numeric, text and so forth",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "prodSpecCharValueUse.minCardinality",
+          "description" : "For filtering: The minimum number of instances a CharacteristicValue can take on. For example, zero to five phone numbers in a group calling plan, where zero is the value for the minCardinality.",
+          "required" : false,
+          "schema" : {
+            "type" : "number",
+            "example" : 1
+          }
+        }, {
+          "in" : "query",
+          "name" : "prodSpecCharValueUse.maxCardinality",
+          "description" : "For filtering: The maximum number of instances a CharacteristicValue can take on. For example, zero to five phone numbers in a group calling plan, where five is the value for the maxCardinality",
+          "required" : false,
+          "schema" : {
+            "type" : "number",
+            "example" : 50
           }
         } ],
         "responses" : {
@@ -587,8 +1405,8 @@
         "description" : "By passing in the appropriate options, you can search for\navailable inventory in the system\n",
         "parameters" : [ {
           "in" : "query",
-          "name" : "searchString",
-          "description" : "pass an optional search string for looking up inventory",
+          "name" : "fields",
+          "description" : "filter the result for the given fields",
           "required" : false,
           "schema" : {
             "type" : "string"
@@ -1179,6 +1997,12 @@
               "$ref" : "#/components/schemas/MarketSegmentRef"
             }
           },
+          "attachment" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Attachment"
+            }
+          },
           "productOfferingPrice" : {
             "type" : "array",
             "items" : {
@@ -1305,6 +2129,10 @@
           "validFor" : {
             "$ref" : "#/components/schemas/TimePeriod"
           },
+          "priceType" : {
+            "type" : "string",
+            "example" : "myPriceType"
+          },
           "unitOfMeasure" : {
             "$ref" : "#/components/schemas/Quantity"
           },
@@ -1416,6 +2244,14 @@
           "name" : {
             "type" : "string",
             "example" : "Widget Adapter"
+          },
+          "version" : {
+            "type" : "string",
+            "example" : "4.5.0"
+          },
+          "@referredType" : {
+            "type" : "string",
+            "example" : "referred type prod spec"
           }
         },
         "type" : "object"
@@ -1458,7 +2294,7 @@
             "format" : "uri",
             "example" : "https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851"
           },
-          "lifecyleStatus" : {
+          "lifecycleStatus" : {
             "$ref" : "#/components/schemas/LifecycleStatus"
           },
           "name" : {
@@ -2225,10 +3061,16 @@
             "$ref" : "#/components/schemas/TimePeriod"
           },
           "@type" : {
-            "type" : "string"
+            "type" : "string",
+            "example" : "attachment type"
           },
           "@baseType" : {
-            "type" : "string"
+            "type" : "string",
+            "example" : "attachment base type"
+          },
+          "@schemaLocation" : {
+            "type" : "string",
+            "example" : "attachment schema location"
           }
         }
       },

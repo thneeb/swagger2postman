@@ -6,14 +6,16 @@ import * as commandLineUsage from 'command-line-usage';
 import { PostmanCollection } from './PostmanCollection';
 import { Folder } from './Folder';
 import { Request } from './Request';
+import { Parameter } from './Parameter';
 import { QueryParam } from './QueryParam';
 import { RequestDefinition } from './RequestDefinition';
 import { RequestDefinitions } from './RequestDefinitions';
 import { Attribute } from './Attribute';
 import { Swagger } from './Swagger';
-import { WSAEMSGSIZE } from 'constants';
 
 const owner = 231421;
+const reservedProperties = ['id', 'href'];
+const reservedParameters = ['fields', 'offset', 'limit', 'skip'];
 
 function processArgs(): {swagger: any, output: string} {
 	const optionDefinitions = [
@@ -69,10 +71,10 @@ function processArgs(): {swagger: any, output: string} {
 	}
 }
 
-function generateBasicRequest(collectionId: string, folder: string, req: RequestDefinition): Request {
+function generateBasicRequest(collectionId: string, folder: string, req: RequestDefinition, additional: string): Request {
 	const request = {
 		id: uuidv1(),
-		name: req.summary,
+		name: req.summary + (additional ? ' with ' + additional : ''),
 		description: req.description,
 		headers: 'Accept: application/json\nContent-Type: application/json\n',
 		headerData: [
@@ -123,10 +125,8 @@ function resolveModel(swag: Swagger, obj: Attribute): Attribute{
 		return resolveModel(swag, referencedModel);
 	} else if (obj.allOf) {
 		let result = {} as Attribute;
-		// console.warn('#' + JSON.stringify(obj));
 		for (const a of obj.allOf) {
 			const resolvedModel = resolveModel(swag, a);
-			// console.warn('##' + JSON.stringify(resolvedModel));
 			if (result.properties && resolvedModel.properties) {
 				resolvedModel.properties = Object.assign(resolvedModel.properties, result.properties);
 			}
@@ -208,7 +208,7 @@ function buildModelWithAllAttributes(swag: Swagger, model: Attribute, override: 
 			if (model.type === 'number') {
 				result = example as number;
 			} else if (model.type === 'boolean') {
-				result = (example === 'true') ? true : false;
+				result = (example === true || example === 'true') ? true : false;
 			} else if (model.type === 'string') {
 				result = example as string;
 			} else {
@@ -286,38 +286,17 @@ function deleteAllOptionalAttributes(swag: Swagger, result: any, model: Attribut
 	}
 }
 
-function addTestsForMissingMandatoryParameters(swag: Swagger, p: PostmanCollection) {
-	const paths = Object.keys(swag.paths).map((key) => ({key, value: swag.paths[key]}));
-	for (const path of paths) {
-		if (path.value.post) {
-			const requests = new Array<Request>();
-			const folder = generateFolder(p.id, 'TC_' + path.key.substring(1) + '_POST_E1 - Create Resource with missing mandatory parameter')
-			const bodyContent = (path.value.post.requestBody && path.value.post.requestBody.content && path.value.post.requestBody.content['application/json']) || 
-				(path.value.post.parameters && path.value.post.parameters.find((f) => f.in === 'body'));
-			if (!bodyContent) {
-				continue;
-			}
-			const model = resolveModel(swag, bodyContent.schema);
-			const example = buildModelWithAllAttributes(swag, bodyContent.schema, undefined);
-			deleteAllOptionalAttributes(swag, example, bodyContent.schema);
-			for (const req of Object.keys(example)) {
-				const copy = JSON.parse(JSON.stringify(example));
-				delete copy[req];
-				const request = generateBasicRequest(p.id, folder.id, path.value.post);
-				request.url = '{{host}}{{path}}' + path.key;
-				request.method = 'POST';
-				request.tests += 'tests["Content-Type is present " + postman.getResponseHeader("Content-type")] = postman.getResponseHeader("Content-type");\n';
-				request.tests += 'tests["Status code is an error"] = responseCode.code >= 400;\n';
-				request.rawModeData = JSON.stringify(copy);
-				folder.order.push(request.id);
-				requests.push(request);
-			}
-			if (requests.length > 0) {
-				p.requests = p.requests.concat(requests);
-				p.folders.push(folder);		
-			}
-		}
-	}
+function addFindElementInList(): string {
+	let result = '\n';
+	result += 'function findElementInList(elementId,list) {\n';
+	result += '\tfor (var i = 0; i < list.length; i++) {\n';
+	result += '\t\tif (list[i].id == elementId) {\n';
+	result += '\t\t\treturn true;\n';
+	result += '\t\t}\n';
+	result += '\t}\n';
+	result += '\treturn false;\n';
+	result += '}\n';
+	return result;
 }
 
 function addFindFieldsInBody(): string {
@@ -367,8 +346,81 @@ function addObjectEquals(): string {
 	result += '\t\t}\n';
 	result += '\t\treturn true;\n';
 	result += '\t} else {\n';
-	result += '\t\treturn v1 === v2;\n';
+	result += '\t\tif (v1 !== v2) {\n';
+	result += '\t\t\tif (v1 === undefined || v2 === undefined) {\n';
+	result += '\t\t\t\treturn false;\n';
+	result += '\t\t\t} else {\n';
+	result += '\t\t\t\treturn v1.toString() === v2.toString();\n';
+	result += '\t\t\t}\n';
+	result += '\t\t} else {\n';
+	result += '\t\t\treturn true;\n';
+	result += '\t\t}\n';
 	result += '\t}\n';
+	result += '}\n';
+	return result;
+}
+
+function addCheckFieldsInArray(): string {
+	let result = '\n';
+	result += 'function checkFieldsInArray(fields, body) {\n';
+	result += '\tfor (var i = 0; i < body.length; i++) {\n';
+	result += '\t\tif (!checkFields(fields,body[i])) {\n';
+	result += '\t\t\treturn false;\n';
+	result += '\t\t}\n';
+	result += '\t}\n';
+	result += '\treturn true;\n';
+	result += '}\n\n';
+	result += 'function checkFields(fields,body) {\n';
+	result += '\tfor (var key in body) {\n';
+	result += '\t\tif (fields.indexOf(key) < 0) {\n';
+	result += '\t\t\treturn false;\n';
+	result += '\t\t} else {\n';
+	result += '\t\t\ttests[key + " exists"] = true;\n';
+	result += '\t\t}\n';
+	result += '\t}\n';
+	result += '\treturn true;\n';
+	result += '}\n';
+	return result;
+}
+
+function addCheckFieldValueInArray(): string {
+	let result = '\n';
+	result += 'function checkFieldValueInArray(field, value, body) {\n';
+	result += '\tfor (var i = 0; i < body.length; i++) {\n';
+	result += '\t\tif (!checkFieldValue(field, value, body[i])) {\n';
+	result += '\t\t\treturn false;\n';
+	result += '\t\t}\n';
+	result += '\t}\n';
+	result += '\treturn true;\n';
+	result += '}\n\n';
+	result += 'function checkFieldValue(field, value,body) {\n';
+	result += '\tfor (var key in body) {\n';
+	result += '\t\tif (field.indexOf(".") >= 0) {\n';
+	result += '\t\t\tif (field.substring(0, field.indexOf(".")) === key) {\n';
+	result += '\t\t\t\tif(Array.isArray(body[key])) {\n';
+	result += '\t\t\t\t\treturn checkFieldValueInArray(field.substring(field.indexOf(".") + 1), value, body[key]);\n';
+	result += '\t\t\t\t} else if (typeof body[key] === "object") {\n';
+	result += '\t\t\t\t\treturn checkFieldValue(field.substring(field.indexOf(".") + 1), value, body[key]);\n';
+	result += '\t\t\t\t} else {\n';
+	result += '\t\t\t\t\ttests["For complex filter values a complex attribute is needed"] = false;\n';
+	result += '\t\t\t\t}\n';
+	result += '\t\t\t}\n';
+	result += '\t\t} else {\n';
+	result += '\t\t\tif (field === key) {\n';
+	result += '\t\t\t\tif (body[key] !== value) {\n';
+	result += '\t\t\t\t\tif (body[key] === undefined || value === undefined) {\n';
+	result += '\t\t\t\t\t\treturn false;\n';
+	result += '\t\t\t\t\t} else {\n';
+	result += '\t\t\t\t\t\treturn body[key].toString() === value.toString();\n';
+	result += '\t\t\t\t\t}\n';
+	result += '\t\t\t\t} else {\n';
+	result += '\t\t\t\t\treturn true;\n';
+	result += '\t\t\t\t}\n';
+	result += '\t\t\t}\n';
+	result += '\t\t}\n';
+	result += '\t}\n';
+	result += '\ttests["field " + field + " found"] = false;\n';
+	result += '\treturn false;\n';
 	result += '}\n';
 	return result;
 }
@@ -386,12 +438,48 @@ function generateFolder(collectionId: string, name: string): Folder {
 	return folder;
 }
 
+function getRequestBody(request: RequestDefinition): any {
+	return (request.requestBody && request.requestBody.content && request.requestBody.content['application/json']) || 
+		(request.parameters && request.parameters.find((f) => f.in === 'body'));
+}
+
+function getResponseBody(request: RequestDefinition, httpStatus: string): Attribute {
+	if (request.responses[httpStatus].schema || (request.responses[httpStatus].content && request.responses[httpStatus].content['application/json'].schema)) {
+		return request.responses[httpStatus].schema || request.responses[httpStatus].content['application/json'].schema;
+	} else {
+		return undefined;
+	}
+}
+
+function findStringProperty(model: Attribute): string {
+	if (model.properties) {
+		for (const prop of Object.keys(model.properties)) {
+			if (!reservedProperties.find((f) => f === prop)) {
+				const attr = model.properties[prop] as Attribute;
+				if (attr.type === 'string') {
+					return prop;
+				}
+			}
+		}
+	}
+	return undefined;
+}
+
+function makeOverride(name: string, value: any): object {
+	const obj = {};
+	if (name.indexOf('.') > 0) {
+		obj[name.substring(0, name.indexOf('.'))] = makeOverride(name.substring(name.indexOf('.') + 1), value);
+	} else {
+		obj[name] = value;
+	}
+	return obj;
+}
+
 function addTestsForSuccessfulMinimalCreation(swag: Swagger, p: PostmanCollection) {
 	const paths = Object.keys(swag.paths).map((key) => ({key, value: swag.paths[key] as RequestDefinitions}));
 	for (const path of paths) {
 		if (path.value.post) {
-			const bodyContent = (path.value.post.requestBody && path.value.post.requestBody.content && path.value.post.requestBody.content['application/json']) || 
-				(path.value.post.parameters && path.value.post.parameters.find((f) => f.in === 'body'));
+			const bodyContent = getRequestBody(path.value.post);
 			if (!bodyContent) {
 				console.warn('no request body for POST Request ' + path.key + ' specified, searching for the next')
 				continue;
@@ -405,8 +493,7 @@ function addTestsForSuccessfulMaximalCreation(swag: Swagger, p: PostmanCollectio
 	const paths = Object.keys(swag.paths).map((key) => ({key, value: swag.paths[key] as RequestDefinitions}));
 	for (const path of paths) {
 		if (path.value.post) {
-			const bodyContent = (path.value.post.requestBody && path.value.post.requestBody.content && path.value.post.requestBody.content['application/json']) || 
-				(path.value.post.parameters && path.value.post.parameters.find((f) => f.in === 'body'));
+			const bodyContent = getRequestBody(path.value.post);
 			if (!bodyContent) {
 				console.warn('no request body for POST Request ' + path.key + ' specified, searching for the next')
 				continue;
@@ -416,35 +503,44 @@ function addTestsForSuccessfulMaximalCreation(swag: Swagger, p: PostmanCollectio
 	}
 }
 
-function testCreateGetAll(p: PostmanCollection, path: string, definitions: RequestDefinitions, swag: Swagger, bodyContent: any, deleteOptional: boolean, override: object) {
-	const folder = generateFolder(p.id, 'TC_' + path.substring(1) + '_POST_N1' + (override ? '_' + JSON.stringify(override) : '') + ' - Create Resource with ' + (deleteOptional ? 'minimal' : 'maximal') + ' parameters');
-	const example = buildModelWithAllAttributes(swag, bodyContent.schema, override);
-	if (deleteOptional) {
-		deleteAllOptionalAttributes(swag, example, bodyContent.schema);
+function addTestsForMissingMandatoryParameters(swag: Swagger, p: PostmanCollection) {
+	const paths = Object.keys(swag.paths).map((key) => ({key, value: swag.paths[key]}));
+	for (const path of paths) {
+		if (path.value.post) {
+			const requests = new Array<Request>();
+			const folder = generateFolder(p.id, 'TC_' + path.key.substring(1) + '_POST_E1 - Create Resource with missing mandatory parameter')
+			const bodyContent = getRequestBody(path.value.post);
+			if (!bodyContent) {
+				continue;
+			}
+			const model = resolveModel(swag, bodyContent.schema);
+			const example = buildModelWithAllAttributes(swag, bodyContent.schema, undefined);
+			deleteAllOptionalAttributes(swag, example, bodyContent.schema);
+			for (const req of Object.keys(example)) {
+				const copy = JSON.parse(JSON.stringify(example));
+				delete copy[req];
+				const request = generateBasicRequest(p.id, folder.id, path.value.post, 'missing ' + req);
+				request.url = '{{host}}{{path}}' + path.key;
+				request.method = 'POST';
+				request.tests += 'tests["Content-Type is present " + postman.getResponseHeader("Content-type")] = postman.getResponseHeader("Content-type");\n';
+				request.tests += 'tests["Status code is an error"] = responseCode.code >= 400;\n';
+				request.rawModeData = JSON.stringify(copy);
+				folder.order.push(request.id);
+				requests.push(request);
+			}
+			if (requests.length > 0) {
+				p.requests = p.requests.concat(requests);
+				p.folders.push(folder);		
+			}
+		}
 	}
-	testCreateResource(swag, p, folder, path, definitions.post, example);
-	const defs = swag.paths[path + "/{id}"] as RequestDefinitions;
-	if (defs && defs.get) {
-		testGetCreatedResource(swag, p, folder, path + "/{id}", defs.get);
-	}
-	else {
-		console.warn('No getter for a concrete element specified ' + path + '/{id}');
-	}
-	if (definitions.get) {
-		testGetAllResources(swag, p, folder, path, definitions.get);
-	}
-	else {
-		console.warn('No getter for a full search specified ' + path);
-	}
-	p.folders.push(folder);
 }
 
 function addTestsForDifferentDiscrimiator(swag: Swagger, p: PostmanCollection) {
 	const paths = Object.keys(swag.paths).map((key) => ({key, value: swag.paths[key]}));
 	for (const path of paths) {
 		if (path.value.post) {
-			const bodyContent = (path.value.post.requestBody && path.value.post.requestBody.content && path.value.post.requestBody.content['application/json']) || 
-				(path.value.post.parameters && path.value.post.parameters.find((f) => f.in === 'body'));
+			const bodyContent = getRequestBody(path.value.post);
 			if (!bodyContent) {
 				console.warn('no request body for POST Request ' + path.key + ' specified, searching for the next')
 				continue;
@@ -478,15 +574,123 @@ function addTestsForDifferentDiscrimiator(swag: Swagger, p: PostmanCollection) {
 	}
 }
 
-function testGetCreatedResource(swag: Swagger, p: PostmanCollection, folder: Folder, path: string, requestDefinition: RequestDefinition) {
-	const request = generateBasicRequest(p.id, folder.id, requestDefinition);
+function addTestsForFiltering(swag: Swagger, p: PostmanCollection) {
+	const paths = Object.keys(swag.paths).map((key) => ({key, value: swag.paths[key] as RequestDefinitions}));
+	for (const path of paths) {
+		if (path.value.post && path.value.get) {
+			for (const param of path.value.get.parameters.filter((f) => { return !reservedParameters.find((g) => g === f.name) } )) {
+				testCreateFilter(swag, p, path.value, path.key, param);
+			}
+		}
+	}
+}
+
+function addOneOfAttributes(swag: Swagger, attr: Attribute, override: object): object {
+	const schema = resolveModel(swag, attr);
+	if (schema.oneOf && schema.discriminator) {
+		for (const o of schema.oneOf) {
+			const oneOfSchema = resolveModel(swag, o);
+			if (Object.keys(override).find((f) => Object.keys(oneOfSchema.properties).find((g) => f === g) !== undefined)) {
+				let mapped = false;
+				if (schema.discriminator.mapping) {
+					for (const m of Object.keys(schema.discriminator.mapping)) {
+						if (schema.discriminator.mapping[m] === o.$ref.substring(o.$ref.lastIndexOf('/') + 1)) {
+							override[schema.discriminator.propertyName] = m;
+							mapped = true;
+						}
+					}
+				}
+				if (!mapped) {
+					override[schema.discriminator.propertyName] = o.$ref.substring(o.$ref.lastIndexOf('/') + 1);
+				}
+			}
+		}
+	}
+	for (const obj of Object.keys(override)) {
+		// TODO: hier müssen wir noch rekursiv einsteigen
+	}
+	return override;
+}
+
+function testCreateFilter(swag: Swagger, p: PostmanCollection, defs: RequestDefinitions, path: string, param: Parameter) {
+	const override = makeOverride(param.name, buildModelWithAllAttributes(swag, param.schema, undefined));
+	const bodyContent = getRequestBody(defs.post);
+	addOneOfAttributes(swag, bodyContent.schema, override);
+	const example = buildModelWithAllAttributes(swag, bodyContent.schema, override);
+	const folder = generateFolder(p.id, 'TC_' + path.substring(1) + '_FILTER_N1 - Create Resource with filter parameters');
+	testCreateResource(swag, p, folder, path, defs.post, example);
+	testGetAllResources(swag, p, folder, path, defs.get, param);
+	p.folders.push(folder);
+}
+
+function testCreateGetAll(p: PostmanCollection, path: string, definitions: RequestDefinitions, swag: Swagger, bodyContent: any, deleteOptional: boolean, override: object) {
+	const folder = generateFolder(p.id, 'TC_' + path.substring(1) + '_POST_N1' + (override ? '_' + JSON.stringify(override) : '') + ' - Create Resource with ' + (deleteOptional ? 'minimal' : 'maximal') + ' parameters');
+	const example = buildModelWithAllAttributes(swag, bodyContent.schema, override);
+	if (deleteOptional) {
+		deleteAllOptionalAttributes(swag, example, bodyContent.schema);
+	}
+	testCreateResource(swag, p, folder, path, definitions.post, example);
+	const defs = swag.paths[path + '/{id}'] as RequestDefinitions;
+	if (defs) {
+		if (defs.get) {
+			testGetResource(swag, p, folder, path + '/{id}', defs.get, 'lastRequest');
+		} else {
+			console.warn('No getter for a concrete element specified ' + path + '/{id}');
+		}
+		if (defs.put) {
+			testUpdateCreatedResource(swag, p, folder, path + '/{id}', defs.put)
+			if (defs.get) {
+				testGetResource(swag, p, folder, path + '/{id}', defs.get, 'putBody');
+			}
+		} else {
+			console.warn('No PUT request specified for ' + path + '/{id}');
+		}
+	}
+	if (definitions.get) {
+		testGetAllResources(swag, p, folder, path, definitions.get, undefined);
+		if (definitions.get.parameters && definitions.get.parameters.find((f) => f.name === 'fields')) {
+			if (!deleteOptional) {
+				testGetAllResourcesWithMandatoryFields(swag, p, folder, path, definitions.get)
+			}
+		}
+	} else {
+		console.warn('No getter for a full search specified ' + path);
+	}
+	p.folders.push(folder);
+}
+
+function testUpdateCreatedResource(swag: Swagger, p: PostmanCollection, folder: Folder, path: string, requestDefinition: RequestDefinition) {
+	const request = generateBasicRequest(p.id, folder.id, requestDefinition, '');
+	request.url = '{{host}}{{path}}' + path.replace('{id}', '{{lastId}}');
+	request.method = 'PUT';
+	request.rawModeData = '{{putBody}}';
+	request.tests += 'tests["Content-Type is present " + postman.getResponseHeader("Content-type")] = postman.getResponseHeader("Content-type");\n';
+	request.tests += 'tests["Status code is 200"] = responseCode.code === 200;\n';
+	request.tests += 'tests["POST Body Response equals Request Body"] = objectEquals(JSON.parse(postman.getEnvironmentVariable("putBody")), JSON.parse(responseBody));\n';
+	request.tests += addObjectEquals();
+	const requestContent = getRequestBody(requestDefinition);
+	const model = resolveModel(swag, requestContent.schema);
+	const prop = findStringProperty(model);
+	if (prop) {
+		request.preRequestScript += 'var modifiedRequest = JSON.parse(postman.getEnvironmentVariable("lastRequest"));\n';
+		request.preRequestScript += 'modifiedRequest["' + prop + '"] = "Hello";\n';
+		request.preRequestScript += 'postman.setEnvironmentVariable("putBody", JSON.stringify(modifiedRequest));\n';
+		folder.order.push(request.id);
+		p.requests.push(request);
+	}
+}
+
+function testGetResource(swag: Swagger, p: PostmanCollection, folder: Folder, path: string, requestDefinition: RequestDefinition, compare: string) {
+	const request = generateBasicRequest(p.id, folder.id, requestDefinition, '');
 	request.url = '{{host}}{{path}}' + path.replace('{id}', '{{lastId}}');
 	request.method = 'GET';
 	request.tests += 'tests["Content-Type is present " + postman.getResponseHeader("Content-type")] = postman.getResponseHeader("Content-type");\n';
 	request.tests += 'tests["Status code is 200"] = responseCode.code === 200;\n';
-	request.tests += 'tests["POST Body Response equals Request Body"] = objectEquals(JSON.parse(postman.getGlobalVariable("lastRequest")), JSON.parse(responseBody));\n';
+	if (compare) {
+		request.tests += 'tests["POST Body Response equals Request Body"] = objectEquals(JSON.parse(postman.getEnvironmentVariable("' + compare + '")), JSON.parse(responseBody));\n';
+	}
 	request.tests += addObjectEquals();
-	const responseContent = requestDefinition.responses['200'].schema || requestDefinition.responses['200'].content['application/json'].schema;
+	const responseContent = getResponseBody(requestDefinition, '200');
 	const model = resolveModel(swag, responseContent);
 	// check if the required attributes in the response object are all there
 	if (model.required) {
@@ -497,18 +701,59 @@ function testGetCreatedResource(swag: Swagger, p: PostmanCollection, folder: Fol
 	p.requests.push(request);
 }
 
-function testGetAllResources(swag: Swagger, p: PostmanCollection, folder: Folder, path: string, requestDefinition: RequestDefinition) {
-	const request = generateBasicRequest(p.id, folder.id, requestDefinition);
+function testGetAllResources(swag: Swagger, p: PostmanCollection, folder: Folder, path: string, requestDefinition: RequestDefinition, filter: Parameter) {
+	const request = generateBasicRequest(p.id, folder.id, requestDefinition, filter ? filter.name : undefined);
 	request.url = '{{host}}{{path}}' + path;
 	request.method = 'GET';
 	request.tests += 'tests["Content-Type is present " + postman.getResponseHeader("Content-type")] = postman.getResponseHeader("Content-type");\n';
 	request.tests += 'tests["Status code is 200"] = responseCode.code === 200;\n';
+	request.tests += 'tests["Response contains created resource"] = findElementInList(postman.getEnvironmentVariable("lastId"), JSON.parse(responseBody));\n';
+	request.tests += addFindElementInList();
+	if (filter) {
+		const attr = resolveModel(swag, filter.schema);
+		request.url += '?' + filter.name + '=' + attr.example;
+		request.queryParams.push({
+			key: filter.name,
+			value: attr.example,
+			equals: true,
+			description: '',
+			enabled: true
+		});
+		request.tests += 'tests["Each entry in result array has field with correct value"] = checkFieldValueInArray("' + filter.name + '", "' + attr.example + '", JSON.parse(responseBody));\n';
+		request.tests += addCheckFieldValueInArray();
+	}
+	folder.order.push(request.id);
+	p.requests.push(request);
+}
+
+function testGetAllResourcesWithMandatoryFields(swag: Swagger, p: PostmanCollection, folder: Folder, path: string, requestDefinition: RequestDefinition) {
+	const request = generateBasicRequest(p.id, folder.id, requestDefinition, 'mandory fields');
+	const responseContent = getResponseBody(requestDefinition, '200');
+	const model = resolveModel(swag, responseContent.items);
+	// check if the required attributes in the response object are all there
+	let fields;
+	if (model.required) {
+		fields = model.required.filter((f) => !reservedProperties.find((g) => f === g));
+	} else {
+		fields = [];
+	}
+	if (fields.length === 0) {
+		fields.push('none');
+	}
+	request.url = '{{host}}{{path}}' + path + '?fields=' + JSON.stringify(fields).replace(new RegExp('[\\"\\[\\] ]', 'g'), '');
+	request.method = 'GET';
+	request.tests += 'tests["Content-Type is present " + postman.getResponseHeader("Content-type")] = postman.getResponseHeader("Content-type");\n';
+	request.tests += 'tests["Status code is 200"] = responseCode.code === 200;\n';
+	request.tests += 'tests["Response contains created resource"] = findElementInList(postman.getEnvironmentVariable("lastId"), JSON.parse(responseBody));\n';
+	request.tests += 'tests["Response only contains chosen fields"] = checkFieldsInArray(' + JSON.stringify(model.required) +', JSON.parse(responseBody));\n';
+	request.tests += addFindElementInList();
+	request.tests += addCheckFieldsInArray();
 	folder.order.push(request.id);
 	p.requests.push(request);
 }
 
 function testCreateResource(swag: Swagger, p: PostmanCollection, folder: Folder, path: string, requestDefinition: RequestDefinition, example: any) {
-	const request = generateBasicRequest(p.id, folder.id, requestDefinition);
+	const request = generateBasicRequest(p.id, folder.id, requestDefinition, '');
 	request.url = '{{host}}{{path}}' + path;
 	request.method = 'POST';
 	request.rawModeData = JSON.stringify(example);
@@ -519,8 +764,8 @@ function testCreateResource(swag: Swagger, p: PostmanCollection, folder: Folder,
 	request.tests += '\t(postman.getResponseHeader("Location").toString() == environment["path"] + "' + path + '/" + JSON.parse(responseBody).id || //relative\n';
 	request.tests += '\tpostman.getResponseHeader("Location").toString() == environment["host"] + environment["path"] + "' + path + '/" + JSON.parse(responseBody).id);   //absolute\n';
 	// If there is no schema definition in the response, that stuff cannot be checked.
-	if (requestDefinition.responses['201'].schema || (requestDefinition.responses['201'].content && requestDefinition.responses['201'].content['application/json'].schema)) {
-		const responseContent = requestDefinition.responses['201'].schema || requestDefinition.responses['201'].content['application/json'].schema;
+	const responseContent = getResponseBody(requestDefinition, '201');
+	if (responseContent) {
 		const model = resolveModel(swag, responseContent);
 		// check if the required attributes in the response object are all there
 		if (model.required) {
@@ -530,8 +775,8 @@ function testCreateResource(swag: Swagger, p: PostmanCollection, folder: Folder,
 		request.tests += 'tests["POST Body Response equals Request Body"  ] = objectEquals(JSON.parse(request.data), JSON.parse(responseBody));\n';
 		request.tests += addObjectEquals();
 	}
-	request.tests += 'postman.setGlobalVariable("lastId", JSON.parse(responseBody).id);\n';
-	request.tests += 'postman.setGlobalVariable("lastRequest", request.data);\n';
+	request.tests += 'postman.setEnvironmentVariable("lastId", JSON.parse(responseBody).id);\n';
+	request.tests += 'postman.setEnvironmentVariable("lastRequest", responseBody);\n';
 	folder.order.push(request.id);
 	p.requests.push(request);
 }
@@ -553,6 +798,7 @@ function generatePostmanCollection(swag: Swagger): PostmanCollection {
 	addTestsForMissingMandatoryParameters(swag, p);
 	addTestsForDifferentDiscrimiator(swag, p);
 	addTestsForSuccessfulMaximalCreation(swag, p);
+	addTestsForFiltering(swag, p);
 	return p;
 }
 
