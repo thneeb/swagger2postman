@@ -171,10 +171,27 @@
         "responses" : {
           "201" : {
             "description" : "created catalog",
+            "headers" : {
+              "Location" : {
+                "schema" : {
+                  "type" : "string",
+                  "format" : "uri"
+                },
+                "description" : "the url of the corresponding getter"
+              }
+            },
             "content" : {
               "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/Catalog"
+                }
+              }
+            },
+            "links" : {
+              "GetCatalogById" : {
+                "operationId" : "getCatalogById",
+                "parameters" : {
+                  "id" : "$requestBody#/id"
                 }
               }
             }
@@ -191,6 +208,7 @@
     "/catalog/{id}" : {
       "get" : {
         "summary" : "retrieves requested catalog",
+        "operationId" : "getCatalogById",
         "parameters" : [ {
           "in" : "path",
           "name" : "id",
@@ -1429,6 +1447,373 @@
             "format" : "int32",
             "minimum" : 0,
             "maximum" : 50
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "name",
+          "description" : "For filtering: Name of the productOfferingPrice",
+          "schema" : {
+            "type" : "string",
+            "example" : "My product offering price name"
+          }
+        }, {
+          "required" : false,
+          "in" : "query",
+          "name" : "version",
+          "description" : "For filtering: ProductOffering version",
+          "schema" : {
+            "type" : "string",
+            "example" : "My product offering price version"
+          }
+        }, {
+          "name" : "validFor.startDateTime",
+          "required" : false,
+          "in" : "query",
+          "description" : "For filtering: An instant of time, starting at the TimePeriod",
+          "schema" : {
+            "format" : "date-time",
+            "type" : "string",
+            "example" : "2015-08-15T08:07:00Z"
+          }
+        }, {
+          "in" : "query",
+          "name" : "validFor.endDateTime",
+          "required" : false,
+          "description" : "For filtering: An instant of time, ending at the TimePeriod.",
+          "schema" : {
+            "type" : "string",
+            "format" : "date-time",
+            "example" : "2014-08-15T08:07:00Z"
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "priceType",
+          "description" : "For filtering: A category that describes the price, such as recurring, discount, allowance, penalty, and so forth.",
+          "schema" : {
+            "type" : "string",
+            "example" : "My product offering price type"
+          }
+        }, {
+          "in" : "query",
+          "name" : "unitOfMeasure.amount",
+          "required" : false,
+          "description" : "For filtering: A positive floating point number",
+          "schema" : {
+            "format" : "float",
+            "type" : "number",
+            "example" : 1000
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "unitOfMeasure.units",
+          "description" : "For filtering: Currency (ISO4217 norm uses 3 letters to define the currency)",
+          "schema" : {
+            "type" : "string",
+            "example" : "kg"
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "recurringChargePeriodType",
+          "description" : "For filtering: The period to repeat the application of the price\\nCould be month, week...",
+          "schema" : {
+            "type" : "string",
+            "example" : "week"
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "recurringChargePeriodLength",
+          "description" : "For filtering: the period of the recurring charge:  1, 2, ... .It sets to zero if it is not applicable",
+          "schema" : {
+            "type" : "integer",
+            "example" : 2
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "@type",
+          "description" : "For filtering: The class type of this Product offering",
+          "schema" : {
+            "type" : "string",
+            "example" : "BaseProductOfferingPrice"
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "@baseType",
+          "description" : "For filtering: the immediate base class type of this product offering",
+          "schema" : {
+            "type" : "string",
+            "example" : "ConcreteProductOfferingPrice"
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "@schemaLocation",
+          "description" : "For filtering: hyperlink reference to the schema describing this resource",
+          "schema" : {
+            "type" : "string",
+            "format" : "uri",
+            "example" : "http://localhost:8091/qr/code"
+          }
+        }, {
+          "in" : "query",
+          "name" : "lastUpdate",
+          "required" : false,
+          "description" : "For filtering: the last update time of this POP",
+          "schema" : {
+            "type" : "string",
+            "format" : "date-time",
+            "example" : "2016-08-15T08:07:00Z"
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "isBundle",
+          "description" : "For filtering: A flag indicating if this POP is composite (bundle) or not",
+          "schema" : {
+            "type" : "boolean",
+            "example" : true
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "lifecycleStatus",
+          "description" : "For filtering: the lifecycle status of this POP",
+          "schema" : {
+            "$ref" : "#/components/schemas/LifecycleStatus"
+          }
+        }, {
+          "in" : "query",
+          "name" : "price.value",
+          "required" : false,
+          "description" : "For filtering: A positive floating point number",
+          "schema" : {
+            "type" : "number",
+            "format" : "float",
+            "example" : 7
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "price.units",
+          "description" : "For filtering: Currency (ISO4217 norm uses 3 letters to define the currency)",
+          "schema" : {
+            "type" : "string",
+            "example" : "EUR"
+          }
+        }, {
+          "in" : "query",
+          "name" : "percentage",
+          "required" : false,
+          "description" : "For filtering: Percentage to apply for ProdOfferPriceAlteration (Discount)",
+          "schema" : {
+            "type" : "number",
+            "format" : "float",
+            "example" : 17
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "bundledPopRelationship.name",
+          "description" : "For filtering: Name of  the associated product offering",
+          "schema" : {
+            "type" : "string",
+            "example" : "A pop bundle rel"
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "bundledPopRelationship.@type",
+          "description" : "For filtering: (Class) type of the associated product offering",
+          "schema" : {
+            "type" : "string",
+            "example" : "a pop bundle rel type"
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "popRelationship.name",
+          "description" : "For filtering: Name of  the associated product offering",
+          "schema" : {
+            "type" : "string",
+            "example" : "A pop rel"
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "popRelationship.@type",
+          "description" : "For filtering: (Class) type of the associated product offering",
+          "schema" : {
+            "type" : "string",
+            "example" : "a pop rel type"
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "prodSpecCharValueUse.name",
+          "description" : "For filtering: Name of the associated productSpecCharacteristic",
+          "schema" : {
+            "type" : "string",
+            "example" : "spec name"
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "prodSpecCharValueUse.valueType",
+          "description" : "For filtering: A kind of value that the characteristic can take on, such as numeric, text and so forth",
+          "schema" : {
+            "type" : "string",
+            "example" : "number"
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "prodSpecCharValueUse.minCardinality",
+          "description" : "For filtering: The minimum number of instances a CharacteristicValue can take on. For example, zero to five phone numbers in a group calling plan, where zero is the value for the minCardinality.",
+          "schema" : {
+            "type" : "integer",
+            "example" : 1
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "prodSpecCharValueUse.maxCardinality",
+          "description" : "For filtering: The maximum number of instances a CharacteristicValue can take on. For example, zero to five phone numbers in a group calling plan, where five is the value for the maxCardinality.",
+          "schema" : {
+            "type" : "integer",
+            "example" : 10
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "productOfferingTerm.name",
+          "description" : "For filtering: Name of the productOfferingTerm",
+          "schema" : {
+            "type" : "string",
+            "example" : "prod offering term name"
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "productOfferingTerm.@type",
+          "description" : "For filtering: The class type of ProductOfferingTerm",
+          "schema" : {
+            "type" : "string",
+            "example" : "prod offering term type"
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "productOfferingTerm.@schemaLocation",
+          "description" : "For filtering: A link to the schema describing this product offering term",
+          "schema" : {
+            "type" : "string",
+            "example" : "http://localhost:8091/qr/code"
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "place.name",
+          "description" : "For filtering: A user-friendly name for the place, such as \"Paris Store\", \"London Store\", \"Main Home\"",
+          "schema" : {
+            "type" : "string",
+            "example" : "Main Store"
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "place.address",
+          "description" : "For filtering: A string characterizing an address (for instance a formatted address or an identifier taken from an address database or an address API).",
+          "schema" : {
+            "type" : "string",
+            "example" : "Baker Street 7"
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "place.@referredType",
+          "description" : "For filtering: class type of the referred Place object",
+          "schema" : {
+            "type" : "string",
+            "example" : "Place Ref Type"
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "place.role",
+          "description" : "For filtering: Role of the place (for instance: \"home delivery\", \"shop retrieval\")",
+          "schema" : {
+            "type" : "string",
+            "example" : "Home Delivery"
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "constraint.version",
+          "description" : "For filtering: constraint version",
+          "schema" : {
+            "type" : "string",
+            "example" : "17.6.3"
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "constraint.name",
+          "description" : "For filtering: Name given to the constraint",
+          "schema" : {
+            "type" : "string",
+            "example" : "Constraint name 4"
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "constraint.@referredType",
+          "description" : "For filtering: The (class) type of the referred constraint",
+          "schema" : {
+            "type" : "string",
+            "example" : "Ref Type"
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "pricingLogicAlgorithm.name",
+          "description" : "For filtering: Name given to the PLA",
+          "schema" : {
+            "type" : "string",
+            "example" : "Price Algo Name"
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "pricingLogicAlgorithm.plaSpecId",
+          "description" : "For filtering: id of corresponding PLA specification",
+          "schema" : {
+            "type" : "string",
+            "example" : "plaSpecId"
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "pricingLogicAlgorithm.@type",
+          "description" : "For filtering: The class type of this PLA",
+          "schema" : {
+            "type" : "string",
+            "example" : "Pricing Algo Type"
+          }
+        }, {
+          "in" : "query",
+          "name" : "tax.taxRate",
+          "required" : false,
+          "description" : "For filtering: Tax rate",
+          "schema" : {
+            "type" : "number",
+            "format" : "float",
+            "example" : 19
           }
         } ],
         "responses" : {
