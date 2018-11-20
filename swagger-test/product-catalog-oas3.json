@@ -1,0 +1,3505 @@
+{
+  "openapi" : "3.0.0",
+  "servers" : [ {
+    "url" : "https://virtserver.swaggerhub.com/nttdata9/ProductCatalog/17.5.0"
+  } ],
+  "info" : {
+    "description" : "This is a description of the Product Catalog API from TMForum in Version 17.5",
+    "version" : "17.5.0-oas3",
+    "title" : "Product Catalog API",
+    "contact" : {
+      "email" : "thomas.neeb@nttdata.com"
+    },
+    "license" : {
+      "name" : "Apache 2.0",
+      "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "tags" : [ {
+    "name" : "all",
+    "description" : "Access is free for all"
+  } ],
+  "paths" : {
+    "/catalog" : {
+      "get" : {
+        "summary" : "retrieves all catalogs",
+        "description" : "searchs for catalogs and filters the results",
+        "operationId" : "searchInCatalogs",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "fields",
+          "description" : "pass a filter for the requested attributes",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "query",
+          "name" : "skip",
+          "description" : "number of records to skip for pagination",
+          "required" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "minimum" : 0
+          }
+        }, {
+          "in" : "query",
+          "name" : "limit",
+          "description" : "maximum number of records to return",
+          "required" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "minimum" : 0,
+            "maximum" : 50
+          }
+        }, {
+          "in" : "query",
+          "name" : "name",
+          "description" : "For filtering: Name of the catalog",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "@type",
+          "description" : "For filtering: Indicates the (class) type of catalog. For entity catalogs, this will be \"EntityCatalog\".",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other type"
+          }
+        }, {
+          "in" : "query",
+          "name" : "@schemaLocation",
+          "description" : "For filtering: This field provides a link to the schema describing this REST resource",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other schema location"
+          }
+        }, {
+          "in" : "query",
+          "name" : "@baseType",
+          "description" : "For filtering: Indicates<b> </b>the base (class) type of this REST resource",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "Other base type"
+          }
+        }, {
+          "in" : "query",
+          "name" : "version",
+          "description" : "For filtering: Catalog version",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "3.0.7"
+          }
+        }, {
+          "in" : "query",
+          "name" : "lifecycleStatus",
+          "description" : "For filtering: Used to indicate the current lifecycle status",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/components/schemas/LifecycleStatus"
+          }
+        }, {
+          "in" : "query",
+          "name" : "lastUpdate",
+          "description" : "For filtering: Date and time of the last update",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "date-time",
+            "example" : "2010-01-17T06:00:00Z"
+          }
+        }, {
+          "in" : "query",
+          "name" : "validFor.startDateTime",
+          "description" : "For filtering: An instant of time, starting at the TimePeriod",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "date-time",
+            "example" : "2010-01-17T06:00:00Z"
+          }
+        }, {
+          "in" : "query",
+          "name" : "validFor.endDateTime",
+          "description" : "For filtering: An instant of time, ending at the TimePeriod.",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "date-time",
+            "example" : "2010-01-17T06:00:00Z"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "returns all catalogs",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Catalog"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "add a new catalog",
+        "operationId" : "addNewCatalog",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Catalog"
+              }
+            }
+          },
+          "description" : "Catalog to add",
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "created catalog",
+            "headers" : {
+              "Location" : {
+                "schema" : {
+                  "type" : "string",
+                  "format" : "uri"
+                },
+                "description" : "the url of the corresponding getter"
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Catalog"
+                }
+              }
+            },
+            "links" : {
+              "GetCatalogById" : {
+                "operationId" : "getCatalogById",
+                "parameters" : {
+                  "id" : "$requestBody#/id"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "invalid input, object invalid"
+          },
+          "409" : {
+            "description" : "an existing item already exists"
+          }
+        }
+      }
+    },
+    "/catalog/{id}" : {
+      "get" : {
+        "summary" : "retrieves requested catalog",
+        "operationId" : "getCatalogById",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "type" : "string",
+            "format" : "uuid"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "returns the requested catalog",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Catalog"
+                  }
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "requested catalog could not be found"
+          }
+        }
+      },
+      "put" : {
+        "summary" : "add a new catalog",
+        "operationId" : "updateCatalog",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "type" : "string",
+            "format" : "uuid"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Catalog"
+              }
+            }
+          },
+          "description" : "Catalog to add",
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "updated catalog",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Catalog"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "invalid input, object invalid"
+          }
+        }
+      }
+    },
+    "/category" : {
+      "get" : {
+        "summary" : "retrieves all categories",
+        "description" : "searchs for categories and filters the results",
+        "operationId" : "searchInCategories",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "fields",
+          "description" : "pass a filter for the requested attributes",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "query",
+          "name" : "skip",
+          "description" : "number of records to skip for pagination",
+          "required" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "minimum" : 0
+          }
+        }, {
+          "in" : "query",
+          "name" : "limit",
+          "description" : "maximum number of records to return",
+          "required" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "minimum" : 0,
+            "maximum" : 50
+          }
+        }, {
+          "in" : "query",
+          "name" : "lastUpdate",
+          "description" : "For filtering: Date and time of the last update",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "date-time",
+            "example" : "2010-01-17T06:00:00Z"
+          }
+        }, {
+          "in" : "query",
+          "name" : "version",
+          "description" : "For filtering: Category version",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "3.0"
+          }
+        }, {
+          "in" : "query",
+          "name" : "lifecycleStatus",
+          "description" : "For filtering: Used to indicate the current lifecycle status",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/components/schemas/LifecycleStatus"
+          }
+        }, {
+          "in" : "query",
+          "name" : "validFor.startDateTime",
+          "description" : "For filtering: An instant of time, starting at the TimePeriod",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "date-time",
+            "example" : "2010-01-17T06:00:00Z"
+          }
+        }, {
+          "in" : "query",
+          "name" : "validFor.endDateTime",
+          "description" : "For filtering: An instant of time, ending at the TimePeriod.",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "date-time",
+            "example" : "2010-01-17T06:00:00Z"
+          }
+        }, {
+          "in" : "query",
+          "name" : "parentId",
+          "description" : "For filtering: Unique identifier of the parent category",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "uuid",
+            "example" : "4711"
+          }
+        }, {
+          "in" : "query",
+          "name" : "isRoot",
+          "description" : "For filtering: If true, this Boolean indicates that the category is a root of categories",
+          "required" : false,
+          "schema" : {
+            "type" : "boolean",
+            "example" : true
+          }
+        }, {
+          "in" : "query",
+          "name" : "name",
+          "description" : "For filtering: Name of the catalog",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "@type",
+          "description" : "For filtering: Indicates the (class) type of catalog. For entity catalogs, this will be \"EntityCatalog\".",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other type"
+          }
+        }, {
+          "in" : "query",
+          "name" : "@schemaLocation",
+          "description" : "For filtering: This field provides a link to the schema describing this REST resource",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other schema location"
+          }
+        }, {
+          "in" : "query",
+          "name" : "@baseType",
+          "description" : "For filtering: Indicates<b> </b>the base (class) type of this REST resource",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "Other base type"
+          }
+        }, {
+          "in" : "query",
+          "name" : "subCategory.version",
+          "description" : "For filtering: Category version",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "4.0"
+          }
+        }, {
+          "in" : "query",
+          "name" : "subCategory.name",
+          "description" : "For filtering: Name of the category",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "Peng you are dead"
+          }
+        }, {
+          "in" : "query",
+          "name" : "subCategory.@referredType",
+          "description" : "For filtering: the class type of the referred Category",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "Peng"
+          }
+        }, {
+          "in" : "query",
+          "name" : "productOffering.name",
+          "description" : "For filtering: Name of the product offering",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "Peng you are dead"
+          }
+        }, {
+          "in" : "query",
+          "name" : "productOffering.@referredType",
+          "description" : "For filtering: the class type of the referred product offering",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "Peng"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "returns all categories",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Category"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "add a new category",
+        "operationId" : "addNewCategory",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Category"
+              }
+            }
+          },
+          "description" : "Category to add",
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "created category",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Category"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "invalid input, object invalid"
+          },
+          "409" : {
+            "description" : "an existing item already exists"
+          }
+        }
+      }
+    },
+    "/category/{id}" : {
+      "get" : {
+        "summary" : "retrieve requested category",
+        "operationId" : "getCategoryById",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "type" : "string",
+            "format" : "uuid"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "returns the requested category",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Category"
+                  }
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "requested category could not be found"
+          }
+        }
+      },
+      "put" : {
+        "summary" : "update category",
+        "operationId" : "updateCategory",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "type" : "string",
+            "format" : "uuid"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Category"
+              }
+            }
+          },
+          "description" : "Category to add",
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "updated category",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Category"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "invalid input, object invalid"
+          }
+        }
+      }
+    },
+    "/productSpecification" : {
+      "get" : {
+        "summary" : "searches product specifications",
+        "operationId" : "searchInProductSpecifications",
+        "description" : "By passing in the appropriate options, you can search for\navailable product specifications in the system\n",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "fields",
+          "description" : "pass a filter for the requested attributes",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "query",
+          "name" : "skip",
+          "description" : "number of records to skip for pagination",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "minimum" : 0
+          }
+        }, {
+          "in" : "query",
+          "name" : "limit",
+          "description" : "maximum number of records to return",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "minimum" : 0,
+            "maximum" : 50
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "search results matching criteria",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/ProductSpecification_Read"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "bad input parameter"
+          }
+        }
+      },
+      "post" : {
+        "summary" : "adds an inventory item",
+        "operationId" : "addProductSpecification",
+        "description" : "Adds an item to the system",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ProductSpecification_Write"
+              }
+            }
+          },
+          "description" : "Product Specification to add",
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "item created",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProductSpecification_Read"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "invalid input, object invalid"
+          },
+          "409" : {
+            "description" : "an existing item already exists"
+          }
+        }
+      }
+    },
+    "/productSpecification/{id}" : {
+      "get" : {
+        "summary" : "retrieves the requested product specification",
+        "operationId" : "getProductSpecificationById",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "type" : "string",
+            "format" : "uuid"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "returns the requested product specification",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProductSpecification_Read"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "requested item could not be found"
+          }
+        }
+      },
+      "put" : {
+        "summary" : "updates an existing product specification",
+        "operationId" : "updateProductSpecification",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "type" : "string",
+            "format" : "uuid"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "returns the updated resource",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProductSpecification_Read"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "requested item could not be found"
+          }
+        },
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ProductSpecification_Write"
+              }
+            }
+          },
+          "description" : "Product Specification to add",
+          "required" : true
+        }
+      }
+    },
+    "/productOffering" : {
+      "get" : {
+        "summary" : "searches productofferings",
+        "operationId" : "searchInProductOfferings",
+        "description" : "By passing in the appropriate options, you can search for\navailable inventory in the system\n",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "fields",
+          "description" : "pass a filter to optimize the result for the requested attributes",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "query",
+          "name" : "skip",
+          "description" : "number of records to skip for pagination",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "minimum" : 0
+          }
+        }, {
+          "in" : "query",
+          "name" : "limit",
+          "description" : "maximum number of records to return",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "minimum" : 0,
+            "maximum" : 50
+          }
+        }, {
+          "in" : "query",
+          "name" : "lastUpdate",
+          "description" : "For filtering: Date and time of the last update",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "date-time",
+            "example" : "2010-01-17T06:00:00Z"
+          }
+        }, {
+          "in" : "query",
+          "name" : "version",
+          "description" : "For filtering: Category version",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "3.0"
+          }
+        }, {
+          "in" : "query",
+          "name" : "lifecycleStatus",
+          "description" : "For filtering: Used to indicate the current lifecycle status",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/components/schemas/LifecycleStatus"
+          }
+        }, {
+          "in" : "query",
+          "name" : "validFor.startDateTime",
+          "description" : "For filtering: An instant of time, starting at the TimePeriod",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "date-time",
+            "example" : "2010-01-17T06:00:00Z"
+          }
+        }, {
+          "in" : "query",
+          "name" : "validFor.endDateTime",
+          "description" : "For filtering: An instant of time, ending at the TimePeriod.",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "date-time",
+            "example" : "2010-01-17T06:00:00Z"
+          }
+        }, {
+          "in" : "query",
+          "name" : "isBundle",
+          "description" : "For filtering: If true, this Boolean indicates that the product offering is a bundle",
+          "required" : false,
+          "schema" : {
+            "type" : "boolean",
+            "example" : false
+          }
+        }, {
+          "in" : "query",
+          "name" : "name",
+          "description" : "For filtering: Name of the product offering",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "@type",
+          "description" : "For filtering: Indicates the (class) type of catalog. For entity catalogs, this will be \"EntityCatalog\".",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other type"
+          }
+        }, {
+          "in" : "query",
+          "name" : "@schemaLocation",
+          "description" : "For filtering: This field provides a link to the schema describing this REST resource",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other schema location"
+          }
+        }, {
+          "in" : "query",
+          "name" : "@baseType",
+          "description" : "For filtering: Indicates<b> </b>the base (class) type of this REST resource",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "Other base type"
+          }
+        }, {
+          "in" : "query",
+          "name" : "place.name",
+          "description" : "For filtering: A user-friendly name for the place, such as \"Paris Store\", \"Londo Store, \"Main Store\"",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "Paris Store"
+          }
+        }, {
+          "in" : "query",
+          "name" : "place.address",
+          "description" : "For filtering: A string characterizing an address (for instance a formatted address or an identifier taken from an address database or an address API).",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "Main Street"
+          }
+        }, {
+          "in" : "query",
+          "name" : "place.role",
+          "description" : "For filtering: Role of the place (for instance: 'home delivery', 'shop retrieval')",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other role"
+          }
+        }, {
+          "in" : "query",
+          "name" : "place.@referredType",
+          "description" : "For filtering: class type of the referred Place object",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "Peng"
+          }
+        }, {
+          "in" : "query",
+          "name" : "serviceLevelAgreement.name",
+          "description" : "For filtering: Name of the service level agreement",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other agreement name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "serviceLevelAgreement.@referredType",
+          "description" : "For filtering: class type of referred Service Level Agreement\"",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "Peng"
+          }
+        }, {
+          "in" : "query",
+          "name" : "productSpecification.version",
+          "description" : "For filtering: Version of the product specification",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec version"
+          }
+        }, {
+          "in" : "query",
+          "name" : "productSpecification.name",
+          "description" : "For filtering: Name of the product specification",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "productSpecification.@referredType",
+          "description" : "For filtering: class type of referred Product Specification",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "Peng"
+          }
+        }, {
+          "in" : "query",
+          "name" : "serviceCandidate.version",
+          "description" : "For filtering: Version of the service candidate",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "serviceCandidate.name",
+          "description" : "For filtering: Name of the service candidate",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "serviceCandidate.@referredType",
+          "description" : "For filtering: The Class type of  referred Service Candidate",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "Peng"
+          }
+        }, {
+          "in" : "query",
+          "name" : "attachment.type",
+          "description" : "For filtering: Attachment type such as video, picture",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "attachment.url",
+          "description" : "For filtering: Uniform Resource Locator, is a web page address (a subset of URI)",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "attachment.mimeType",
+          "description" : "For filtering: Attachment mime type such as extension file for video, picture and document",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "attachment.@type",
+          "description" : "For filtering: the class type of the Attachment",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "attachment.@baseType",
+          "description" : "For filtering: The immediate base class type of the attachment",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "attachment.@schemaLocation",
+          "description" : "For filtering: A link to the schema describing this attachment entity",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "category.version",
+          "description" : "For filtering: Category version",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "category.name",
+          "description" : "For filtering: Name of the category",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "category.@referredType",
+          "description" : "For filtering: the class type of the referred Category",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "Peng"
+          }
+        }, {
+          "in" : "query",
+          "name" : "resourceCandidate.version",
+          "description" : "For filtering: resource candidate version",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "resourceCandidate.name",
+          "description" : "For filtering: Name of the resource candidate",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "resourceCandidate.@referredType",
+          "description" : "For filtering: the class type of the referred resource candidate",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "Peng"
+          }
+        }, {
+          "in" : "query",
+          "name" : "productOfferingTerm.name",
+          "description" : "For filtering: Name of the productOfferingTerm",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "productOfferingTerm.@type",
+          "description" : "For filtering: The class type of ProductOfferingTerm",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "productOfferingTerm.@schemaLocation",
+          "description" : "For filtering: A link to the schema describing this product offering term",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "marketSegment.name",
+          "description" : "For filtering: Name of the market segment",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "marketSegment.@referredType",
+          "description" : "For filtering: (Class) type of the referred market segment",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "productOfferingPrice.name",
+          "description" : "For filtering: Name of the product Offering Price",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "productOfferingPrice.priceType",
+          "description" : "For filtering: Indicates the price type: recurring, one time, usage",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "priceType"
+          }
+        }, {
+          "in" : "query",
+          "name" : "productOfferingPrice.unitOfMeasure.amount",
+          "description" : "For filtering: Could be minutes, GB...",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "100"
+          }
+        }, {
+          "in" : "query",
+          "name" : "productOfferingPrice.unitOfMeasure.units",
+          "description" : "For filtering: Could be minutes, GB...",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "GB"
+          }
+        }, {
+          "in" : "query",
+          "name" : "productOfferingPrice.recurringChargePeriodType",
+          "description" : "For filtering: Could be month, week...",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "week"
+          }
+        }, {
+          "in" : "query",
+          "name" : "productOfferingPrice.recurringChargePeriodLength",
+          "description" : "For filtering: Could be month, 2 (weeks) ...",
+          "required" : false,
+          "schema" : {
+            "type" : "number",
+            "example" : 2
+          }
+        }, {
+          "in" : "query",
+          "name" : "productOfferingPrice.version",
+          "description" : "For filtering: ProductOffering version",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "week"
+          }
+        }, {
+          "in" : "query",
+          "name" : "productOfferingPrice.@type",
+          "description" : "For filtering: the class type of the productOfferingPrice",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "productOfferingPrice.@baseType",
+          "description" : "For filtering: The immediate base class type of the productOfferingPrice",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "productOfferingPrice.@schemaLocation",
+          "description" : "For filtering: A link to the schema describing this productOfferingPrice entity",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "productOfferingPrice.isBundle",
+          "description" : "For filtering: a flag indicating if this product offering price is bundle (composite) or not",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : true
+          }
+        }, {
+          "in" : "query",
+          "name" : "agreement.name",
+          "description" : "For filtering: Name of the agreement",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "agreement.@referredType",
+          "description" : "For filtering: (Class) type of the referred agreement",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "bundledProductOffering.lifecycleStatus",
+          "description" : "For filtering: Used to indicate the current lifecycle status",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/components/schemas/LifecycleStatus"
+          }
+        }, {
+          "in" : "query",
+          "name" : "bundledProductOffering.name",
+          "description" : "For filtering: Name of the BundledProductOffering",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "prodSpecCharValueUse.name",
+          "description" : "For filtering: Name of the associated productSpecCharacteristic",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "prodSpecCharValueUse.valueType",
+          "description" : "For filtering: A kind of value that the characteristic can take on, such as numeric, text and so forth",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "example" : "other product spec name"
+          }
+        }, {
+          "in" : "query",
+          "name" : "prodSpecCharValueUse.minCardinality",
+          "description" : "For filtering: The minimum number of instances a CharacteristicValue can take on. For example, zero to five phone numbers in a group calling plan, where zero is the value for the minCardinality.",
+          "required" : false,
+          "schema" : {
+            "type" : "number",
+            "example" : 1
+          }
+        }, {
+          "in" : "query",
+          "name" : "prodSpecCharValueUse.maxCardinality",
+          "description" : "For filtering: The maximum number of instances a CharacteristicValue can take on. For example, zero to five phone numbers in a group calling plan, where five is the value for the maxCardinality",
+          "required" : false,
+          "schema" : {
+            "type" : "number",
+            "example" : 50
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "search results matching criteria",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/ProductOffering_Read"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "bad input parameter"
+          }
+        }
+      },
+      "post" : {
+        "summary" : "adds a product offering",
+        "operationId" : "addProductOffering",
+        "description" : "Adds an item to the system",
+        "responses" : {
+          "201" : {
+            "description" : "item created",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProductOffering_Read"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "invalid input, object invalid"
+          },
+          "409" : {
+            "description" : "an existing item already exists"
+          }
+        },
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ProductOffering_Write"
+              }
+            }
+          },
+          "description" : "Product Specification to add",
+          "required" : true
+        }
+      }
+    },
+    "/productOffering/{id}" : {
+      "get" : {
+        "summary" : "retrieves the requested product offering",
+        "operationId" : "getProductOfferingById",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "type" : "string",
+            "format" : "uuid"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "returns the requested product offering",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProductOffering_Read"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "requested item could not be found"
+          }
+        }
+      },
+      "put" : {
+        "summary" : "updates an existing product offering",
+        "operationId" : "updateProductOffering",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "type" : "string",
+            "format" : "uuid"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ProductOffering_Write"
+              }
+            }
+          },
+          "description" : "Product Specification to add",
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "returns the updated resource",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProductOffering_Read"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "requested item could not be found"
+          }
+        }
+      }
+    },
+    "/productOfferingPrice" : {
+      "get" : {
+        "summary" : "searches productoffering prices",
+        "operationId" : "searchProductOfferingPrices",
+        "description" : "By passing in the appropriate options, you can search for\navailable inventory in the system\n",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "fields",
+          "description" : "filter the result for the given fields",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "query",
+          "name" : "skip",
+          "description" : "number of records to skip for pagination",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "minimum" : 0
+          }
+        }, {
+          "in" : "query",
+          "name" : "limit",
+          "description" : "maximum number of records to return",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "minimum" : 0,
+            "maximum" : 50
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "name",
+          "description" : "For filtering: Name of the productOfferingPrice",
+          "schema" : {
+            "type" : "string",
+            "example" : "My product offering price name"
+          }
+        }, {
+          "required" : false,
+          "in" : "query",
+          "name" : "version",
+          "description" : "For filtering: ProductOffering version",
+          "schema" : {
+            "type" : "string",
+            "example" : "My product offering price version"
+          }
+        }, {
+          "name" : "validFor.startDateTime",
+          "required" : false,
+          "in" : "query",
+          "description" : "For filtering: An instant of time, starting at the TimePeriod",
+          "schema" : {
+            "format" : "date-time",
+            "type" : "string",
+            "example" : "2015-08-15T08:07:00Z"
+          }
+        }, {
+          "in" : "query",
+          "name" : "validFor.endDateTime",
+          "required" : false,
+          "description" : "For filtering: An instant of time, ending at the TimePeriod.",
+          "schema" : {
+            "type" : "string",
+            "format" : "date-time",
+            "example" : "2014-08-15T08:07:00Z"
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "priceType",
+          "description" : "For filtering: A category that describes the price, such as recurring, discount, allowance, penalty, and so forth.",
+          "schema" : {
+            "type" : "string",
+            "example" : "My product offering price type"
+          }
+        }, {
+          "in" : "query",
+          "name" : "unitOfMeasure.amount",
+          "required" : false,
+          "description" : "For filtering: A positive floating point number",
+          "schema" : {
+            "format" : "float",
+            "type" : "number",
+            "example" : 1000
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "unitOfMeasure.units",
+          "description" : "For filtering: Currency (ISO4217 norm uses 3 letters to define the currency)",
+          "schema" : {
+            "type" : "string",
+            "example" : "kg"
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "recurringChargePeriodType",
+          "description" : "For filtering: The period to repeat the application of the price\\nCould be month, week...",
+          "schema" : {
+            "type" : "string",
+            "example" : "week"
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "recurringChargePeriodLength",
+          "description" : "For filtering: the period of the recurring charge:  1, 2, ... .It sets to zero if it is not applicable",
+          "schema" : {
+            "type" : "integer",
+            "example" : 2
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "@type",
+          "description" : "For filtering: The class type of this Product offering",
+          "schema" : {
+            "type" : "string",
+            "example" : "BaseProductOfferingPrice"
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "@baseType",
+          "description" : "For filtering: the immediate base class type of this product offering",
+          "schema" : {
+            "type" : "string",
+            "example" : "ConcreteProductOfferingPrice"
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "@schemaLocation",
+          "description" : "For filtering: hyperlink reference to the schema describing this resource",
+          "schema" : {
+            "type" : "string",
+            "format" : "uri",
+            "example" : "http://localhost:8091/qr/code"
+          }
+        }, {
+          "in" : "query",
+          "name" : "lastUpdate",
+          "required" : false,
+          "description" : "For filtering: the last update time of this POP",
+          "schema" : {
+            "type" : "string",
+            "format" : "date-time",
+            "example" : "2016-08-15T08:07:00Z"
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "isBundle",
+          "description" : "For filtering: A flag indicating if this POP is composite (bundle) or not",
+          "schema" : {
+            "type" : "boolean",
+            "example" : true
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "lifecycleStatus",
+          "description" : "For filtering: the lifecycle status of this POP",
+          "schema" : {
+            "$ref" : "#/components/schemas/LifecycleStatus"
+          }
+        }, {
+          "in" : "query",
+          "name" : "price.value",
+          "required" : false,
+          "description" : "For filtering: A positive floating point number",
+          "schema" : {
+            "type" : "number",
+            "format" : "float",
+            "example" : 7
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "price.units",
+          "description" : "For filtering: Currency (ISO4217 norm uses 3 letters to define the currency)",
+          "schema" : {
+            "type" : "string",
+            "example" : "EUR"
+          }
+        }, {
+          "in" : "query",
+          "name" : "percentage",
+          "required" : false,
+          "description" : "For filtering: Percentage to apply for ProdOfferPriceAlteration (Discount)",
+          "schema" : {
+            "type" : "number",
+            "format" : "float",
+            "example" : 17
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "bundledPopRelationship.name",
+          "description" : "For filtering: Name of  the associated product offering",
+          "schema" : {
+            "type" : "string",
+            "example" : "A pop bundle rel"
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "bundledPopRelationship.@type",
+          "description" : "For filtering: (Class) type of the associated product offering",
+          "schema" : {
+            "type" : "string",
+            "example" : "a pop bundle rel type"
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "popRelationship.name",
+          "description" : "For filtering: Name of  the associated product offering",
+          "schema" : {
+            "type" : "string",
+            "example" : "A pop rel"
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "popRelationship.@type",
+          "description" : "For filtering: (Class) type of the associated product offering",
+          "schema" : {
+            "type" : "string",
+            "example" : "a pop rel type"
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "prodSpecCharValueUse.name",
+          "description" : "For filtering: Name of the associated productSpecCharacteristic",
+          "schema" : {
+            "type" : "string",
+            "example" : "spec name"
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "prodSpecCharValueUse.valueType",
+          "description" : "For filtering: A kind of value that the characteristic can take on, such as numeric, text and so forth",
+          "schema" : {
+            "type" : "string",
+            "example" : "number"
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "prodSpecCharValueUse.minCardinality",
+          "description" : "For filtering: The minimum number of instances a CharacteristicValue can take on. For example, zero to five phone numbers in a group calling plan, where zero is the value for the minCardinality.",
+          "schema" : {
+            "type" : "integer",
+            "example" : 1
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "prodSpecCharValueUse.maxCardinality",
+          "description" : "For filtering: The maximum number of instances a CharacteristicValue can take on. For example, zero to five phone numbers in a group calling plan, where five is the value for the maxCardinality.",
+          "schema" : {
+            "type" : "integer",
+            "example" : 10
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "productOfferingTerm.name",
+          "description" : "For filtering: Name of the productOfferingTerm",
+          "schema" : {
+            "type" : "string",
+            "example" : "prod offering term name"
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "productOfferingTerm.@type",
+          "description" : "For filtering: The class type of ProductOfferingTerm",
+          "schema" : {
+            "type" : "string",
+            "example" : "prod offering term type"
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "productOfferingTerm.@schemaLocation",
+          "description" : "For filtering: A link to the schema describing this product offering term",
+          "schema" : {
+            "type" : "string",
+            "example" : "http://localhost:8091/qr/code"
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "place.name",
+          "description" : "For filtering: A user-friendly name for the place, such as \"Paris Store\", \"London Store\", \"Main Home\"",
+          "schema" : {
+            "type" : "string",
+            "example" : "Main Store"
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "place.address",
+          "description" : "For filtering: A string characterizing an address (for instance a formatted address or an identifier taken from an address database or an address API).",
+          "schema" : {
+            "type" : "string",
+            "example" : "Baker Street 7"
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "place.@referredType",
+          "description" : "For filtering: class type of the referred Place object",
+          "schema" : {
+            "type" : "string",
+            "example" : "Place Ref Type"
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "place.role",
+          "description" : "For filtering: Role of the place (for instance: \"home delivery\", \"shop retrieval\")",
+          "schema" : {
+            "type" : "string",
+            "example" : "Home Delivery"
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "constraint.version",
+          "description" : "For filtering: constraint version",
+          "schema" : {
+            "type" : "string",
+            "example" : "17.6.3"
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "constraint.name",
+          "description" : "For filtering: Name given to the constraint",
+          "schema" : {
+            "type" : "string",
+            "example" : "Constraint name 4"
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "constraint.@referredType",
+          "description" : "For filtering: The (class) type of the referred constraint",
+          "schema" : {
+            "type" : "string",
+            "example" : "Ref Type"
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "pricingLogicAlgorithm.name",
+          "description" : "For filtering: Name given to the PLA",
+          "schema" : {
+            "type" : "string",
+            "example" : "Price Algo Name"
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "pricingLogicAlgorithm.plaSpecId",
+          "description" : "For filtering: id of corresponding PLA specification",
+          "schema" : {
+            "type" : "string",
+            "example" : "plaSpecId"
+          }
+        }, {
+          "in" : "query",
+          "required" : false,
+          "name" : "pricingLogicAlgorithm.@type",
+          "description" : "For filtering: The class type of this PLA",
+          "schema" : {
+            "type" : "string",
+            "example" : "Pricing Algo Type"
+          }
+        }, {
+          "in" : "query",
+          "name" : "tax.taxRate",
+          "required" : false,
+          "description" : "For filtering: Tax rate",
+          "schema" : {
+            "type" : "number",
+            "format" : "float",
+            "example" : 19
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "search results matching criteria",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/ProductOfferingPrice_Read"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "bad input parameter"
+          }
+        }
+      },
+      "post" : {
+        "summary" : "adds a product offering price",
+        "operationId" : "addProductOfferingPrice",
+        "description" : "Adds an item to the system",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ProductOfferingPrice"
+              }
+            }
+          },
+          "description" : "Product Specification to add",
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "item created",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProductOfferingPrice_Read"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "invalid input, object invalid"
+          },
+          "409" : {
+            "description" : "an existing item already exists"
+          }
+        }
+      }
+    },
+    "/productOfferingPrice/{id}" : {
+      "get" : {
+        "summary" : "retrieves the requested product offering price",
+        "operationId" : "getProductOfferingPriceById",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "type" : "string",
+            "format" : "uuid"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "returns the requested product offering",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProductOfferingPrice_Read"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "requested item could not be found"
+          }
+        }
+      },
+      "put" : {
+        "summary" : "updates an existing product offering",
+        "operationId" : "updateProductOffering",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "type" : "string",
+            "format" : "uuid"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ProductOfferingPrice"
+              }
+            }
+          },
+          "description" : "Product Specification to add",
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "returns the updated resource",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProductOfferingPrice_Read"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "requested item could not be found"
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "Catalog" : {
+        "required" : [ "id", "href", "name" ],
+        "properties" : {
+          "id" : {
+            "title" : "ID",
+            "type" : "string",
+            "format" : "uuid",
+            "readOnly" : true,
+            "example" : "d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "href" : {
+            "title" : "HREF",
+            "type" : "string",
+            "format" : "uri",
+            "readOnly" : true,
+            "example" : "https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "name" : {
+            "title" : "Name",
+            "type" : "string",
+            "example" : "Mustermann Master Catalog"
+          },
+          "version" : {
+            "title" : "Version",
+            "type" : "string",
+            "example" : "1"
+          },
+          "lastUpdate" : {
+            "title" : "Last update",
+            "type" : "string",
+            "format" : "date-time",
+            "example" : "2016-08-29T09:12:33Z"
+          },
+          "type" : {
+            "title" : "Catalog type",
+            "type" : "string",
+            "example" : "PRODUCT_CATALOG"
+          },
+          "lifecycleStatus" : {
+            "$ref" : "#/components/schemas/LifecycleStatus"
+          },
+          "validFor" : {
+            "$ref" : "#/components/schemas/TimePeriod"
+          },
+          "@type" : {
+            "title" : "Schema type",
+            "type" : "string",
+            "example" : "TariffSpecification"
+          },
+          "@baseType" : {
+            "title" : "Schema base type",
+            "type" : "string",
+            "example" : "ProductSpecification"
+          },
+          "@schemaLocation" : {
+            "title" : "Schema location",
+            "type" : "string",
+            "format" : "uri",
+            "example" : "https://tmforum.nttdata.com/schemas/Tariff.yml"
+          },
+          "category" : {
+            "type" : "array",
+            "title" : "Top level categories",
+            "description" : "List of all top level of this catalog",
+            "items" : {
+              "$ref" : "#/components/schemas/CategoryRef"
+            }
+          },
+          "relatedParty" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/RelatedPartyRef"
+            }
+          }
+        }
+      },
+      "Category" : {
+        "type" : "object",
+        "description" : "The category resource is used to group product offerings, service and resource candidates in logical containers. Categories can contain other categories and/or product offerings, resource or service candidates.",
+        "required" : [ "id", "href", "name" ],
+        "properties" : {
+          "id" : {
+            "title" : "ID",
+            "type" : "string",
+            "format" : "uuid",
+            "readOnly" : true,
+            "example" : "d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "href" : {
+            "title" : "HREF",
+            "type" : "string",
+            "format" : "uri",
+            "readOnly" : true,
+            "example" : "https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "name" : {
+            "title" : "Name",
+            "type" : "string",
+            "example" : "Mustermann Master Catalog"
+          },
+          "description" : {
+            "title" : "Description",
+            "type" : "string",
+            "example" : "Description for Mustermann Master Catalog"
+          },
+          "version" : {
+            "title" : "Version",
+            "type" : "string",
+            "example" : "1"
+          },
+          "lastUpdate" : {
+            "title" : "Last update",
+            "type" : "string",
+            "format" : "date-time",
+            "example" : "2016-08-29T09:12:33Z"
+          },
+          "lifecycleStatus" : {
+            "$ref" : "#/components/schemas/LifecycleStatus"
+          },
+          "validFor" : {
+            "$ref" : "#/components/schemas/TimePeriod"
+          },
+          "parentId" : {
+            "title" : "Parent ID",
+            "type" : "string",
+            "format" : "uuid",
+            "example" : "d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "isRoot" : {
+            "type" : "boolean",
+            "description" : "If true, this Boolean indicates that the category is a root of categories",
+            "example" : true
+          },
+          "@type" : {
+            "title" : "Schema type",
+            "type" : "string",
+            "example" : "TariffSpecification"
+          },
+          "@baseType" : {
+            "title" : "Schema base type",
+            "type" : "string",
+            "example" : "ProductSpecification"
+          },
+          "@schemaLocation" : {
+            "title" : "Schema location",
+            "type" : "string",
+            "format" : "uri",
+            "example" : "https://tmforum.nttdata.com/schemas/Tariff.yml"
+          },
+          "subCategory" : {
+            "type" : "array",
+            "title" : "Child categories",
+            "description" : "List of all child categories of this category",
+            "items" : {
+              "$ref" : "#/components/schemas/CategoryRef"
+            }
+          },
+          "productOffering" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/ProductOfferingRef"
+            }
+          }
+        }
+      },
+      "CategoryRef" : {
+        "required" : [ "id", "href" ],
+        "properties" : {
+          "id" : {
+            "title" : "ID",
+            "type" : "string",
+            "format" : "uuid",
+            "example" : "d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "href" : {
+            "title" : "HREF",
+            "type" : "string",
+            "format" : "uri",
+            "example" : "https://tmforum.nttdata.com/category/d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "name" : {
+            "title" : "Name",
+            "type" : "string",
+            "example" : "Mustermann Master Catalog"
+          },
+          "version" : {
+            "title" : "Version",
+            "type" : "string",
+            "example" : "1"
+          },
+          "@referredType" : {
+            "title" : "Referred Type",
+            "type" : "string",
+            "example" : "other catalog type"
+          }
+        }
+      },
+      "ProductSpecification_Write" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/ProductSpecification"
+        } ]
+      },
+      "ProductSpecification_Read" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/ProductSpecification"
+        }, {
+          "required" : [ "id", "href", "version", "lifecycleStatus", "validFor" ],
+          "properties" : {
+            "id" : {
+              "title" : "ID",
+              "type" : "string",
+              "format" : "uuid",
+              "readOnly" : true,
+              "example" : "d290f1ee-6c54-4b01-90e6-d701748f0851"
+            },
+            "href" : {
+              "title" : "HREF",
+              "type" : "string",
+              "format" : "uri",
+              "readOnly" : true,
+              "example" : "https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851"
+            }
+          },
+          "type" : "object"
+        } ]
+      },
+      "ProductSpecification" : {
+        "description" : "ProductSpecification is a detailed description of a tangible or intangible object made available externally in the form of a ProductOffering to customers or other parties playing a party role.",
+        "type" : "object",
+        "required" : [ "name" ],
+        "properties" : {
+          "name" : {
+            "title" : "Name",
+            "type" : "string",
+            "example" : "Widget Adapter"
+          },
+          "description" : {
+            "title" : "Description",
+            "type" : "string",
+            "example" : "Description for the Widget Adapter specification"
+          },
+          "brand" : {
+            "title" : "Brand",
+            "type" : "string",
+            "example" : "ALDItalk"
+          },
+          "isBundle" : {
+            "title" : "Bundle",
+            "type" : "boolean",
+            "example" : false
+          },
+          "lastUpdate" : {
+            "title" : "Last update",
+            "type" : "string",
+            "format" : "date-time",
+            "example" : "2016-08-29T09:12:33Z"
+          },
+          "lifecycleStatus" : {
+            "$ref" : "#/components/schemas/LifecycleStatus"
+          },
+          "productNumber" : {
+            "title" : "Product number",
+            "type" : "string",
+            "example" : "ABC1234"
+          },
+          "validFor" : {
+            "$ref" : "#/components/schemas/TimePeriod"
+          },
+          "version" : {
+            "title" : "Version",
+            "type" : "string",
+            "example" : "1"
+          },
+          "@type" : {
+            "title" : "Schema type",
+            "type" : "string",
+            "example" : "TariffSpecification"
+          },
+          "@baseType" : {
+            "title" : "Schema base type",
+            "type" : "string",
+            "example" : "ProductSpecification"
+          },
+          "@schemaLocation" : {
+            "title" : "Schema location",
+            "type" : "string",
+            "format" : "uri",
+            "example" : "https://tmforum.nttdata.com/schemas/Tariff.yml"
+          },
+          "targetProductSchema" : {
+            "$ref" : "#/components/schemas/TargetProductSchemaRef"
+          },
+          "resourceSpecification" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/ResouceSpecificationRef"
+            }
+          },
+          "serviceSpecification" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/ServiceSpecificationRef"
+            }
+          },
+          "productSpecCharacteristic" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/ProductSpecCharacteristic"
+            }
+          },
+          "productSpecificationRelationship" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/ProductSpecificationRelationship"
+            }
+          },
+          "attachment" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Attachment"
+            }
+          },
+          "relatedParty" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/RelatedPartyRef"
+            }
+          }
+        },
+        "oneOf" : [ {
+          "$ref" : "#/components/schemas/Empty"
+        }, {
+          "$ref" : "#/components/schemas/BundledProductSpecificationArray"
+        } ],
+        "discriminator" : {
+          "propertyName" : "isBundle",
+          "mapping" : {
+            "true" : "BundledProductSpecificationArray",
+            "false" : "Empty"
+          }
+        }
+      },
+      "ProductOffering_Write" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/ProductOffering"
+        } ]
+      },
+      "ProductOffering_Read" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/ProductOffering"
+        }, {
+          "required" : [ "id", "href", "lifecycleStatus", "validFor" ],
+          "type" : "object"
+        } ]
+      },
+      "ProductOffering" : {
+        "title" : "ProductOffering",
+        "description" : "The Product Offering resource represents entities that are orderable from the provider of the catalog, this resource includes pricing information.",
+        "type" : "object",
+        "required" : [ "name", "isBundle" ],
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "format" : "uuid",
+            "readOnly" : true,
+            "example" : "d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "href" : {
+            "type" : "string",
+            "format" : "uri",
+            "readOnly" : true,
+            "example" : "https://tmforum.nttdata.com/productOffering/d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "name" : {
+            "type" : "string",
+            "example" : "Widget Adapter"
+          },
+          "description" : {
+            "type" : "string",
+            "example" : "Description for the Widget Adapter Offering"
+          },
+          "isBundle" : {
+            "type" : "boolean",
+            "example" : false
+          },
+          "lastUpdate" : {
+            "title" : "Last update",
+            "type" : "string",
+            "format" : "date-time",
+            "example" : "2016-08-29T09:12:33Z"
+          },
+          "lifecycleStatus" : {
+            "$ref" : "#/components/schemas/LifecycleStatus"
+          },
+          "validFor" : {
+            "$ref" : "#/components/schemas/TimePeriod"
+          },
+          "version" : {
+            "title" : "Version",
+            "type" : "string",
+            "example" : "1"
+          },
+          "@type" : {
+            "title" : "Schema type",
+            "type" : "string",
+            "example" : "TariffOffering"
+          },
+          "@baseType" : {
+            "title" : "Schema base type",
+            "type" : "string",
+            "example" : "ProductOffering"
+          },
+          "@schemaLocation" : {
+            "title" : "Schema location",
+            "type" : "string",
+            "format" : "uri",
+            "example" : "https://tmforum.nttdata.com/schemas/TariffOffering.yml"
+          },
+          "isSellable" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "category" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/CategoryRef"
+            }
+          },
+          "agreement" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/AgreementRef"
+            }
+          },
+          "marketSegment" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/MarketSegmentRef"
+            }
+          },
+          "attachment" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Attachment"
+            }
+          },
+          "productOfferingPrice" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/ProductOfferingPrice_Read"
+            }
+          },
+          "productOfferingTerm" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/ProductOfferingTerm"
+            }
+          },
+          "resourceCandidate" : {
+            "$ref" : "#/components/schemas/ResourceCandidateRef"
+          },
+          "serviceCandidate" : {
+            "$ref" : "#/components/schemas/ServiceCandidateRef"
+          },
+          "serviceLevelAgreement" : {
+            "$ref" : "#/components/schemas/SLARef"
+          },
+          "prodSpecCharValueUse" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/ProdSpecCharValueUse"
+            }
+          },
+          "channel" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/ChannelRef"
+            }
+          },
+          "place" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/PlaceRef"
+            }
+          }
+        },
+        "oneOf" : [ {
+          "$ref" : "#/components/schemas/ProductSpecificationRefRef"
+        }, {
+          "$ref" : "#/components/schemas/BundledProductOfferingArray"
+        } ],
+        "discriminator" : {
+          "propertyName" : "isBundle",
+          "mapping" : {
+            "true" : "BundledProductOfferingArray",
+            "false" : "ProductSpecificationRefRef"
+          }
+        }
+      },
+      "Empty" : {
+        "description" : "An empty object"
+      },
+      "BundledProductSpecificationArray" : {
+        "properties" : {
+          "bundledProductSpecification" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/BundledProductSpecification"
+            }
+          }
+        }
+      },
+      "BundledProductOfferingArray" : {
+        "properties" : {
+          "bundledProductOffering" : {
+            "type" : "array",
+            "minItems" : 1,
+            "items" : {
+              "$ref" : "#/components/schemas/BundledProductOffering"
+            }
+          }
+        }
+      },
+      "ProductSpecificationRefRef" : {
+        "properties" : {
+          "productSpecification" : {
+            "$ref" : "#/components/schemas/ProductSpecificationRef"
+          }
+        }
+      },
+      "ProductOfferingPrice_Read" : {
+        "title" : "ProductOfferingPrice_Read",
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/ProductOfferingPrice"
+        }, {
+          "type" : "object",
+          "required" : [ "id", "href" ],
+          "properties" : {
+            "id" : {
+              "type" : "string",
+              "format" : "uuid",
+              "example" : "d290f1ee-6c54-4b01-90e6-d701748f0851"
+            },
+            "href" : {
+              "type" : "string",
+              "format" : "uri",
+              "example" : "https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851"
+            }
+          }
+        } ]
+      },
+      "ProductOfferingPrice" : {
+        "title" : "ProductOfferingPrice",
+        "description" : "The Product Offering resource represents entities that are orderable from the provider of the catalog, this resource includes pricing information.",
+        "type" : "object",
+        "required" : [ "name", "isBundle" ],
+        "properties" : {
+          "name" : {
+            "type" : "string",
+            "example" : "Widget Adapter Price"
+          },
+          "description" : {
+            "type" : "string",
+            "example" : "Description for the Widget Adapter Price"
+          },
+          "version" : {
+            "type" : "string",
+            "example" : "2"
+          },
+          "validFor" : {
+            "$ref" : "#/components/schemas/TimePeriod"
+          },
+          "priceType" : {
+            "type" : "string",
+            "example" : "myPriceType"
+          },
+          "unitOfMeasure" : {
+            "$ref" : "#/components/schemas/Quantity"
+          },
+          "recurringChargePeriodType" : {
+            "type" : "string"
+          },
+          "recurringChargePeriodLength" : {
+            "type" : "number"
+          },
+          "isBundle" : {
+            "type" : "boolean",
+            "example" : false
+          },
+          "lastUpdate" : {
+            "title" : "Last update",
+            "type" : "string",
+            "format" : "date-time",
+            "example" : "2016-08-29T09:12:33Z"
+          },
+          "lifecycleStatus" : {
+            "$ref" : "#/components/schemas/LifecycleStatus"
+          },
+          "price" : {
+            "$ref" : "#/components/schemas/Money"
+          },
+          "percentage" : {
+            "type" : "number",
+            "example" : 0.2
+          },
+          "@type" : {
+            "title" : "Schema type",
+            "type" : "string",
+            "example" : "TariffSpecification"
+          },
+          "@baseType" : {
+            "title" : "Schema base type",
+            "type" : "string",
+            "example" : "ProductSpecification"
+          },
+          "@schemaLocation" : {
+            "title" : "Schema location",
+            "type" : "string",
+            "format" : "uri",
+            "example" : "https://tmforum.nttdata.com/schemas/Tariff.yml"
+          },
+          "pricingLogicAlgorithm" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/PricingLogicAlgorithm"
+            }
+          },
+          "prodSpecCharValueUse" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/ProdSpecCharValueUse"
+            }
+          },
+          "productOfferingTerm" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/ProductOfferingTerm"
+            }
+          },
+          "tax" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Tax"
+            }
+          },
+          "constraint" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/ConstraintRef"
+            }
+          },
+          "place" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/PlaceRef"
+            }
+          },
+          "bundledPopRelationship" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/BundledPopRelationship"
+            }
+          },
+          "popRelationship" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/PopRelationship"
+            }
+          }
+        }
+      },
+      "ProductSpecificationRef" : {
+        "required" : [ "id", "href" ],
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "format" : "uuid",
+            "example" : "d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "href" : {
+            "type" : "string",
+            "format" : "uri",
+            "example" : "https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "name" : {
+            "type" : "string",
+            "example" : "Widget Adapter"
+          },
+          "version" : {
+            "type" : "string",
+            "example" : "4.5.0"
+          },
+          "@referredType" : {
+            "type" : "string",
+            "example" : "referred type prod spec"
+          }
+        },
+        "type" : "object"
+      },
+      "ProductOfferingRef" : {
+        "required" : [ "id", "href" ],
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "format" : "uuid",
+            "example" : "d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "href" : {
+            "type" : "string",
+            "format" : "uri",
+            "example" : "https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "name" : {
+            "type" : "string",
+            "example" : "Widget Adapter2"
+          },
+          "@referredType" : {
+            "type" : "string",
+            "example" : "ProductOffering"
+          }
+        },
+        "type" : "object"
+      },
+      "BundledProductOffering" : {
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "title" : "ID",
+            "format" : "uuid",
+            "example" : "d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "href" : {
+            "type" : "string",
+            "title" : "href",
+            "format" : "uri",
+            "example" : "https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "lifecycleStatus" : {
+            "$ref" : "#/components/schemas/LifecycleStatus"
+          },
+          "name" : {
+            "type" : "string",
+            "example" : "Widget Adapter"
+          },
+          "bundledProductOffering" : {
+            "$ref" : "#/components/schemas/BundledProdOfferOption"
+          }
+        },
+        "type" : "object"
+      },
+      "BundledProdOfferOption" : {
+        "type" : "object",
+        "properties" : {
+          "numberRelOfferLowerLimit" : {
+            "type" : "number"
+          },
+          "numberRelOfferUpperLimit" : {
+            "type" : "number"
+          },
+          "numberRelOfferDefault" : {
+            "type" : "number"
+          }
+        }
+      },
+      "PricingLogicAlgorithm" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "title" : "ID",
+            "format" : "uuid",
+            "example" : "d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "href" : {
+            "type" : "string",
+            "title" : "href",
+            "format" : "uri",
+            "example" : "https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "name" : {
+            "type" : "string",
+            "example" : "Widget Adapter"
+          },
+          "description" : {
+            "type" : "string",
+            "example" : "Widget Adapter"
+          },
+          "validFor" : {
+            "$ref" : "#/components/schemas/TimePeriod"
+          },
+          "plaSpecId" : {
+            "type" : "string",
+            "example" : "Widget Adapter"
+          },
+          "@type" : {
+            "type" : "string",
+            "example" : "Widget Adapter"
+          }
+        }
+      },
+      "Tax" : {
+        "type" : "object",
+        "properties" : {
+          "taxAmount" : {
+            "$ref" : "#/components/schemas/Money"
+          },
+          "taxCategory" : {
+            "type" : "string",
+            "example" : "Umsatzsteuer"
+          },
+          "taxRate" : {
+            "type" : "number",
+            "example" : 0.19
+          }
+        }
+      },
+      "BundledPopRelationship" : {
+        "type" : "object",
+        "required" : [ "id", "href" ],
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "title" : "ID",
+            "format" : "uuid",
+            "example" : "d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "href" : {
+            "type" : "string",
+            "title" : "href",
+            "format" : "uri",
+            "example" : "https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "name" : {
+            "type" : "string",
+            "example" : "Widget Adapter"
+          },
+          "@type" : {
+            "type" : "string",
+            "example" : "Widget Adapter"
+          }
+        }
+      },
+      "PopRelationship" : {
+        "type" : "object",
+        "required" : [ "id", "href" ],
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "title" : "ID",
+            "format" : "uuid",
+            "example" : "d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "href" : {
+            "type" : "string",
+            "title" : "href",
+            "format" : "uri",
+            "example" : "https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "name" : {
+            "type" : "string",
+            "example" : "Widget Adapter"
+          },
+          "@type" : {
+            "type" : "string",
+            "example" : "Widget Adapter"
+          }
+        }
+      },
+      "ConstraintRef" : {
+        "type" : "object",
+        "required" : [ "id", "href" ],
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "title" : "ID",
+            "format" : "uuid",
+            "example" : "d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "href" : {
+            "type" : "string",
+            "title" : "href",
+            "format" : "uri",
+            "example" : "https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "name" : {
+            "type" : "string",
+            "example" : "Widget Adapter"
+          },
+          "version" : {
+            "type" : "string",
+            "example" : "2.0.1"
+          },
+          "@referredType" : {
+            "type" : "string",
+            "example" : "Widget Adapter"
+          }
+        }
+      },
+      "ProductOfferingTerm" : {
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "duration" : {
+            "$ref" : "#/components/schemas/Quantity"
+          },
+          "validFor" : {
+            "$ref" : "#/components/schemas/TimePeriod"
+          },
+          "@type" : {
+            "type" : "string"
+          },
+          "@schemaLocation" : {
+            "type" : "string"
+          }
+        }
+      },
+      "PlaceRef" : {
+        "type" : "object",
+        "required" : [ "id", "href" ],
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "title" : "ID",
+            "format" : "uuid",
+            "example" : "d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "href" : {
+            "type" : "string",
+            "title" : "HREF",
+            "format" : "uri",
+            "example" : "https://tmforum.nttdata.com/resourceSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "name" : {
+            "type" : "string",
+            "title" : "Name",
+            "example" : "Server 4711"
+          },
+          "geoLocationUrl" : {
+            "type" : "string",
+            "title" : "Geo location",
+            "example" : "Hello World"
+          },
+          "address" : {
+            "type" : "string",
+            "title" : "Address",
+            "example" : "Lugwigstr. 20, 35415 Pohlheim"
+          },
+          "role" : {
+            "type" : "string",
+            "title" : "Geo location",
+            "example" : "Lagerort"
+          },
+          "@referredType" : {
+            "type" : "string",
+            "title" : "Referred Type",
+            "example" : "PlaceRef"
+          }
+        }
+      },
+      "ResourceCandidateRef" : {
+        "type" : "object",
+        "required" : [ "id", "href" ],
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "title" : "ID",
+            "format" : "uuid",
+            "example" : "d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "href" : {
+            "type" : "string",
+            "title" : "HREF",
+            "format" : "uri",
+            "example" : "https://tmforum.nttdata.com/resourceSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "name" : {
+            "type" : "string",
+            "title" : "Name",
+            "example" : "Server 4711"
+          },
+          "version" : {
+            "type" : "string",
+            "title" : "Name",
+            "example" : "3.0"
+          },
+          "@referredType" : {
+            "type" : "string",
+            "title" : "Referred Type",
+            "example" : "ResourceCandidateSpecification"
+          }
+        }
+      },
+      "ServiceCandidateRef" : {
+        "type" : "object",
+        "required" : [ "id", "href" ],
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "title" : "ID",
+            "format" : "uuid",
+            "example" : "d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "href" : {
+            "type" : "string",
+            "title" : "HREF",
+            "format" : "uri",
+            "example" : "https://tmforum.nttdata.com/resourceSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "name" : {
+            "type" : "string",
+            "title" : "Name",
+            "example" : "Server 4711"
+          },
+          "version" : {
+            "type" : "string",
+            "title" : "Name",
+            "example" : "3.0"
+          },
+          "@referredType" : {
+            "type" : "string",
+            "title" : "Referred Type",
+            "example" : "ServiceCandidateSpecification"
+          }
+        }
+      },
+      "SLARef" : {
+        "type" : "object",
+        "required" : [ "id", "href" ],
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "title" : "ID",
+            "format" : "uuid",
+            "example" : "d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "href" : {
+            "type" : "string",
+            "title" : "HREF",
+            "format" : "uri",
+            "example" : "https://tmforum.nttdata.com/resourceSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "name" : {
+            "type" : "string",
+            "title" : "Name",
+            "example" : "Server 4711"
+          },
+          "@referredType" : {
+            "type" : "string",
+            "title" : "Referred Type",
+            "example" : "SLARef"
+          }
+        }
+      },
+      "ChannelRef" : {
+        "type" : "object",
+        "required" : [ "id", "href" ],
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "title" : "ID",
+            "format" : "uuid",
+            "example" : "d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "href" : {
+            "type" : "string",
+            "title" : "HREF",
+            "format" : "uri",
+            "example" : "https://tmforum.nttdata.com/resourceSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "name" : {
+            "type" : "string",
+            "title" : "Name",
+            "example" : "WebChannel"
+          },
+          "@referredType" : {
+            "type" : "string",
+            "title" : "Referred Type",
+            "example" : "ChannelRef"
+          }
+        }
+      },
+      "ProdSpecCharValueUse" : {
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "valueType" : {
+            "type" : "string"
+          },
+          "minCardinality" : {
+            "type" : "number"
+          },
+          "maxCardinality" : {
+            "type" : "number"
+          },
+          "validFor" : {
+            "$ref" : "#/components/schemas/TimePeriod"
+          },
+          "productSpecification" : {
+            "$ref" : "#/components/schemas/ProductSpecificationRef"
+          },
+          "productSpecCharacteristicValue" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/ProductSpecCharacteristicValue"
+            }
+          }
+        }
+      },
+      "Money" : {
+        "required" : [ "value", "units" ],
+        "properties" : {
+          "value" : {
+            "type" : "number",
+            "example" : 100
+          },
+          "units" : {
+            "type" : "string",
+            "example" : "Euro"
+          }
+        }
+      },
+      "Quantity" : {
+        "type" : "object",
+        "description" : "A base / value and unit used to represent quantity",
+        "required" : [ "amount", "units" ],
+        "properties" : {
+          "amount" : {
+            "type" : "number",
+            "title" : "Amount",
+            "description" : "A long (Long). A quantity of something, typically the total of a thing or things in number, size, value, extent, or money.",
+            "example" : 100
+          },
+          "units" : {
+            "type" : "string",
+            "title" : "Unit",
+            "description" : "A string. The unit of measure for the quantity, such as meters, cubic yards, kilograms [ISO 80000], and the currency referring to [ISO 4217].",
+            "example" : "kg"
+          }
+        }
+      },
+      "TimePeriod" : {
+        "type" : "object",
+        "description" : "Spezifies a time period where the object is valid",
+        "properties" : {
+          "startDateTime" : {
+            "type" : "string",
+            "format" : "date-time",
+            "example" : "2016-08-29T09:12:33Z"
+          },
+          "endDateTime" : {
+            "type" : "string",
+            "format" : "date-time",
+            "example" : "2016-08-29T09:12:33Z"
+          }
+        }
+      },
+      "AgreementRef" : {
+        "type" : "object",
+        "required" : [ "id", "href" ],
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "title" : "ID",
+            "format" : "uuid",
+            "example" : "d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "href" : {
+            "type" : "string",
+            "title" : "HREF",
+            "format" : "uri",
+            "example" : "https://tmforum.nttdata.com/resourceSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "name" : {
+            "type" : "string",
+            "title" : "Name",
+            "example" : "Server 4711"
+          },
+          "@referredType" : {
+            "type" : "string",
+            "title" : "Referred Type",
+            "example" : "AgreementRef"
+          }
+        }
+      },
+      "MarketSegmentRef" : {
+        "title" : "Market segment ref",
+        "type" : "object",
+        "required" : [ "id", "href" ],
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "title" : "ID",
+            "format" : "uuid",
+            "example" : "d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "href" : {
+            "type" : "string",
+            "title" : "HREF",
+            "format" : "uri",
+            "example" : "https://tmforum.nttdata.com/marketSegment/d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "name" : {
+            "type" : "string",
+            "title" : "Name",
+            "example" : "Server 4711"
+          },
+          "@referredType" : {
+            "type" : "string",
+            "title" : "Referred Type",
+            "example" : "MarketSegment"
+          }
+        }
+      },
+      "TargetProductSchemaRef" : {
+        "description" : "Reference to the schema information which will appear in Product Inventory when the product becomes installed",
+        "required" : [ "@referredType", "@schemaLocation" ],
+        "properties" : {
+          "@referredType" : {
+            "type" : "string"
+          },
+          "@schemaLocation" : {
+            "type" : "string",
+            "format" : "uri"
+          }
+        },
+        "type" : "object"
+      },
+      "ResouceSpecificationRef" : {
+        "description" : "References to the resouce specifications which are installed in Resource Inventory, when this product is installed",
+        "required" : [ "id", "href" ],
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "format" : "uuid",
+            "example" : "d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "href" : {
+            "type" : "string",
+            "format" : "uri",
+            "example" : "https://tmforum.nttdata.com/resourceSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "name" : {
+            "type" : "string",
+            "example" : "Server 4711"
+          },
+          "version" : {
+            "type" : "string",
+            "example" : "1"
+          },
+          "@referredType" : {
+            "type" : "string",
+            "example" : "ResourceSpecification"
+          }
+        },
+        "type" : "object"
+      },
+      "ServiceSpecificationRef" : {
+        "description" : "References to the service specifications which are installed in Service Inventory, when this product is installed",
+        "required" : [ "id", "href" ],
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "format" : "uuid",
+            "example" : "d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "href" : {
+            "type" : "string",
+            "format" : "uri",
+            "example" : "https://tmforum.nttdata.com/resourceSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "name" : {
+            "type" : "string",
+            "example" : "Server 4711"
+          },
+          "version" : {
+            "type" : "string",
+            "example" : "1"
+          },
+          "@referredType" : {
+            "type" : "string",
+            "example" : "ServiceSpecificationRef"
+          }
+        },
+        "type" : "object"
+      },
+      "BundledProductSpecification" : {
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "format" : "uuid",
+            "example" : "d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "href" : {
+            "type" : "string",
+            "format" : "uri",
+            "example" : "https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "lifecycleStatus" : {
+            "$ref" : "#/components/schemas/LifecycleStatus"
+          },
+          "name" : {
+            "type" : "string",
+            "example" : "Server 4711"
+          }
+        },
+        "type" : "object"
+      },
+      "ProductSpecCharacteristic" : {
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "valueType" : {
+            "type" : "string"
+          },
+          "configurable" : {
+            "type" : "boolean"
+          },
+          "validFor" : {
+            "$ref" : "#/components/schemas/TimePeriod"
+          },
+          "@type" : {
+            "type" : "string"
+          },
+          "@schemaLocation" : {
+            "type" : "string",
+            "format" : "uri"
+          },
+          "@valueSchemaLocation" : {
+            "type" : "string",
+            "format" : "uri"
+          },
+          "minCardinality" : {
+            "type" : "integer",
+            "format" : "uint",
+            "minimum" : 0
+          },
+          "maxCardinality" : {
+            "type" : "integer",
+            "format" : "unit",
+            "minimum" : 1
+          },
+          "isUnique" : {
+            "type" : "boolean"
+          },
+          "regex" : {
+            "type" : "string"
+          },
+          "extensible" : {
+            "type" : "boolean"
+          },
+          "productSpecCharacteristicValue" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/ProductSpecCharacteristicValue"
+            }
+          },
+          "productSpecCharRelationship" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/ProductSpecCharRelationship"
+            }
+          }
+        },
+        "type" : "object"
+      },
+      "ProductSpecCharacteristicValue" : {
+        "properties" : {
+          "isDefault" : {
+            "type" : "boolean"
+          },
+          "unitOfMeature" : {
+            "type" : "string"
+          },
+          "validFor" : {
+            "$ref" : "#/components/schemas/TimePeriod"
+          },
+          "valueFrom" : {
+            "type" : "string"
+          },
+          "valueTo" : {
+            "type" : "string"
+          },
+          "valueType" : {
+            "type" : "string"
+          },
+          "rangeInterval" : {
+            "type" : "string"
+          },
+          "regex" : {
+            "type" : "string"
+          },
+          "@type" : {
+            "type" : "string"
+          },
+          "@schemaLocation" : {
+            "type" : "string",
+            "format" : "uri"
+          }
+        },
+        "type" : "object"
+      },
+      "ProductSpecCharRelationship" : {
+        "required" : [ "id", "href" ],
+        "properties" : {
+          "type" : {
+            "type" : "string"
+          },
+          "validFor" : {
+            "$ref" : "#/components/schemas/TimePeriod"
+          },
+          "charSpecSeq" : {
+            "type" : "integer",
+            "format" : "uint"
+          },
+          "id" : {
+            "type" : "string",
+            "example" : "d290f1ee-6c54-4b01-90e6-d701748f0851",
+            "format" : "uuid"
+          },
+          "href" : {
+            "type" : "string",
+            "format" : "uri",
+            "example" : "https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "@type" : {
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "ProductSpecificationRelationship" : {
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "format" : "uuid",
+            "example" : "d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "href" : {
+            "type" : "string",
+            "format" : "uri",
+            "example" : "https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "type" : {
+            "type" : "string",
+            "example" : "contains"
+          },
+          "validFor" : {
+            "$ref" : "#/components/schemas/TimePeriod"
+          }
+        },
+        "type" : "object"
+      },
+      "Attachment" : {
+        "title" : "Attachment",
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "format" : "uuid",
+            "example" : "d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "href" : {
+            "type" : "string",
+            "format" : "uri",
+            "example" : "https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "type" : {
+            "type" : "string"
+          },
+          "url" : {
+            "type" : "string",
+            "format" : "uri"
+          },
+          "mimeType" : {
+            "type" : "string",
+            "format" : "mimeType"
+          },
+          "validFor" : {
+            "$ref" : "#/components/schemas/TimePeriod"
+          },
+          "@type" : {
+            "type" : "string",
+            "example" : "attachment type"
+          },
+          "@baseType" : {
+            "type" : "string",
+            "example" : "attachment base type"
+          },
+          "@schemaLocation" : {
+            "type" : "string",
+            "example" : "attachment schema location"
+          }
+        }
+      },
+      "RelatedPartyRef" : {
+        "title" : "Related party reference",
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "title" : "ID",
+            "format" : "uuid",
+            "example" : "d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "href" : {
+            "type" : "string",
+            "title" : "href",
+            "format" : "uri",
+            "example" : "https://tmforum.nttdata.com/productSpecification/d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "role" : {
+            "type" : "string",
+            "title" : "Role",
+            "example" : "Responsible"
+          },
+          "name" : {
+            "type" : "string",
+            "title" : "Name",
+            "example" : "John Doe"
+          },
+          "validFor" : {
+            "$ref" : "#/components/schemas/TimePeriod"
+          },
+          "@referredType" : {
+            "type" : "string",
+            "title" : "Referred type"
+          }
+        }
+      },
+      "LifecycleStatus" : {
+        "title" : "Lifecycle Status",
+        "type" : "string",
+        "enum" : [ "In study", "In design", "In test", "Active", "Launched", "Retired", "Obsolet", "Rejected" ],
+        "example" : "Active"
+      }
+    }
+  }
+}
