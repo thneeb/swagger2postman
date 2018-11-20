@@ -5,4 +5,5 @@ export interface RequestDefinitions {
     post?: RequestDefinition;
     put?: RequestDefinition;
     patch?: RequestDefinition;
+    delete?: RequestDefinition;
 }

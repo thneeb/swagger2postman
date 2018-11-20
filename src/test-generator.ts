@@ -204,13 +204,21 @@ function buildModelWithAllAttributes(swag: Swagger, model: Attribute, override: 
 		result.push(buildModelWithAllAttributes(swag, model.items, override));
 	} else {
 		const example = override || model.example;
-		if (example !== undefined && !model.readOnly) {
+		if (!model.readOnly) {
 			if (model.type === 'number') {
-				result = example as number;
+				result = (example || 42) as number;
 			} else if (model.type === 'boolean') {
-				result = (example === true || example === 'true') ? true : false;
+				result = (example === true || example === 'true' || example === undefined) ? true : false;
 			} else if (model.type === 'string') {
-				result = example as string;
+				if (example !== undefined) {
+					result = example as string;
+				} else if (model.format === 'date-time') {
+					result = '1973-10-10T09:10:00Z';
+				} else if (model.format === 'uuid') {
+					result = uuidv1();
+				} else {
+					result = 'Hello World';
+				}
 			} else {
 				result = example;
 			}
@@ -577,7 +585,7 @@ function addTestsForDifferentDiscrimiator(swag: Swagger, p: PostmanCollection) {
 function addTestsForFiltering(swag: Swagger, p: PostmanCollection) {
 	const paths = Object.keys(swag.paths).map((key) => ({key, value: swag.paths[key] as RequestDefinitions}));
 	for (const path of paths) {
-		if (path.value.post && path.value.get) {
+		if (path.value.post && path.value.get && path.value.get.parameters) {
 			for (const param of path.value.get.parameters.filter((f) => { return !reservedParameters.find((g) => g === f.name) } )) {
 				testCreateFilter(swag, p, path.value, path.key, param);
 			}
@@ -612,14 +620,26 @@ function addOneOfAttributes(swag: Swagger, attr: Attribute, override: object): o
 	return override;
 }
 
+function addToArrayIfDoesNotExist(source: string[], elements: string[]): string[] {
+	let result = source.concat();
+	for (const s of elements) {
+		result = result.filter((f) => f !== s).concat(s);
+	}
+	return result;
+}
+
 function testCreateFilter(swag: Swagger, p: PostmanCollection, defs: RequestDefinitions, path: string, param: Parameter) {
 	const override = makeOverride(param.name, buildModelWithAllAttributes(swag, param.schema, undefined));
 	const bodyContent = getRequestBody(defs.post);
 	addOneOfAttributes(swag, bodyContent.schema, override);
 	const example = buildModelWithAllAttributes(swag, bodyContent.schema, override);
 	const folder = generateFolder(p.id, 'TC_' + path.substring(1) + '_FILTER_N1 - Create Resource with filter parameters');
+	const defs2 = swag.paths[path + '/{id}'] as RequestDefinitions;
 	testCreateResource(swag, p, folder, path, defs.post, example);
 	testGetAllResources(swag, p, folder, path, defs.get, param);
+	if (defs2.delete) {
+		testDeleteResource(swag, p, folder, path, defs2.delete);
+	}
 	p.folders.push(folder);
 }
 
@@ -629,8 +649,10 @@ function testCreateGetAll(p: PostmanCollection, path: string, definitions: Reque
 	if (deleteOptional) {
 		deleteAllOptionalAttributes(swag, example, bodyContent.schema);
 	}
-	testCreateResource(swag, p, folder, path, definitions.post, example);
 	const defs = swag.paths[path + '/{id}'] as RequestDefinitions;
+//	const pathId = Object.keys(swag.paths).find(f => !!f.match(new RegExp(path + '\/{.*}')));
+//	const defs = swag.paths[pathId];
+	testCreateResource(swag, p, folder, path, definitions.post, example);
 	if (defs) {
 		if (defs.get) {
 			testGetResource(swag, p, folder, path + '/{id}', defs.get, 'lastRequest');
@@ -655,6 +677,9 @@ function testCreateGetAll(p: PostmanCollection, path: string, definitions: Reque
 		}
 	} else {
 		console.warn('No getter for a full search specified ' + path);
+	}
+	if (defs && defs.delete) {
+		testDeleteResource(swag, p, folder, path, defs.delete);
 	}
 	p.folders.push(folder);
 }
@@ -694,7 +719,7 @@ function testGetResource(swag: Swagger, p: PostmanCollection, folder: Folder, pa
 	const model = resolveModel(swag, responseContent);
 	// check if the required attributes in the response object are all there
 	if (model.required) {
-		request.tests += 'tests["Response contains all required fields"] = findFieldsInBody(' + JSON.stringify(model.required) + ', JSON.parse(responseBody));\n';
+		request.tests += 'tests["Response contains all required fields"] = findFieldsInBody(' + JSON.stringify(addToArrayIfDoesNotExist(model.required, reservedProperties)) + ', JSON.parse(responseBody));\n';
 		request.tests += addFindFieldsInBody();
 	}
 	folder.order.push(request.id);
@@ -745,9 +770,18 @@ function testGetAllResourcesWithMandatoryFields(swag: Swagger, p: PostmanCollect
 	request.tests += 'tests["Content-Type is present " + postman.getResponseHeader("Content-type")] = postman.getResponseHeader("Content-type");\n';
 	request.tests += 'tests["Status code is 200"] = responseCode.code === 200;\n';
 	request.tests += 'tests["Response contains created resource"] = findElementInList(postman.getEnvironmentVariable("lastId"), JSON.parse(responseBody));\n';
-	request.tests += 'tests["Response only contains chosen fields"] = checkFieldsInArray(' + JSON.stringify(model.required) +', JSON.parse(responseBody));\n';
+	request.tests += 'tests["Response only contains chosen fields"] = checkFieldsInArray(' + JSON.stringify(addToArrayIfDoesNotExist(model.required, reservedProperties)) +', JSON.parse(responseBody));\n';
 	request.tests += addFindElementInList();
 	request.tests += addCheckFieldsInArray();
+	folder.order.push(request.id);
+	p.requests.push(request);
+}
+
+function testDeleteResource(swag: Swagger, p: PostmanCollection, folder: Folder, path: string, requestDefinition: RequestDefinition) {
+	const request = generateBasicRequest(p.id, folder.id, requestDefinition, '');
+	request.url = '{{host}}{{path}}' + path.replace('{id}', '{{lastId}}');
+	request.method = 'DELETE';
+	request.tests += 'tests["Status code is 200"] = responseCode.code === 200;\n';
 	folder.order.push(request.id);
 	p.requests.push(request);
 }
@@ -769,7 +803,7 @@ function testCreateResource(swag: Swagger, p: PostmanCollection, folder: Folder,
 		const model = resolveModel(swag, responseContent);
 		// check if the required attributes in the response object are all there
 		if (model.required) {
-			request.tests += 'tests["Response contains all required fields"] = findFieldsInBody(' + JSON.stringify(model.required) + ', JSON.parse(responseBody));\n';
+			request.tests += 'tests["Response contains all required fields"] = findFieldsInBody(' + JSON.stringify(addToArrayIfDoesNotExist(model.required, reservedProperties)) + ', JSON.parse(responseBody));\n';
 			request.tests += addFindFieldsInBody();
 		}
 		request.tests += 'tests["POST Body Response equals Request Body"  ] = objectEquals(JSON.parse(request.data), JSON.parse(responseBody));\n';
